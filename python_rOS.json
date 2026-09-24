@@ -1,0 +1,1587 @@
+{
+  "topic": "Python",
+  "objective": "Provide an expert-level, implementation-oriented outline of Python covering language fundamentals, execution model, data model, object model, syntax, standard library, concurrency, typing, packaging, testing, performance, security, interoperability, tooling, and production engineering.",
+  "scope": "Modern Python language and ecosystem, emphasizing CPython behavior where implementation-specific details matter while distinguishing language guarantees from implementation details. Covers application development, libraries, automation, data processing, web development, systems integration, and maintainable production software.",
+  "architecture": {
+    "sections": [
+      {
+        "id": "language-foundations",
+        "name": "Language Foundations",
+        "purpose": "Establish Python syntax, execution, naming, expressions, statements, and core programming constructs.",
+        "concepts": [
+          "Python syntax",
+          "indentation",
+          "statements",
+          "expressions",
+          "names",
+          "bindings",
+          "objects",
+          "references",
+          "scope",
+          "modules"
+        ],
+        "subsections": [
+          {
+            "name": "Program Structure",
+            "details": [
+              "Source files",
+              "Modules",
+              "Packages",
+              "Import statements",
+              "Entry points",
+              "The __main__ module",
+              "Executable scripts",
+              "Shebang usage"
+            ],
+            "examples": [
+              "python app.py",
+              "python -m package.module"
+            ],
+            "dependencies": [
+              "Python interpreter",
+              "module system"
+            ]
+          },
+          {
+            "name": "Syntax and Indentation",
+            "details": [
+              "Significant indentation",
+              "Blocks",
+              "Line continuation",
+              "Comments",
+              "Docstrings",
+              "Whitespace rules",
+              "Parenthesized expressions"
+            ],
+            "examples": [
+              "if condition:\n    process()"
+            ],
+            "dependencies": [
+              "Python lexical grammar",
+              "parser"
+            ]
+          },
+          {
+            "name": "Names and Binding",
+            "details": [
+              "Variable assignment",
+              "Multiple assignment",
+              "Augmented assignment",
+              "Unpacking",
+              "Global names",
+              "Nonlocal names",
+              "Name resolution"
+            ],
+            "examples": [
+              "a, b = b, a",
+              "first, *middle, last = values"
+            ],
+            "dependencies": [
+              "object model",
+              "scope rules"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "data-model",
+        "name": "Python Data Model",
+        "purpose": "Explain Python's object-centric execution model and special methods.",
+        "concepts": [
+          "objects",
+          "identity",
+          "type",
+          "value",
+          "mutability",
+          "hashability",
+          "special methods",
+          "protocols"
+        ],
+        "subsections": [
+          {
+            "name": "Object Identity and Type",
+            "details": [
+              "Every runtime value is an object",
+              "id()",
+              "type()",
+              "is versus ==",
+              "Object identity",
+              "Equality semantics",
+              "Type checking"
+            ],
+            "examples": [
+              "a is b",
+              "a == b",
+              "type(value)"
+            ],
+            "dependencies": [
+              "object model"
+            ]
+          },
+          {
+            "name": "Special Methods",
+            "details": [
+              "__init__",
+              "__new__",
+              "__repr__",
+              "__str__",
+              "__eq__",
+              "__hash__",
+              "__len__",
+              "__iter__",
+              "__next__",
+              "__getitem__",
+              "__call__",
+              "__enter__",
+              "__exit__"
+            ],
+            "examples": [
+              "class Item:\n    def __repr__(self):\n        return 'Item()'"
+            ],
+            "dependencies": [
+              "classes",
+              "protocols"
+            ]
+          },
+          {
+            "name": "Protocols and Duck Typing",
+            "details": [
+              "Behavioral interfaces",
+              "Iterable protocol",
+              "Context manager protocol",
+              "Sequence protocol",
+              "Mapping protocol",
+              "Callable protocol"
+            ],
+            "examples": [
+              "for item in iterable:",
+              "with resource as value:"
+            ],
+            "dependencies": [
+              "special methods",
+              "standard library protocols"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "core-types",
+        "name": "Built-in Data Types",
+        "purpose": "Cover Python's fundamental built-in values and collections.",
+        "concepts": [
+          "None",
+          "bool",
+          "int",
+          "float",
+          "complex",
+          "str",
+          "bytes",
+          "bytearray",
+          "list",
+          "tuple",
+          "range",
+          "set",
+          "frozenset",
+          "dict"
+        ],
+        "subsections": [
+          {
+            "name": "Scalar Types",
+            "details": [
+              "Integer arithmetic",
+              "Floating-point representation",
+              "Boolean semantics",
+              "Complex numbers",
+              "None singleton",
+              "Numeric conversions"
+            ],
+            "examples": [
+              "n = 42",
+              "ratio = 3.14",
+              "missing = None"
+            ],
+            "dependencies": [
+              "operators",
+              "numeric model"
+            ]
+          },
+          {
+            "name": "Strings and Binary Data",
+            "details": [
+              "Unicode strings",
+              "Encoding and decoding",
+              "String formatting",
+              "Bytes",
+              "Bytearray",
+              "Memoryview",
+              "Text versus binary boundaries"
+            ],
+            "examples": [
+              "text.encode('utf-8')",
+              "data.decode('utf-8')"
+            ],
+            "dependencies": [
+              "Unicode",
+              "I/O"
+            ]
+          },
+          {
+            "name": "Collections",
+            "details": [
+              "Lists",
+              "Tuples",
+              "Sets",
+              "Dictionaries",
+              "Ordering guarantees",
+              "Mutability",
+              "Hashability",
+              "Collection operations"
+            ],
+            "examples": [
+              "items = [1, 2, 3]",
+              "mapping = {'name': 'Ada'}",
+              "unique = {1, 2, 3}"
+            ],
+            "dependencies": [
+              "iterables",
+              "hashing"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "control-flow",
+        "name": "Control Flow and Expressions",
+        "purpose": "Cover conditional execution, iteration, comprehensions, pattern matching, and expression-oriented constructs.",
+        "concepts": [
+          "if",
+          "for",
+          "while",
+          "break",
+          "continue",
+          "pass",
+          "match",
+          "comprehensions",
+          "generator expressions",
+          "conditional expressions"
+        ],
+        "subsections": [
+          {
+            "name": "Conditionals",
+            "details": [
+              "if",
+              "elif",
+              "else",
+              "Truthiness",
+              "Chained comparisons",
+              "Conditional expressions"
+            ],
+            "examples": [
+              "if value is not None:\n    process(value)"
+            ],
+            "dependencies": [
+              "boolean semantics"
+            ]
+          },
+          {
+            "name": "Iteration",
+            "details": [
+              "for loops",
+              "while loops",
+              "iterators",
+              "iter()",
+              "next()",
+              "break",
+              "continue",
+              "loop else clauses"
+            ],
+            "examples": [
+              "for item in items:\n    process(item)"
+            ],
+            "dependencies": [
+              "iterator protocol"
+            ]
+          },
+          {
+            "name": "Comprehensions",
+            "details": [
+              "List comprehensions",
+              "Set comprehensions",
+              "Dictionary comprehensions",
+              "Generator expressions",
+              "Nested comprehensions",
+              "Conditional comprehensions"
+            ],
+            "examples": [
+              "[x * 2 for x in values if x > 0]"
+            ],
+            "dependencies": [
+              "iterables",
+              "expressions"
+            ]
+          },
+          {
+            "name": "Structural Pattern Matching",
+            "details": [
+              "match",
+              "case",
+              "Literal patterns",
+              "Sequence patterns",
+              "Mapping patterns",
+              "Class patterns",
+              "Guards",
+              "OR patterns"
+            ],
+            "examples": [
+              "match command:\n    case {'action': 'quit'}:\n        exit()"
+            ],
+            "dependencies": [
+              "Python pattern matching",
+              "data model"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "functions",
+        "name": "Functions and Callables",
+        "purpose": "Explain function definitions, argument semantics, closures, decorators, generators, and callable objects.",
+        "concepts": [
+          "def",
+          "lambda",
+          "parameters",
+          "arguments",
+          "defaults",
+          "keyword arguments",
+          "positional-only parameters",
+          "keyword-only parameters",
+          "closures",
+          "decorators",
+          "generators"
+        ],
+        "subsections": [
+          {
+            "name": "Function Signatures",
+            "details": [
+              "Positional parameters",
+              "Keyword parameters",
+              "Default values",
+              "Variadic arguments",
+              "Positional-only parameters",
+              "Keyword-only parameters"
+            ],
+            "examples": [
+              "def connect(host, /, port=443, *, timeout=10): ..."
+            ],
+            "dependencies": [
+              "name binding",
+              "call semantics"
+            ]
+          },
+          {
+            "name": "First-Class Functions",
+            "details": [
+              "Functions as values",
+              "Passing functions",
+              "Returning functions",
+              "Closures",
+              "Callable instances",
+              "Higher-order functions"
+            ],
+            "examples": [
+              "sorted(items, key=lambda item: item.name)"
+            ],
+            "dependencies": [
+              "object model",
+              "scope"
+            ]
+          },
+          {
+            "name": "Decorators",
+            "details": [
+              "Function decorators",
+              "Class decorators",
+              "Decorator factories",
+              "functools.wraps",
+              "Metadata preservation"
+            ],
+            "examples": [
+              "@cache\ndef expensive(value): ..."
+            ],
+            "dependencies": [
+              "functions",
+              "closures"
+            ]
+          },
+          {
+            "name": "Generators",
+            "details": [
+              "yield",
+              "Generator objects",
+              "Lazy evaluation",
+              "send",
+              "throw",
+              "close",
+              "Generator delegation"
+            ],
+            "examples": [
+              "def numbers():\n    yield 1\n    yield 2"
+            ],
+            "dependencies": [
+              "iterator protocol",
+              "coroutines"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "object-oriented-programming",
+        "name": "Classes and Object-Oriented Programming",
+        "purpose": "Cover Python's class model, inheritance, composition, descriptors, dataclasses, and metaprogramming.",
+        "concepts": [
+          "classes",
+          "instances",
+          "inheritance",
+          "composition",
+          "MRO",
+          "multiple inheritance",
+          "properties",
+          "descriptors",
+          "dataclasses",
+          "abstract base classes",
+          "protocols"
+        ],
+        "subsections": [
+          {
+            "name": "Classes",
+            "details": [
+              "Class definitions",
+              "Instance attributes",
+              "Class attributes",
+              "Methods",
+              "Properties",
+              "Class methods",
+              "Static methods"
+            ],
+            "examples": [
+              "class User:\n    def __init__(self, name):\n        self.name = name"
+            ],
+            "dependencies": [
+              "object model"
+            ]
+          },
+          {
+            "name": "Inheritance and MRO",
+            "details": [
+              "Single inheritance",
+              "Multiple inheritance",
+              "Method resolution order",
+              "super()",
+              "Cooperative inheritance"
+            ],
+            "examples": [
+              "class Child(Parent): ..."
+            ],
+            "dependencies": [
+              "classes",
+              "type system"
+            ]
+          },
+          {
+            "name": "Dataclasses",
+            "details": [
+              "Generated initialization",
+              "Representation",
+              "Equality",
+              "Ordering",
+              "Frozen instances",
+              "Slots",
+              "Default factories"
+            ],
+            "examples": [
+              "@dataclass\nclass User:\n    name: str\n    active: bool = True"
+            ],
+            "dependencies": [
+              "classes",
+              "type annotations"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exceptions",
+        "name": "Exceptions and Error Handling",
+        "purpose": "Define robust error signaling, propagation, recovery, and resource cleanup.",
+        "concepts": [
+          "Exception hierarchy",
+          "try",
+          "except",
+          "else",
+          "finally",
+          "raise",
+          "exception chaining",
+          "custom exceptions",
+          "ExceptionGroup"
+        ],
+        "subsections": [
+          {
+            "name": "Exception Handling",
+            "details": [
+              "Catch specific exceptions",
+              "Multiple exception types",
+              "Exception binding",
+              "Else clauses",
+              "Finally clauses"
+            ],
+            "examples": [
+              "try:\n    operation()\nexcept ValueError as exc:\n    handle(exc)"
+            ],
+            "dependencies": [
+              "control flow"
+            ]
+          },
+          {
+            "name": "Exception Design",
+            "details": [
+              "Custom exception classes",
+              "Exception hierarchy design",
+              "Exception chaining",
+              "raise from",
+              "Preserving context",
+              "Avoiding overly broad catches"
+            ],
+            "examples": [
+              "raise ApplicationError('Request failed') from exc"
+            ],
+            "dependencies": [
+              "classes",
+              "error handling"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "resource-management",
+        "name": "Resource Management",
+        "purpose": "Handle files, locks, connections, transactions, and other resources safely.",
+        "concepts": [
+          "context managers",
+          "with",
+          "__enter__",
+          "__exit__",
+          "contextlib",
+          "cleanup",
+          "resource lifetime"
+        ],
+        "subsections": [
+          {
+            "name": "Context Managers",
+            "details": [
+              "Synchronous context managers",
+              "Asynchronous context managers",
+              "Nested contexts",
+              "Exception-safe cleanup",
+              "contextmanager decorator"
+            ],
+            "examples": [
+              "with open('data.txt', encoding='utf-8') as file:\n    content = file.read()"
+            ],
+            "dependencies": [
+              "special methods",
+              "exceptions"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "modules-packages",
+        "name": "Modules, Packages, and Imports",
+        "purpose": "Explain Python's module system and dependency organization.",
+        "concepts": [
+          "module",
+          "package",
+          "__init__.py",
+          "import",
+          "from import",
+          "relative imports",
+          "import system",
+          "module search path"
+        ],
+        "subsections": [
+          {
+            "name": "Import Mechanics",
+            "details": [
+              "Import statements",
+              "Module initialization",
+              "sys.path",
+              "Import caching",
+              "Import hooks",
+              "Circular imports"
+            ],
+            "examples": [
+              "from package.module import function"
+            ],
+            "dependencies": [
+              "filesystem",
+              "package layout"
+            ]
+          },
+          {
+            "name": "Package Architecture",
+            "details": [
+              "Package boundaries",
+              "Public APIs",
+              "Private modules",
+              "Re-exports",
+              "Namespace packages",
+              "Dependency direction"
+            ],
+            "examples": [
+              "package/\n  __init__.py\n  api.py\n  internal.py"
+            ],
+            "dependencies": [
+              "imports",
+              "software architecture"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "standard-library",
+        "name": "Standard Library",
+        "purpose": "Map the most important standard-library capabilities and their appropriate uses.",
+        "concepts": [
+          "pathlib",
+          "os",
+          "sys",
+          "subprocess",
+          "json",
+          "csv",
+          "sqlite3",
+          "datetime",
+          "re",
+          "collections",
+          "itertools",
+          "functools",
+          "logging",
+          "argparse",
+          "http",
+          "urllib",
+          "email",
+          "tempfile",
+          "shutil"
+        ],
+        "subsections": [
+          {
+            "name": "Filesystem and OS",
+            "details": [
+              "pathlib",
+              "os",
+              "shutil",
+              "tempfile",
+              "Environment variables",
+              "File permissions"
+            ],
+            "examples": [
+              "Path('data').glob('*.json')"
+            ],
+            "dependencies": [
+              "I/O",
+              "operating-system interfaces"
+            ]
+          },
+          {
+            "name": "Data Processing",
+            "details": [
+              "json",
+              "csv",
+              "sqlite3",
+              "re",
+              "collections",
+              "itertools"
+            ],
+            "examples": [
+              "json.loads(payload)",
+              "Counter(items)"
+            ],
+            "dependencies": [
+              "core data types"
+            ]
+          },
+          {
+            "name": "Application Infrastructure",
+            "details": [
+              "logging",
+              "argparse",
+              "configparser",
+              "secrets",
+              "dataclasses",
+              "enum"
+            ],
+            "examples": [
+              "logging.getLogger(__name__)",
+              "secrets.token_urlsafe()"
+            ],
+            "dependencies": [
+              "application architecture"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "typing",
+        "name": "Type Hints and Static Typing",
+        "purpose": "Cover Python's optional type system and its role in correctness, tooling, and maintainability.",
+        "concepts": [
+          "annotations",
+          "typing",
+          "Generic",
+          "TypeVar",
+          "Protocol",
+          "Literal",
+          "Union",
+          "Optional",
+          "TypedDict",
+          "dataclass",
+          "static analyzers"
+        ],
+        "subsections": [
+          {
+            "name": "Basic Annotations",
+            "details": [
+              "Variable annotations",
+              "Function parameter annotations",
+              "Return annotations",
+              "Built-in generic types",
+              "None annotations"
+            ],
+            "examples": [
+              "def greet(name: str) -> str:\n    return f'Hello {name}'"
+            ],
+            "dependencies": [
+              "functions",
+              "built-in types"
+            ]
+          },
+          {
+            "name": "Advanced Typing",
+            "details": [
+              "Generics",
+              "Protocols",
+              "TypedDict",
+              "Type aliases",
+              "Literal",
+              "Callable",
+              "TypeGuard",
+              "Variance",
+              "Overloads"
+            ],
+            "examples": [
+              "class Repository(Protocol):\n    def get(self, key: str) -> object: ..."
+            ],
+            "dependencies": [
+              "object model",
+              "static analysis"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "concurrency",
+        "name": "Concurrency and Parallelism",
+        "purpose": "Explain synchronous, asynchronous, threaded, and process-based execution models.",
+        "concepts": [
+          "asyncio",
+          "async",
+          "await",
+          "coroutines",
+          "tasks",
+          "threads",
+          "processes",
+          "executors",
+          "queues",
+          "synchronization",
+          "GIL"
+        ],
+        "subsections": [
+          {
+            "name": "Asyncio",
+            "details": [
+              "Event loop",
+              "Coroutines",
+              "Tasks",
+              "Futures",
+              "Cancellation",
+              "Timeouts",
+              "Async context managers",
+              "Async iterators"
+            ],
+            "examples": [
+              "async def fetch(): ...",
+              "await fetch()"
+            ],
+            "dependencies": [
+              "generators",
+              "I/O concurrency"
+            ]
+          },
+          {
+            "name": "Threads",
+            "details": [
+              "threading",
+              "Thread",
+              "Lock",
+              "RLock",
+              "Event",
+              "Condition",
+              "Queue",
+              "ThreadPoolExecutor"
+            ],
+            "examples": [
+              "with ThreadPoolExecutor() as executor:\n    futures = [...]"
+            ],
+            "dependencies": [
+              "synchronization",
+              "I/O"
+            ]
+          },
+          {
+            "name": "Processes",
+            "details": [
+              "multiprocessing",
+              "Process",
+              "ProcessPoolExecutor",
+              "Inter-process communication",
+              "Serialization constraints"
+            ],
+            "examples": [
+              "with ProcessPoolExecutor() as executor:\n    results = list(executor.map(work, values))"
+            ],
+            "dependencies": [
+              "parallel execution",
+              "serialization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "io-networking",
+        "name": "Input, Output, and Networking",
+        "purpose": "Cover files, streams, sockets, subprocesses, and network communication.",
+        "concepts": [
+          "text I/O",
+          "binary I/O",
+          "buffering",
+          "stdin",
+          "stdout",
+          "stderr",
+          "sockets",
+          "HTTP",
+          "subprocess"
+        ],
+        "subsections": [
+          {
+            "name": "File I/O",
+            "details": [
+              "open",
+              "Path.open",
+              "Text streams",
+              "Binary streams",
+              "Encoding",
+              "Newline handling",
+              "Buffering"
+            ],
+            "examples": [
+              "Path('data.txt').read_text(encoding='utf-8')"
+            ],
+            "dependencies": [
+              "filesystem",
+              "context managers"
+            ]
+          },
+          {
+            "name": "Subprocesses",
+            "details": [
+              "subprocess.run",
+              "Popen",
+              "stdin/stdout/stderr",
+              "Timeouts",
+              "Exit codes",
+              "Shell invocation risks"
+            ],
+            "examples": [
+              "subprocess.run(['python', '--version'], check=True)"
+            ],
+            "dependencies": [
+              "operating system",
+              "security"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "testing",
+        "name": "Testing and Quality Assurance",
+        "purpose": "Establish reliable automated verification at unit, integration, property, and system levels.",
+        "concepts": [
+          "unittest",
+          "pytest ecosystem",
+          "fixtures",
+          "mocking",
+          "property-based testing",
+          "coverage",
+          "integration tests",
+          "test isolation"
+        ],
+        "subsections": [
+          {
+            "name": "Unit Testing",
+            "details": [
+              "Test cases",
+              "Assertions",
+              "Fixtures",
+              "Parameterization",
+              "Mocks",
+              "Stubs",
+              "Fakes"
+            ],
+            "examples": [
+              "def test_total():\n    assert total([1, 2]) == 3"
+            ],
+            "dependencies": [
+              "functions",
+              "modules"
+            ]
+          },
+          {
+            "name": "Integration Testing",
+            "details": [
+              "Database integration",
+              "HTTP integration",
+              "Filesystem behavior",
+              "External service boundaries",
+              "Temporary resources",
+              "Test containers"
+            ],
+            "examples": [
+              "Run application components against isolated test dependencies."
+            ],
+            "dependencies": [
+              "I/O",
+              "networking",
+              "resource management"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "packaging",
+        "name": "Packaging and Dependency Management",
+        "purpose": "Cover reproducible Python distribution and dependency management.",
+        "concepts": [
+          "pyproject.toml",
+          "build systems",
+          "wheels",
+          "sdists",
+          "package indexes",
+          "dependencies",
+          "virtual environments",
+          "lock files",
+          "versioning"
+        ],
+        "subsections": [
+          {
+            "name": "Virtual Environments",
+            "details": [
+              "Environment isolation",
+              "venv",
+              "Interpreter selection",
+              "Installed package isolation"
+            ],
+            "examples": [
+              "python -m venv .venv"
+            ],
+            "dependencies": [
+              "Python interpreter",
+              "package management"
+            ]
+          },
+          {
+            "name": "Project Metadata",
+            "details": [
+              "pyproject.toml",
+              "Project name",
+              "Version",
+              "Dependencies",
+              "Optional dependencies",
+              "Entry points",
+              "Build backend"
+            ],
+            "examples": [
+              "[project]\nname = \"example\""
+            ],
+            "dependencies": [
+              "packaging standards"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "Performance and Optimization",
+        "purpose": "Provide a disciplined approach to measuring and improving Python performance.",
+        "concepts": [
+          "algorithmic complexity",
+          "profiling",
+          "benchmarking",
+          "caching",
+          "memory usage",
+          "vectorization",
+          "I/O optimization",
+          "C extensions",
+          "alternative interpreters"
+        ],
+        "subsections": [
+          {
+            "name": "Measurement",
+            "details": [
+              "timeit",
+              "profilers",
+              "Sampling profilers",
+              "Memory profiling",
+              "Benchmark design",
+              "Warm-up effects",
+              "Statistical variance"
+            ],
+            "examples": [
+              "python -m timeit \"sum(range(1000))\""
+            ],
+            "dependencies": [
+              "runtime",
+              "algorithm analysis"
+            ]
+          },
+          {
+            "name": "Optimization Strategy",
+            "details": [
+              "Measure before optimizing",
+              "Improve algorithms first",
+              "Reduce unnecessary allocations",
+              "Optimize I/O",
+              "Use caching selectively",
+              "Move hotspots to optimized libraries when justified"
+            ],
+            "examples": [
+              "Use a set for repeated membership tests when appropriate."
+            ],
+            "dependencies": [
+              "profiling",
+              "data structures"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "name": "Python Security",
+        "purpose": "Identify application, dependency, serialization, filesystem, subprocess, and secret-management risks.",
+        "concepts": [
+          "input validation",
+          "injection",
+          "unsafe deserialization",
+          "subprocess security",
+          "path traversal",
+          "secrets",
+          "dependency security",
+          "cryptography"
+        ],
+        "subsections": [
+          {
+            "name": "Unsafe Deserialization",
+            "details": [
+              "Avoid untrusted pickle data",
+              "Prefer safe serialization formats where appropriate",
+              "Validate deserialized structures",
+              "Treat serialized objects as potentially executable behavior"
+            ],
+            "examples": [
+              "Use JSON for ordinary untrusted structured data when object reconstruction is unnecessary."
+            ],
+            "dependencies": [
+              "serialization",
+              "trust boundaries"
+            ]
+          },
+          {
+            "name": "Subprocess Security",
+            "details": [
+              "Prefer argument arrays",
+              "Avoid unnecessary shell=True",
+              "Validate executable paths",
+              "Handle environment variables carefully",
+              "Limit privileges"
+            ],
+            "examples": [
+              "subprocess.run(['tool', '--input', filename], check=True)"
+            ],
+            "dependencies": [
+              "OS interfaces",
+              "input validation"
+            ]
+          },
+          {
+            "name": "Secrets",
+            "details": [
+              "Use secrets for security-sensitive randomness",
+              "Avoid hard-coded credentials",
+              "Use environment or dedicated secret stores appropriately",
+              "Rotate credentials",
+              "Avoid logging secrets"
+            ],
+            "examples": [
+              "token = secrets.token_urlsafe(32)"
+            ],
+            "dependencies": [
+              "cryptography",
+              "deployment security"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tooling-style",
+        "name": "Code Quality and Developer Tooling",
+        "purpose": "Create consistent, maintainable, analyzable Python codebases.",
+        "concepts": [
+          "PEP 8",
+          "formatters",
+          "linters",
+          "type checkers",
+          "documentation",
+          "pre-commit",
+          "CI",
+          "code review"
+        ],
+        "subsections": [
+          {
+            "name": "Formatting and Linting",
+            "details": [
+              "Automated formatting",
+              "Static linting",
+              "Import organization",
+              "Complexity checks",
+              "Unused-code detection"
+            ],
+            "examples": [
+              "Integrate formatting and linting into CI."
+            ],
+            "dependencies": [
+              "packaging",
+              "CI"
+            ]
+          },
+          {
+            "name": "Documentation",
+            "details": [
+              "Docstrings",
+              "API documentation",
+              "Examples",
+              "Type annotations",
+              "Architecture documentation",
+              "Changelogs"
+            ],
+            "examples": [
+              "def parse(value: str) -> Result:\n    \"\"\"Parse a value into a Result.\"\"\""
+            ],
+            "dependencies": [
+              "functions",
+              "typing"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "interoperability",
+        "name": "Interoperability and Native Extensions",
+        "purpose": "Explain how Python integrates with external systems and lower-level code.",
+        "concepts": [
+          "C extensions",
+          "C API",
+          "ctypes",
+          "cffi",
+          "subprocess",
+          "FFI",
+          "shared libraries",
+          "foreign runtimes"
+        ],
+        "subsections": [
+          {
+            "name": "Foreign Function Interfaces",
+            "details": [
+              "Calling native libraries",
+              "Memory ownership",
+              "Type conversion",
+              "ABI compatibility",
+              "Error propagation"
+            ],
+            "examples": [
+              "Use an FFI layer when direct native-library access is required."
+            ],
+            "dependencies": [
+              "operating system",
+              "native ABI"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "runtime",
+        "name": "Interpreter and Runtime Architecture",
+        "purpose": "Explain how Python source becomes executable behavior and distinguish language semantics from interpreter implementation.",
+        "concepts": [
+          "lexer",
+          "parser",
+          "AST",
+          "bytecode",
+          "interpreter",
+          "virtual machine",
+          "reference counting",
+          "garbage collection",
+          "GIL",
+          "CPython"
+        ],
+        "subsections": [
+          {
+            "name": "Execution Pipeline",
+            "details": [
+              "Source parsing",
+              "AST construction",
+              "Compilation",
+              "Bytecode",
+              "Execution",
+              "Caching",
+              "Import compilation"
+            ],
+            "examples": [
+              "python -m dis module.py"
+            ],
+            "dependencies": [
+              "language syntax",
+              "CPython implementation"
+            ]
+          },
+          {
+            "name": "Memory Management",
+            "details": [
+              "Object allocation",
+              "Reference counting in CPython",
+              "Cyclic garbage collection",
+              "Weak references",
+              "Object lifetime",
+              "Resource lifetime versus object lifetime"
+            ],
+            "examples": [
+              "Use context managers for external resources rather than relying on garbage collection."
+            ],
+            "dependencies": [
+              "object model",
+              "runtime implementation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "production-architecture",
+        "name": "Production Python Architecture",
+        "purpose": "Translate language capabilities into maintainable production systems.",
+        "concepts": [
+          "layering",
+          "dependency injection",
+          "configuration",
+          "observability",
+          "logging",
+          "metrics",
+          "tracing",
+          "reliability",
+          "deployment"
+        ],
+        "subsections": [
+          {
+            "name": "Application Structure",
+            "details": [
+              "Domain layer",
+              "Application layer",
+              "Infrastructure layer",
+              "API boundaries",
+              "Dependency direction",
+              "Configuration separation"
+            ],
+            "examples": [
+              "Separate domain logic from framework and infrastructure dependencies."
+            ],
+            "dependencies": [
+              "modules",
+              "packages",
+              "typing"
+            ]
+          },
+          {
+            "name": "Observability",
+            "details": [
+              "Structured logging",
+              "Metrics",
+              "Tracing",
+              "Correlation identifiers",
+              "Health checks",
+              "Error reporting"
+            ],
+            "examples": [
+              "Include request identifiers in structured logs."
+            ],
+            "dependencies": [
+              "logging",
+              "deployment"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "Python syntax",
+      "to": "AST",
+      "relationship": "Source syntax is parsed into an abstract syntax representation."
+    },
+    {
+      "from": "AST",
+      "to": "bytecode",
+      "relationship": "Implementations such as CPython compile Python code into executable bytecode."
+    },
+    {
+      "from": "functions",
+      "to": "closures",
+      "relationship": "Nested functions can capture bindings from enclosing scopes."
+    },
+    {
+      "from": "classes",
+      "to": "data model",
+      "relationship": "Classes participate in Python's object and special-method protocols."
+    },
+    {
+      "from": "iterators",
+      "to": "for loops",
+      "relationship": "for iteration consumes the iterator protocol."
+    },
+    {
+      "from": "context managers",
+      "to": "resource management",
+      "relationship": "Context managers provide deterministic setup and cleanup semantics."
+    },
+    {
+      "from": "type hints",
+      "to": "static analysis",
+      "relationship": "Annotations provide information that external type-checking tools can analyze."
+    },
+    {
+      "from": "asyncio",
+      "to": "I/O concurrency",
+      "relationship": "Asyncio enables cooperative concurrency particularly suited to asynchronous I/O."
+    },
+    {
+      "from": "packaging",
+      "to": "deployment",
+      "relationship": "Package metadata and dependency resolution determine deployable application environments."
+    },
+    {
+      "from": "testing",
+      "to": "production architecture",
+      "relationship": "Automated tests validate application behavior and architectural boundaries."
+    },
+    {
+      "from": "security",
+      "to": "all application boundaries",
+      "relationship": "Untrusted input, external processes, dependencies, files, and network services require explicit trust-boundary controls."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Python Language Reference",
+      "type": "normative",
+      "purpose": "Defines Python language syntax and semantics."
+    },
+    {
+      "name": "Python Standard Library",
+      "type": "runtime",
+      "purpose": "Provides batteries-included functionality for common application tasks."
+    },
+    {
+      "name": "CPython",
+      "type": "reference_implementation",
+      "purpose": "Provides the dominant Python implementation and implementation-specific runtime behavior."
+    },
+    {
+      "name": "Packaging ecosystem",
+      "type": "ecosystem",
+      "purpose": "Provides project metadata, builds, distribution, and dependency management."
+    },
+    {
+      "name": "Operating system",
+      "type": "platform",
+      "purpose": "Provides filesystem, process, networking, scheduling, and native-library facilities."
+    },
+    {
+      "name": "Third-party packages",
+      "type": "ecosystem",
+      "purpose": "Extend Python for domain-specific application requirements."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "Mutable default arguments",
+      "handling": "Avoid mutable objects as default parameter values when per-call state is intended; use None or an appropriate factory."
+    },
+    {
+      "case": "Late-binding closures",
+      "handling": "Be explicit about captured loop variables when creating callbacks in loops."
+    },
+    {
+      "case": "Floating-point precision",
+      "handling": "Do not assume binary floating-point represents all decimal values exactly; use Decimal or domain-specific representations when required."
+    },
+    {
+      "case": "Unicode boundaries",
+      "handling": "Define explicit encoding and decoding boundaries and avoid implicit platform-dependent encodings."
+    },
+    {
+      "case": "Circular imports",
+      "handling": "Refactor dependency direction, move shared abstractions, or defer imports only when justified."
+    },
+    {
+      "case": "Resource leaks",
+      "handling": "Use context managers or explicit cleanup for files, sockets, locks, and external resources."
+    },
+    {
+      "case": "Broad exception handling",
+      "handling": "Avoid catching Exception or BaseException unless the boundary has a deliberate recovery or reporting purpose."
+    },
+    {
+      "case": "Async blocking",
+      "handling": "Do not perform long-running blocking operations directly on an event-loop thread without an appropriate strategy."
+    },
+    {
+      "case": "Shared mutable state",
+      "handling": "Use explicit synchronization or isolate state across execution contexts."
+    },
+    {
+      "case": "Unsafe serialization",
+      "handling": "Never treat untrusted pickle or equivalent executable serialization as ordinary data."
+    },
+    {
+      "case": "Shell command injection",
+      "handling": "Prefer argument arrays and avoid shell interpretation for untrusted input."
+    },
+    {
+      "case": "Path traversal",
+      "handling": "Normalize and validate user-controlled paths against an intended filesystem root."
+    },
+    {
+      "case": "Dependency conflicts",
+      "handling": "Use isolated environments and reproducible dependency specifications."
+    },
+    {
+      "case": "Implementation-specific behavior",
+      "handling": "Distinguish Python language guarantees from CPython-specific behavior before depending on it."
+    }
+  ],
+  "constraints": [
+    "Follow the semantics of the targeted Python version.",
+    "Do not assume implementation-specific CPython behavior is guaranteed by the Python language.",
+    "Prefer standard-library functionality when it adequately satisfies the requirement.",
+    "Use explicit dependency management for reproducible environments.",
+    "Do not treat type hints as runtime validation unless a runtime validation system is explicitly added.",
+    "Do not rely on client-side or local validation when a security boundary requires server-side validation.",
+    "Avoid premature optimization; measure performance before changing implementation strategy.",
+    "Treat external input, files, subprocess arguments, serialized objects, and dependencies as trust boundaries.",
+    "Design concurrency according to workload characteristics rather than assuming one model is universally optimal.",
+    "Preserve compatibility requirements for the supported Python version and operating systems."
+  ],
+  "examples": [
+    {
+      "name": "Minimal Python program",
+      "code": "def main():\n    print('Hello, Python!')\n\nif __name__ == '__main__':\n    main()"
+    },
+    {
+      "name": "Typed function",
+      "code": "def total(values: list[int]) -> int:\n    return sum(values)"
+    },
+    {
+      "name": "Dataclass",
+      "code": "from dataclasses import dataclass\n\n@dataclass\nclass User:\n    name: str\n    active: bool = True"
+    },
+    {
+      "name": "Context-managed file access",
+      "code": "from pathlib import Path\n\npath = Path('data.txt')\nwith path.open(encoding='utf-8') as file:\n    content = file.read()"
+    },
+    {
+      "name": "Async function",
+      "code": "import asyncio\n\nasync def main():\n    await asyncio.sleep(1)\n    print('done')\n\nasyncio.run(main())"
+    },
+    {
+      "name": "Safe subprocess invocation",
+      "code": "import subprocess\n\nsubprocess.run(['python', '--version'], check=True)"
+    }
+  ],
+  "validation": [
+    {
+      "id": "syntax",
+      "check": "Source compiles and parses under the target Python version."
+    },
+    {
+      "id": "runtime",
+      "check": "The program behaves correctly under representative runtime conditions."
+    },
+    {
+      "id": "typing",
+      "check": "Type annotations and static-analysis checks are consistent with intended interfaces."
+    },
+    {
+      "id": "testing",
+      "check": "Critical behavior is covered by appropriate unit, integration, and system tests."
+    },
+    {
+      "id": "security",
+      "check": "External input, serialization, subprocesses, filesystem access, secrets, and dependencies are handled according to their trust boundaries."
+    },
+    {
+      "id": "packaging",
+      "check": "The project builds and installs reproducibly in an isolated environment."
+    },
+    {
+      "id": "performance",
+      "check": "Performance-critical paths are measured using representative workloads before and after optimization."
+    },
+    {
+      "id": "concurrency",
+      "check": "Concurrent code handles cancellation, timeouts, synchronization, exceptions, and resource cleanup correctly."
+    },
+    {
+      "id": "compatibility",
+      "check": "The application works across its explicitly supported Python versions and operating systems."
+    },
+    {
+      "id": "maintainability",
+      "check": "Modules have clear responsibilities, dependencies are understandable, and public interfaces are documented."
+    }
+  ],
+  "open_questions": [
+    "Should the outline target a specific Python version?",
+    "Should CPython internals be expanded into a dedicated implementation-level architecture?",
+    "Should the standard library be expanded into an element-by-element module reference?",
+    "Should Python web development receive a dedicated framework-oriented architecture?",
+    "Should scientific computing and data engineering receive dedicated sections?",
+    "Should packaging include detailed build-backend, wheel, source-distribution, and dependency-resolution workflows?",
+    "Should concurrency include a deeper comparison of asyncio, threads, processes, and free-threaded Python?",
+    "Should the next iteration include a complete Python syntax grammar and operator-precedence reference?"
+  ]
+}
