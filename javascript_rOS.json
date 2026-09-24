@@ -1,0 +1,1849 @@
+{
+  "topic": "JavaScript",
+  "objective": "Provide an expert-level, implementation-oriented outline of JavaScript covering the ECMAScript language, execution model, types, objects, functions, prototypes, classes, modules, asynchronous programming, promises, iterators, generators, metaprogramming, collections, errors, memory behavior, internationalization, interoperability, runtime environments, tooling, testing, performance, security, and production architecture.",
+  "scope": "Modern ECMAScript with emphasis on ES2020 through current standardized capabilities, while preserving the historical concepts necessary to understand JavaScript's execution model and compatibility constraints. Distinguish the ECMAScript language specification from host environments such as browsers, Node.js, workers, and embedded runtimes.",
+  "architecture": {
+    "sections": [
+      {
+        "id": "ecmascript-foundations",
+        "name": "ECMAScript Foundations",
+        "purpose": "Establish JavaScript syntax, grammar, scripts, modules, statements, expressions, declarations, strict mode, and the ECMAScript execution model.",
+        "concepts": [
+          "ECMAScript",
+          "JavaScript",
+          "scripts",
+          "modules",
+          "statements",
+          "expressions",
+          "declarations",
+          "strict mode",
+          "lexical grammar",
+          "syntactic grammar",
+          "execution contexts"
+        ],
+        "subsections": [
+          {
+            "name": "Program Structure",
+            "details": [
+              "script versus module",
+              "source text",
+              "parsing",
+              "declarations",
+              "statements",
+              "expressions",
+              "automatic semicolon insertion",
+              "strict mode"
+            ],
+            "examples": [
+              "const value = 42;",
+              "export const value = 42;"
+            ],
+            "dependencies": [
+              "ECMAScript grammar",
+              "execution model"
+            ]
+          },
+          {
+            "name": "Execution Contexts",
+            "details": [
+              "global execution context",
+              "function execution contexts",
+              "module execution contexts",
+              "lexical environments",
+              "variable environments",
+              "environment records",
+              "execution context stack"
+            ],
+            "examples": [
+              "Function invocation creates an execution context containing the function's bindings and execution state."
+            ],
+            "dependencies": [
+              "scope",
+              "functions",
+              "closures"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "types-values",
+        "name": "Types and Values",
+        "purpose": "Explain JavaScript's dynamic type system, primitive values, objects, coercion, equality, and numeric semantics.",
+        "concepts": [
+          "undefined",
+          "null",
+          "boolean",
+          "number",
+          "bigint",
+          "string",
+          "symbol",
+          "object",
+          "primitive values",
+          "reference values",
+          "NaN",
+          "Infinity"
+        ],
+        "subsections": [
+          {
+            "name": "Primitive Types",
+            "details": [
+              "undefined",
+              "null",
+              "boolean",
+              "number",
+              "bigint",
+              "string",
+              "symbol",
+              "immutability of primitives"
+            ],
+            "examples": [
+              "const id = 123n;",
+              "const key = Symbol('key');"
+            ],
+            "dependencies": [
+              "value semantics"
+            ]
+          },
+          {
+            "name": "Number Semantics",
+            "details": [
+              "IEEE 754 binary floating point",
+              "NaN",
+              "Infinity",
+              "negative zero",
+              "integer precision limits",
+              "Number.isNaN",
+              "Number.isFinite",
+              "Number.isSafeInteger"
+            ],
+            "examples": [
+              "Number.MAX_SAFE_INTEGER",
+              "Object.is(-0, 0)"
+            ],
+            "dependencies": [
+              "numeric coercion",
+              "equality"
+            ]
+          },
+          {
+            "name": "BigInt",
+            "details": [
+              "arbitrary-size integers",
+              "BigInt literals",
+              "BigInt arithmetic",
+              "number/BigInt separation",
+              "conversion constraints"
+            ],
+            "examples": [
+              "const large = 9007199254740993n;"
+            ],
+            "dependencies": [
+              "numeric types"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "coercion-equality",
+        "name": "Coercion, Equality, and Operators",
+        "purpose": "Model JavaScript's implicit and explicit conversion rules and operator semantics.",
+        "concepts": [
+          "ToBoolean",
+          "ToNumber",
+          "ToString",
+          "ToPrimitive",
+          "ToNumeric",
+          "strict equality",
+          "abstract equality",
+          "Object.is",
+          "truthiness",
+          "short-circuiting",
+          "nullish coalescing"
+        ],
+        "subsections": [
+          {
+            "name": "Equality",
+            "details": [
+              "===",
+              "!==",
+              "==",
+              "!=",
+              "Object.is",
+              "NaN behavior",
+              "signed zero behavior",
+              "reference identity"
+            ],
+            "examples": [
+              "Object.is(NaN, NaN)",
+              "Object.is(-0, 0)"
+            ],
+            "dependencies": [
+              "type coercion",
+              "primitive values"
+            ]
+          },
+          {
+            "name": "Conversion",
+            "details": [
+              "implicit coercion",
+              "explicit conversion",
+              "primitive conversion",
+              "object-to-primitive conversion",
+              "Symbol.toPrimitive",
+              "string conversion",
+              "numeric conversion"
+            ],
+            "examples": [
+              "String(value)",
+              "Number(value)",
+              "Boolean(value)"
+            ],
+            "dependencies": [
+              "objects",
+              "operators"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "variables-scope",
+        "name": "Variables, Scope, and Closures",
+        "purpose": "Explain lexical scoping, declarations, hoisting behavior, temporal dead zones, closures, and binding lifetimes.",
+        "concepts": [
+          "var",
+          "let",
+          "const",
+          "lexical scope",
+          "block scope",
+          "function scope",
+          "global scope",
+          "hoisting",
+          "temporal dead zone",
+          "closures"
+        ],
+        "subsections": [
+          {
+            "name": "Declarations",
+            "details": [
+              "var declarations",
+              "let declarations",
+              "const declarations",
+              "re-declaration rules",
+              "initialization",
+              "temporal dead zone"
+            ],
+            "examples": [
+              "const count = 0;",
+              "let state = 'ready';"
+            ],
+            "dependencies": [
+              "lexical environments"
+            ]
+          },
+          {
+            "name": "Closures",
+            "details": [
+              "captured lexical environments",
+              "function lifetime",
+              "private state",
+              "factory functions",
+              "callback closures",
+              "memory retention implications"
+            ],
+            "examples": [
+              "function counter() { let value = 0; return () => ++value; }"
+            ],
+            "dependencies": [
+              "functions",
+              "scope",
+              "garbage collection"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "objects-prototypes",
+        "name": "Objects and the Prototype System",
+        "purpose": "Explain JavaScript objects, property descriptors, prototype chains, property lookup, mutation, and object identity.",
+        "concepts": [
+          "object identity",
+          "prototype",
+          "prototype chain",
+          "own properties",
+          "property descriptors",
+          "enumerability",
+          "writability",
+          "configurability",
+          "getters",
+          "setters"
+        ],
+        "subsections": [
+          {
+            "name": "Property Model",
+            "details": [
+              "data properties",
+              "accessor properties",
+              "property keys",
+              "string keys",
+              "symbol keys",
+              "property descriptors",
+              "Object.defineProperty"
+            ],
+            "examples": [
+              "Object.defineProperty(object, 'value', { writable: false });"
+            ],
+            "dependencies": [
+              "objects",
+              "symbols"
+            ]
+          },
+          {
+            "name": "Prototype Chain",
+            "details": [
+              "internal prototype relationships",
+              "property lookup",
+              "inheritance through delegation",
+              "Object.create",
+              "Object.getPrototypeOf",
+              "Object.setPrototypeOf",
+              "prototype mutation costs"
+            ],
+            "examples": [
+              "const child = Object.create(parent);"
+            ],
+            "dependencies": [
+              "property lookup",
+              "object identity"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "functions",
+        "name": "Functions and Invocation",
+        "purpose": "Cover function objects, invocation forms, parameters, return values, this binding, arrow functions, recursion, and higher-order programming.",
+        "concepts": [
+          "function declarations",
+          "function expressions",
+          "arrow functions",
+          "parameters",
+          "default parameters",
+          "rest parameters",
+          "spread syntax",
+          "this",
+          "arguments",
+          "call",
+          "apply",
+          "bind"
+        ],
+        "subsections": [
+          {
+            "name": "Function Forms",
+            "details": [
+              "declarations",
+              "expressions",
+              "arrow functions",
+              "named functions",
+              "anonymous functions",
+              "immediately invoked functions"
+            ],
+            "examples": [
+              "const add = (a, b) => a + b;"
+            ],
+            "dependencies": [
+              "scope",
+              "closures"
+            ]
+          },
+          {
+            "name": "this Binding",
+            "details": [
+              "method invocation",
+              "ordinary function invocation",
+              "constructor invocation",
+              "explicit binding",
+              "arrow lexical this",
+              "strict-mode behavior"
+            ],
+            "examples": [
+              "object.method();",
+              "fn.call(receiver);"
+            ],
+            "dependencies": [
+              "functions",
+              "objects",
+              "execution contexts"
+            ]
+          },
+          {
+            "name": "Higher-Order Functions",
+            "details": [
+              "callbacks",
+              "function composition",
+              "closures",
+              "map/filter/reduce",
+              "partial application",
+              "currying"
+            ],
+            "examples": [
+              "const doubled = values.map(value => value * 2);"
+            ],
+            "dependencies": [
+              "arrays",
+              "functions",
+              "closures"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "classes",
+        "name": "Classes and Object-Oriented JavaScript",
+        "purpose": "Explain class syntax as a structured layer over JavaScript's prototype-based object model.",
+        "concepts": [
+          "class declarations",
+          "class expressions",
+          "constructors",
+          "methods",
+          "static members",
+          "private fields",
+          "extends",
+          "super",
+          "instanceof",
+          "class fields"
+        ],
+        "subsections": [
+          {
+            "name": "Class Definition",
+            "details": [
+              "constructor",
+              "instance methods",
+              "static methods",
+              "public fields",
+              "private fields",
+              "getters",
+              "setters"
+            ],
+            "examples": [
+              "class User { constructor(name) { this.name = name; } }"
+            ],
+            "dependencies": [
+              "objects",
+              "prototypes"
+            ]
+          },
+          {
+            "name": "Inheritance",
+            "details": [
+              "extends",
+              "super",
+              "prototype relationships",
+              "constructor inheritance",
+              "method overriding",
+              "private field restrictions"
+            ],
+            "examples": [
+              "class Admin extends User {}"
+            ],
+            "dependencies": [
+              "prototype chain",
+              "classes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "collections",
+        "name": "Arrays, Maps, Sets, and Structured Data",
+        "purpose": "Cover JavaScript's principal built-in collection and structured-data facilities.",
+        "concepts": [
+          "Array",
+          "Map",
+          "Set",
+          "WeakMap",
+          "WeakSet",
+          "Object",
+          "structuredClone",
+          "typed arrays"
+        ],
+        "subsections": [
+          {
+            "name": "Arrays",
+            "details": [
+              "indexed elements",
+              "length",
+              "sparse arrays",
+              "mutation methods",
+              "non-mutating methods",
+              "iteration",
+              "array-like objects"
+            ],
+            "examples": [
+              "const values = [1, 2, 3];",
+              "values.map(x => x * 2);"
+            ],
+            "dependencies": [
+              "objects",
+              "iterators"
+            ]
+          },
+          {
+            "name": "Map and Set",
+            "details": [
+              "key-value storage",
+              "key identity",
+              "insertion ordering",
+              "uniqueness",
+              "iteration",
+              "weak collections"
+            ],
+            "examples": [
+              "const cache = new Map();",
+              "const unique = new Set(values);"
+            ],
+            "dependencies": [
+              "object identity",
+              "iteration"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "iterators-generators",
+        "name": "Iterators and Generators",
+        "purpose": "Explain JavaScript's iteration protocol and generator-based lazy computation.",
+        "concepts": [
+          "iterable protocol",
+          "iterator protocol",
+          "Symbol.iterator",
+          "next",
+          "yield",
+          "generator functions",
+          "generator objects",
+          "async iterators",
+          "Symbol.asyncIterator"
+        ],
+        "subsections": [
+          {
+            "name": "Synchronous Iteration",
+            "details": [
+              "iterable objects",
+              "iterator objects",
+              "next results",
+              "for...of",
+              "spread",
+              "destructuring",
+              "custom iterables"
+            ],
+            "examples": [
+              "for (const value of values) { console.log(value); }"
+            ],
+            "dependencies": [
+              "symbols",
+              "objects"
+            ]
+          },
+          {
+            "name": "Generators",
+            "details": [
+              "function*",
+              "yield",
+              "yield*",
+              "generator state",
+              "lazy execution",
+              "bidirectional communication"
+            ],
+            "examples": [
+              "function* values() { yield 1; yield 2; }"
+            ],
+            "dependencies": [
+              "iterators",
+              "functions"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "modules",
+        "name": "Modules and Dependency Architecture",
+        "purpose": "Explain ECMAScript modules, import/export semantics, module resolution concepts, and dependency boundaries.",
+        "concepts": [
+          "ES modules",
+          "import",
+          "export",
+          "default exports",
+          "named exports",
+          "live bindings",
+          "module namespace objects",
+          "dynamic import",
+          "top-level await"
+        ],
+        "subsections": [
+          {
+            "name": "Static Modules",
+            "details": [
+              "named exports",
+              "default exports",
+              "import declarations",
+              "live bindings",
+              "cyclic dependencies",
+              "module evaluation"
+            ],
+            "examples": [
+              "export function add(a, b) { return a + b; }",
+              "import { add } from './math.js';"
+            ],
+            "dependencies": [
+              "lexical environments",
+              "execution model"
+            ]
+          },
+          {
+            "name": "Dynamic Modules",
+            "details": [
+              "dynamic import",
+              "promise-based loading",
+              "lazy dependency loading",
+              "code splitting",
+              "top-level await"
+            ],
+            "examples": [
+              "const module = await import('./feature.js');"
+            ],
+            "dependencies": [
+              "promises",
+              "modules",
+              "async execution"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "async-promises",
+        "name": "Asynchronous JavaScript",
+        "purpose": "Explain promises, async functions, await, microtasks, task scheduling, cancellation patterns, and asynchronous composition.",
+        "concepts": [
+          "Promise",
+          "then",
+          "catch",
+          "finally",
+          "async",
+          "await",
+          "microtasks",
+          "event loop",
+          "task queues",
+          "promise combinators"
+        ],
+        "subsections": [
+          {
+            "name": "Promises",
+            "details": [
+              "pending state",
+              "fulfilled state",
+              "rejected state",
+              "thenable assimilation",
+              "resolution procedure",
+              "chaining",
+              "error propagation"
+            ],
+            "examples": [
+              "fetchData().then(handleData).catch(handleError);"
+            ],
+            "dependencies": [
+              "functions",
+              "event-loop concepts"
+            ]
+          },
+          {
+            "name": "Async and Await",
+            "details": [
+              "async functions",
+              "await expressions",
+              "promise suspension",
+              "error handling",
+              "sequential versus concurrent awaits"
+            ],
+            "examples": [
+              "async function load() { const result = await fetchData(); return result; }"
+            ],
+            "dependencies": [
+              "promises",
+              "functions"
+            ]
+          },
+          {
+            "name": "Promise Combinators",
+            "details": [
+              "Promise.all",
+              "Promise.allSettled",
+              "Promise.race",
+              "Promise.any",
+              "aggregate errors",
+              "parallel composition"
+            ],
+            "examples": [
+              "const results = await Promise.all(tasks);"
+            ],
+            "dependencies": [
+              "promises",
+              "iterables"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "event-loop-host",
+        "name": "Event Loop and Host Environments",
+        "purpose": "Separate ECMAScript semantics from host-provided scheduling and APIs.",
+        "concepts": [
+          "event loop",
+          "jobs",
+          "microtasks",
+          "tasks",
+          "browser event loop",
+          "Node.js event loop",
+          "workers",
+          "host callbacks",
+          "timers"
+        ],
+        "subsections": [
+          {
+            "name": "ECMAScript Jobs",
+            "details": [
+              "job queues",
+              "promise reactions",
+              "microtask-style scheduling",
+              "execution ordering"
+            ],
+            "examples": [
+              "Promise callbacks are scheduled asynchronously rather than executed inline."
+            ],
+            "dependencies": [
+              "promises",
+              "execution contexts"
+            ]
+          },
+          {
+            "name": "Host Integration",
+            "details": [
+              "browser task sources",
+              "timers",
+              "DOM events",
+              "network callbacks",
+              "Node.js phases",
+              "worker scheduling"
+            ],
+            "examples": [
+              "setTimeout and DOM events are host facilities rather than ECMAScript language primitives."
+            ],
+            "dependencies": [
+              "runtime environment",
+              "event loop"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "errors",
+        "name": "Errors and Exception Handling",
+        "purpose": "Cover JavaScript exception semantics, built-in error types, asynchronous error propagation, and robust failure handling.",
+        "concepts": [
+          "throw",
+          "try",
+          "catch",
+          "finally",
+          "Error",
+          "TypeError",
+          "RangeError",
+          "ReferenceError",
+          "SyntaxError",
+          "AggregateError"
+        ],
+        "subsections": [
+          {
+            "name": "Synchronous Errors",
+            "details": [
+              "throw expressions",
+              "catch bindings",
+              "finally",
+              "stack traces",
+              "custom error classes"
+            ],
+            "examples": [
+              "throw new TypeError('Invalid argument');"
+            ],
+            "dependencies": [
+              "classes",
+              "control flow"
+            ]
+          },
+          {
+            "name": "Asynchronous Errors",
+            "details": [
+              "promise rejection",
+              "async function rejection",
+              "unhandled rejection behavior",
+              "error boundaries",
+              "error propagation across async layers"
+            ],
+            "examples": [
+              "try { await operation(); } catch (error) { handle(error); }"
+            ],
+            "dependencies": [
+              "promises",
+              "async/await"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "metaprogramming",
+        "name": "Metaprogramming",
+        "purpose": "Explain JavaScript facilities for intercepting, reflecting upon, and dynamically constructing language behavior.",
+        "concepts": [
+          "Proxy",
+          "Reflect",
+          "property descriptors",
+          "Symbols",
+          "dynamic property access",
+          "custom coercion",
+          "meta-object protocols"
+        ],
+        "subsections": [
+          {
+            "name": "Proxy",
+            "details": [
+              "get trap",
+              "set trap",
+              "has trap",
+              "deleteProperty",
+              "ownKeys",
+              "construct",
+              "apply",
+              "invariants"
+            ],
+            "examples": [
+              "const proxy = new Proxy(target, { get(obj, key) { return obj[key]; } });"
+            ],
+            "dependencies": [
+              "objects",
+              "property model"
+            ]
+          },
+          {
+            "name": "Reflect",
+            "details": [
+              "Reflect.get",
+              "Reflect.set",
+              "Reflect.construct",
+              "Reflect.ownKeys",
+              "trap-compatible operations"
+            ],
+            "examples": [
+              "Reflect.get(target, key, receiver);"
+            ],
+            "dependencies": [
+              "Proxy",
+              "object model"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-gc",
+        "name": "Memory Management and Garbage Collection",
+        "purpose": "Explain JavaScript's managed-memory model, reachability, garbage collection behavior, and memory-retention hazards.",
+        "concepts": [
+          "managed memory",
+          "reachability",
+          "garbage collection",
+          "weak references",
+          "WeakMap",
+          "WeakSet",
+          "WeakRef",
+          "FinalizationRegistry",
+          "memory leaks"
+        ],
+        "subsections": [
+          {
+            "name": "Reachability",
+            "details": [
+              "reachable objects",
+              "unreachable objects",
+              "retained closures",
+              "global references",
+              "event listener retention",
+              "cache retention"
+            ],
+            "examples": [
+              "An object can remain reachable through a closure even when the original application-level reference is gone."
+            ],
+            "dependencies": [
+              "objects",
+              "closures"
+            ]
+          },
+          {
+            "name": "Weak References",
+            "details": [
+              "WeakMap",
+              "WeakSet",
+              "WeakRef",
+              "FinalizationRegistry",
+              "non-deterministic cleanup",
+              "cache patterns"
+            ],
+            "examples": [
+              "WeakMap can associate metadata with objects without strongly retaining those objects."
+            ],
+            "dependencies": [
+              "garbage collection",
+              "object identity"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "typed-memory",
+        "name": "Typed Arrays, ArrayBuffer, and Binary Data",
+        "purpose": "Explain JavaScript's binary-memory facilities for high-performance data processing and interoperability.",
+        "concepts": [
+          "ArrayBuffer",
+          "SharedArrayBuffer",
+          "TypedArray",
+          "DataView",
+          "endianness",
+          "binary serialization",
+          "Atomics"
+        ],
+        "subsections": [
+          {
+            "name": "ArrayBuffer and Typed Arrays",
+            "details": [
+              "raw byte storage",
+              "Uint8Array",
+              "Int32Array",
+              "Float64Array",
+              "views",
+              "byte offsets",
+              "byte lengths"
+            ],
+            "examples": [
+              "const bytes = new Uint8Array(buffer);"
+            ],
+            "dependencies": [
+              "objects",
+              "binary data"
+            ]
+          },
+          {
+            "name": "DataView",
+            "details": [
+              "multi-byte reads",
+              "multi-byte writes",
+              "explicit endianness",
+              "binary protocol parsing"
+            ],
+            "examples": [
+              "view.setUint32(0, value, true);"
+            ],
+            "dependencies": [
+              "ArrayBuffer",
+              "binary protocols"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "internationalization",
+        "name": "Internationalization",
+        "purpose": "Cover ECMAScript internationalization facilities for locale-aware formatting, collation, numbers, dates, and pluralization.",
+        "concepts": [
+          "Intl",
+          "Intl.NumberFormat",
+          "Intl.DateTimeFormat",
+          "Intl.Collator",
+          "Intl.RelativeTimeFormat",
+          "Intl.PluralRules",
+          "locale negotiation"
+        ],
+        "subsections": [
+          {
+            "name": "Number and Currency Formatting",
+            "details": [
+              "locale-aware numbers",
+              "currency",
+              "percentages",
+              "unit formatting",
+              "rounding options"
+            ],
+            "examples": [
+              "new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(1234.5)"
+            ],
+            "dependencies": [
+              "Intl",
+              "locale data"
+            ]
+          },
+          {
+            "name": "Date and Time Formatting",
+            "details": [
+              "locale formatting",
+              "time zones",
+              "calendar presentation",
+              "format matching"
+            ],
+            "examples": [
+              "new Intl.DateTimeFormat('en-US', { dateStyle: 'medium' }).format(date)"
+            ],
+            "dependencies": [
+              "Date",
+              "Intl"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "browser-platform",
+        "name": "Browser Platform Integration",
+        "purpose": "Distinguish JavaScript from browser-provided APIs and explain the principal browser execution environment.",
+        "concepts": [
+          "DOM",
+          "BOM",
+          "Window",
+          "Document",
+          "events",
+          "fetch",
+          "Web Storage",
+          "Web Workers",
+          "Service Workers",
+          "Web APIs"
+        ],
+        "subsections": [
+          {
+            "name": "DOM and Events",
+            "details": [
+              "document tree",
+              "query selection",
+              "mutation",
+              "event listeners",
+              "event propagation",
+              "capture",
+              "target",
+              "bubble"
+            ],
+            "examples": [
+              "document.querySelector('#app').addEventListener('click', handler);"
+            ],
+            "dependencies": [
+              "browser host",
+              "functions",
+              "event loop"
+            ]
+          },
+          {
+            "name": "Fetch and Networking",
+            "details": [
+              "Request",
+              "Response",
+              "Headers",
+              "fetch",
+              "AbortController",
+              "streaming responses",
+              "CORS as a browser policy"
+            ],
+            "examples": [
+              "const response = await fetch('/api/data');"
+            ],
+            "dependencies": [
+              "promises",
+              "browser security model"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "node-runtime",
+        "name": "Server and Runtime Environments",
+        "purpose": "Explain JavaScript execution outside browsers, especially Node.js-style server runtimes and runtime APIs.",
+        "concepts": [
+          "Node.js",
+          "CommonJS",
+          "ES modules",
+          "process",
+          "filesystem",
+          "streams",
+          "buffers",
+          "events",
+          "worker threads",
+          "child processes"
+        ],
+        "subsections": [
+          {
+            "name": "Runtime APIs",
+            "details": [
+              "filesystem",
+              "networking",
+              "process management",
+              "environment variables",
+              "streams",
+              "buffers",
+              "timers"
+            ],
+            "examples": [
+              "Runtime APIs can expose filesystem and operating-system functionality unavailable to ordinary browser JavaScript."
+            ],
+            "dependencies": [
+              "host environment",
+              "asynchronous programming"
+            ]
+          },
+          {
+            "name": "Module Systems",
+            "details": [
+              "CommonJS",
+              "ES modules",
+              "package resolution",
+              "interop",
+              "dynamic imports",
+              "conditional exports"
+            ],
+            "examples": [
+              "import fs from 'node:fs/promises';"
+            ],
+            "dependencies": [
+              "modules",
+              "runtime environment"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "web-workers-concurrency",
+        "name": "Workers and JavaScript Concurrency",
+        "purpose": "Explain concurrency through independent execution contexts, message passing, shared memory, and atomics.",
+        "concepts": [
+          "Web Workers",
+          "Worker Threads",
+          "message passing",
+          "structured clone",
+          "Transferable objects",
+          "SharedArrayBuffer",
+          "Atomics"
+        ],
+        "subsections": [
+          {
+            "name": "Message Passing",
+            "details": [
+              "postMessage",
+              "message events",
+              "structured cloning",
+              "transfer lists",
+              "ownership transfer"
+            ],
+            "examples": [
+              "worker.postMessage(data);"
+            ],
+            "dependencies": [
+              "workers",
+              "structured data"
+            ]
+          },
+          {
+            "name": "Shared Memory",
+            "details": [
+              "SharedArrayBuffer",
+              "Atomics",
+              "wait",
+              "notify",
+              "lock-free patterns",
+              "memory ordering concerns"
+            ],
+            "examples": [
+              "Atomics.add(sharedArray, 0, 1);"
+            ],
+            "dependencies": [
+              "typed arrays",
+              "concurrency"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tooling",
+        "name": "Tooling, Compilation, and Build Systems",
+        "purpose": "Cover the modern JavaScript development toolchain from source code through bundling, testing, deployment, and diagnostics.",
+        "concepts": [
+          "package managers",
+          "npm",
+          "package.json",
+          "bundlers",
+          "transpilers",
+          "TypeScript",
+          "linters",
+          "formatters",
+          "source maps",
+          "tree shaking",
+          "code splitting"
+        ],
+        "subsections": [
+          {
+            "name": "Package Management",
+            "details": [
+              "package.json",
+              "dependencies",
+              "devDependencies",
+              "lockfiles",
+              "semantic versioning",
+              "workspace packages",
+              "dependency resolution"
+            ],
+            "examples": [
+              "npm install package-name"
+            ],
+            "dependencies": [
+              "modules",
+              "runtime"
+            ]
+          },
+          {
+            "name": "Bundling and Optimization",
+            "details": [
+              "module graphs",
+              "tree shaking",
+              "code splitting",
+              "minification",
+              "asset processing",
+              "source maps",
+              "dynamic imports"
+            ],
+            "examples": [
+              "Dynamic import can form a code-splitting boundary in compatible build systems."
+            ],
+            "dependencies": [
+              "ES modules",
+              "toolchain"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "testing",
+        "name": "Testing and Verification",
+        "purpose": "Establish testing strategies for JavaScript applications, libraries, asynchronous code, browser behavior, and runtime services.",
+        "concepts": [
+          "unit tests",
+          "integration tests",
+          "end-to-end tests",
+          "property testing",
+          "fuzzing",
+          "mocking",
+          "fake timers",
+          "coverage",
+          "snapshot testing"
+        ],
+        "subsections": [
+          {
+            "name": "Unit Testing",
+            "details": [
+              "pure functions",
+              "fixtures",
+              "assertions",
+              "mocks",
+              "spies",
+              "test isolation"
+            ],
+            "examples": [
+              "assert(add(2, 3) === 5);"
+            ],
+            "dependencies": [
+              "functions",
+              "modules"
+            ]
+          },
+          {
+            "name": "Async Testing",
+            "details": [
+              "promise assertions",
+              "async test functions",
+              "timeouts",
+              "fake timers",
+              "race-condition testing",
+              "rejection testing"
+            ],
+            "examples": [
+              "await expect(operation()).rejects.toThrow();"
+            ],
+            "dependencies": [
+              "promises",
+              "event loop"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "Performance Engineering",
+        "purpose": "Explain JavaScript performance through profiling, allocation behavior, event-loop scheduling, data structures, JIT compilation, and rendering considerations.",
+        "concepts": [
+          "JIT compilation",
+          "inline caches",
+          "hidden classes",
+          "optimization tiers",
+          "garbage collection",
+          "allocation",
+          "event-loop latency",
+          "profiling",
+          "memoization",
+          "Web Workers"
+        ],
+        "subsections": [
+          {
+            "name": "Runtime Optimization",
+            "details": [
+              "JIT compilation",
+              "inline caching",
+              "object shapes",
+              "monomorphic versus polymorphic access",
+              "deoptimization",
+              "hot paths"
+            ],
+            "examples": [
+              "Stable object shapes can help some JavaScript engines optimize property access."
+            ],
+            "dependencies": [
+              "objects",
+              "runtime implementation"
+            ]
+          },
+          {
+            "name": "Memory and Responsiveness",
+            "details": [
+              "allocation pressure",
+              "garbage-collection pauses",
+              "large object graphs",
+              "event-loop blocking",
+              "worker offloading",
+              "streaming"
+            ],
+            "examples": [
+              "Move CPU-heavy independent work to a worker when blocking the main event loop would harm responsiveness."
+            ],
+            "dependencies": [
+              "garbage collection",
+              "workers",
+              "event loop"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "name": "JavaScript Security",
+        "purpose": "Cover major application and runtime security risks associated with JavaScript execution and web integration.",
+        "concepts": [
+          "XSS",
+          "CSRF",
+          "prototype pollution",
+          "injection",
+          "unsafe deserialization",
+          "dependency attacks",
+          "CORS",
+          "Content Security Policy",
+          "sandboxing",
+          "trusted types"
+        ],
+        "subsections": [
+          {
+            "name": "Web Application Security",
+            "details": [
+              "cross-site scripting",
+              "DOM injection",
+              "HTML escaping",
+              "safe DOM APIs",
+              "Content Security Policy",
+              "trusted types"
+            ],
+            "examples": [
+              "Prefer textContent over assigning untrusted content to innerHTML."
+            ],
+            "dependencies": [
+              "DOM",
+              "browser security model"
+            ]
+          },
+          {
+            "name": "Prototype Pollution",
+            "details": [
+              "prototype mutation",
+              "unsafe object merging",
+              "untrusted keys",
+              "Object.prototype risks",
+              "defensive parsing"
+            ],
+            "examples": [
+              "Validate untrusted property names before performing recursive object merges."
+            ],
+            "dependencies": [
+              "prototype chain",
+              "object mutation"
+            ]
+          },
+          {
+            "name": "Supply-Chain Security",
+            "details": [
+              "dependency auditing",
+              "lockfiles",
+              "package integrity",
+              "transitive dependencies",
+              "malicious packages",
+              "dependency minimization"
+            ],
+            "examples": [
+              "Pin and audit production dependencies according to the project's security requirements."
+            ],
+            "dependencies": [
+              "package management",
+              "build systems"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "architecture-patterns",
+        "name": "Application Architecture and Design Patterns",
+        "purpose": "Apply JavaScript language and runtime facilities to scalable applications and libraries.",
+        "concepts": [
+          "functional programming",
+          "object-oriented programming",
+          "dependency injection",
+          "composition",
+          "event-driven architecture",
+          "state management",
+          "repository pattern",
+          "adapter pattern",
+          "observer pattern",
+          "module boundaries"
+        ],
+        "subsections": [
+          {
+            "name": "Composition",
+            "details": [
+              "small functions",
+              "pure transformations",
+              "dependency injection",
+              "composition over inheritance",
+              "functional pipelines"
+            ],
+            "examples": [
+              "const pipeline = value => transform(validate(normalize(value)));"
+            ],
+            "dependencies": [
+              "functions",
+              "modules"
+            ]
+          },
+          {
+            "name": "Event-Driven Design",
+            "details": [
+              "events",
+              "publish/subscribe",
+              "message passing",
+              "event handlers",
+              "backpressure",
+              "error boundaries"
+            ],
+            "examples": [
+              "Use explicit event contracts when multiple components communicate asynchronously."
+            ],
+            "dependencies": [
+              "events",
+              "asynchronous programming"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "interop-serialization",
+        "name": "Serialization and Interoperability",
+        "purpose": "Explain data exchange between JavaScript systems, external services, processes, and other programming languages.",
+        "concepts": [
+          "JSON",
+          "structured clone",
+          "serialization",
+          "deserialization",
+          "ArrayBuffer",
+          "WebAssembly",
+          "FFI boundaries",
+          "RPC",
+          "binary protocols"
+        ],
+        "subsections": [
+          {
+            "name": "JSON",
+            "details": [
+              "JSON.stringify",
+              "JSON.parse",
+              "replacer",
+              "reviver",
+              "unsupported values",
+              "prototype considerations"
+            ],
+            "examples": [
+              "const encoded = JSON.stringify(data);",
+              "const decoded = JSON.parse(encoded);"
+            ],
+            "dependencies": [
+              "objects",
+              "strings"
+            ]
+          },
+          {
+            "name": "WebAssembly Interoperability",
+            "details": [
+              "WebAssembly modules",
+              "imports",
+              "exports",
+              "linear memory",
+              "typed arrays",
+              "boundary costs"
+            ],
+            "examples": [
+              "JavaScript can load and interact with WebAssembly modules through host APIs."
+            ],
+            "dependencies": [
+              "typed arrays",
+              "runtime APIs"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "lexical scope",
+      "to": "closures",
+      "relationship": "Closures retain access to lexical environments after the surrounding execution context has returned."
+    },
+    {
+      "from": "objects",
+      "to": "prototype chain",
+      "relationship": "Objects participate in prototype-based property lookup."
+    },
+    {
+      "from": "classes",
+      "to": "prototypes",
+      "relationship": "Class syntax establishes prototype-based relationships rather than replacing the underlying object model."
+    },
+    {
+      "from": "functions",
+      "to": "closures",
+      "relationship": "Functions can capture bindings from their lexical environments."
+    },
+    {
+      "from": "promises",
+      "to": "microtasks",
+      "relationship": "Promise reactions are scheduled through ECMAScript job mechanisms integrated with host scheduling."
+    },
+    {
+      "from": "async/await",
+      "to": "promises",
+      "relationship": "Async functions and await operate through promise-based asynchronous completion."
+    },
+    {
+      "from": "iterators",
+      "to": "generators",
+      "relationship": "Generator objects implement iterator protocols."
+    },
+    {
+      "from": "modules",
+      "to": "dependency architecture",
+      "relationship": "Static module imports define explicit dependency relationships and module boundaries."
+    },
+    {
+      "from": "dynamic import",
+      "to": "code splitting",
+      "relationship": "Dynamic module loading can establish lazy-loading boundaries in host build systems."
+    },
+    {
+      "from": "garbage collection",
+      "to": "WeakMap",
+      "relationship": "Weak collections permit associations that do not strongly retain their keys."
+    },
+    {
+      "from": "ArrayBuffer",
+      "to": "typed arrays",
+      "relationship": "Typed arrays provide structured views over binary buffers."
+    },
+    {
+      "from": "workers",
+      "to": "message passing",
+      "relationship": "Independent execution contexts communicate through messaging and transferable data."
+    },
+    {
+      "from": "SharedArrayBuffer",
+      "to": "Atomics",
+      "relationship": "Atomics provides synchronization operations for shared memory."
+    },
+    {
+      "from": "browser APIs",
+      "to": "ECMAScript",
+      "relationship": "Browser APIs extend the ECMAScript language with host capabilities such as DOM, networking, and timers."
+    },
+    {
+      "from": "Node.js",
+      "to": "ECMAScript",
+      "relationship": "Node.js provides a server/runtime host environment around a JavaScript engine."
+    },
+    {
+      "from": "security",
+      "to": "prototype chain",
+      "relationship": "Prototype mutation and unsafe object merging can create security vulnerabilities such as prototype pollution."
+    },
+    {
+      "from": "performance",
+      "to": "garbage collection",
+      "relationship": "Allocation patterns and object retention can influence garbage-collection workload and application latency."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "ECMAScript specification",
+      "type": "language_specification",
+      "purpose": "Defines JavaScript language semantics, built-in objects, execution behavior, and standard language facilities."
+    },
+    {
+      "name": "JavaScript engine",
+      "type": "runtime_component",
+      "purpose": "Parses, interprets, compiles, optimizes, and executes JavaScript."
+    },
+    {
+      "name": "Host environment",
+      "type": "runtime_environment",
+      "purpose": "Provides APIs and scheduling mechanisms surrounding the ECMAScript engine."
+    },
+    {
+      "name": "Package manager",
+      "type": "development_infrastructure",
+      "purpose": "Resolves and installs application dependencies."
+    },
+    {
+      "name": "Build system",
+      "type": "development_infrastructure",
+      "purpose": "Bundles, transforms, optimizes, tests, and packages application code."
+    },
+    {
+      "name": "Debugger and profiler",
+      "type": "development_tool",
+      "purpose": "Provides runtime inspection and performance analysis."
+    },
+    {
+      "name": "Testing framework",
+      "type": "verification_tool",
+      "purpose": "Automates behavioral and regression testing."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "NaN equality",
+      "handling": "NaN is not equal to itself under ordinary equality; use Number.isNaN or appropriate semantic checks."
+    },
+    {
+      "case": "Negative zero",
+      "handling": "Account for the distinction between -0 and +0 where numeric identity matters; Object.is can expose the distinction."
+    },
+    {
+      "case": "Floating-point precision",
+      "handling": "Do not assume decimal arithmetic is exact; use appropriate integer, decimal, tolerance, or domain-specific strategies."
+    },
+    {
+      "case": "this binding",
+      "handling": "Determine invocation form before reasoning about this; arrow functions capture lexical this."
+    },
+    {
+      "case": "Prototype pollution",
+      "handling": "Treat untrusted property names and object-merging operations defensively."
+    },
+    {
+      "case": "Closure retention",
+      "handling": "Avoid unintentionally retaining large object graphs through long-lived callbacks or closures."
+    },
+    {
+      "case": "Promise rejection",
+      "handling": "Ensure asynchronous failures are explicitly observed or propagated."
+    },
+    {
+      "case": "Event-loop blocking",
+      "handling": "Avoid long synchronous CPU operations on responsiveness-sensitive event loops."
+    },
+    {
+      "case": "Microtask starvation",
+      "handling": "Prevent unbounded chains of microtasks from starving host task processing."
+    },
+    {
+      "case": "Circular JSON data",
+      "handling": "JSON.stringify cannot directly serialize arbitrary cyclic object graphs."
+    },
+    {
+      "case": "BigInt and Number mixing",
+      "handling": "Do not implicitly mix BigInt and Number in arithmetic; convert intentionally."
+    },
+    {
+      "case": "Sparse arrays",
+      "handling": "Distinguish missing array elements from explicit undefined values when iteration or serialization semantics matter."
+    },
+    {
+      "case": "WeakRef and FinalizationRegistry",
+      "handling": "Never rely on finalization for deterministic resource cleanup."
+    },
+    {
+      "case": "Module cycles",
+      "handling": "Understand live bindings and module evaluation order when circular dependencies exist."
+    },
+    {
+      "case": "Dynamic import failure",
+      "handling": "Treat module loading as an asynchronous operation that can reject."
+    },
+    {
+      "case": "Cross-realm objects",
+      "handling": "Do not assume constructors or instanceof checks behave identically across execution realms."
+    },
+    {
+      "case": "Transferable ownership",
+      "handling": "Account for transferred ArrayBuffers becoming detached in the sending context where applicable."
+    }
+  ],
+  "constraints": [
+    "ECMAScript language semantics must be distinguished from host-specific APIs.",
+    "Browser APIs, Node.js APIs, and other runtime APIs are not interchangeable language primitives.",
+    "JavaScript uses dynamic typing; static guarantees require additional tooling or language layers.",
+    "Object identity and prototype relationships can affect equality, lookup, and security.",
+    "Garbage collection does not provide deterministic resource cleanup.",
+    "Asynchronous operations must account for promise rejection and scheduling behavior.",
+    "CPU-heavy synchronous work can block an event loop in single-threaded host execution contexts.",
+    "Shared memory requires careful synchronization and atomic operations.",
+    "Security-sensitive code must treat external input as untrusted.",
+    "Dependency trees introduce supply-chain risk and require lifecycle management.",
+    "Performance behavior is engine- and workload-dependent and should be measured rather than assumed.",
+    "Transpilation and bundling can alter deployment artifacts while preserving intended source-level semantics.",
+    "Module resolution behavior depends on the host environment and tooling.",
+    "Serialization formats define explicit limits on supported JavaScript values and object graphs."
+  ],
+  "examples": [
+    {
+      "name": "Closure",
+      "code": "function counter() {\n  let value = 0;\n  return () => ++value;\n}\n\nconst next = counter();\nnext();"
+    },
+    {
+      "name": "Prototype delegation",
+      "code": "const parent = { greet() { return 'hello'; } };\nconst child = Object.create(parent);\nchild.greet();"
+    },
+    {
+      "name": "Class",
+      "code": "class User {\n  constructor(name) {\n    this.name = name;\n  }\n\n  greet() {\n    return `Hello, ${this.name}`;\n  }\n}"
+    },
+    {
+      "name": "Module",
+      "code": "export function add(a, b) {\n  return a + b;\n}\n\nimport { add } from './math.js';"
+    },
+    {
+      "name": "Async function",
+      "code": "async function load() {\n  const response = await fetch('/api/data');\n  return response.json();\n}"
+    },
+    {
+      "name": "Promise concurrency",
+      "code": "const results = await Promise.all([\n  fetch('/a'),\n  fetch('/b'),\n  fetch('/c')\n]);"
+    },
+    {
+      "name": "Generator",
+      "code": "function* sequence() {\n  yield 1;\n  yield 2;\n  yield 3;\n}"
+    },
+    {
+      "name": "Proxy",
+      "code": "const proxy = new Proxy(target, {\n  get(object, key, receiver) {\n    return Reflect.get(object, key, receiver);\n  }\n});"
+    },
+    {
+      "name": "Typed array",
+      "code": "const buffer = new ArrayBuffer(8);\nconst view = new Uint32Array(buffer);\nview[0] = 42;"
+    },
+    {
+      "name": "Worker communication",
+      "code": "worker.postMessage({ type: 'process', payload });"
+    },
+    {
+      "name": "Error handling",
+      "code": "try {\n  await operation();\n} catch (error) {\n  handleError(error);\n}"
+    },
+    {
+      "name": "Security-conscious DOM update",
+      "code": "element.textContent = untrustedInput;"
+    }
+  ],
+  "validation": [
+    {
+      "id": "syntax",
+      "check": "Source parses successfully under the intended ECMAScript grammar and runtime."
+    },
+    {
+      "id": "type-behavior",
+      "check": "Primitive conversion, equality, numeric behavior, and object identity match the intended semantics."
+    },
+    {
+      "id": "scope",
+      "check": "Bindings, closures, initialization order, and temporal-dead-zone behavior are correct."
+    },
+    {
+      "id": "object-model",
+      "check": "Prototype relationships, property descriptors, getters, setters, and object mutation behave as intended."
+    },
+    {
+      "id": "async",
+      "check": "Promises, async functions, rejection propagation, and scheduling behavior are explicitly tested."
+    },
+    {
+      "id": "memory",
+      "check": "Long-lived references, caches, closures, event handlers, and worker resources do not create unintended retention."
+    },
+    {
+      "id": "concurrency",
+      "check": "Worker communication and shared-memory operations use appropriate synchronization and ownership semantics."
+    },
+    {
+      "id": "security",
+      "check": "External input is validated or safely encoded and known JavaScript/web attack surfaces are addressed."
+    },
+    {
+      "id": "modules",
+      "check": "Module boundaries, exports, imports, cycles, resolution, and deployment behavior are validated."
+    },
+    {
+      "id": "compatibility",
+      "check": "Required ECMAScript features are supported by the target engines or appropriately transformed."
+    },
+    {
+      "id": "performance",
+      "check": "Critical paths are profiled under representative workloads and event-loop latency is measured where relevant."
+    },
+    {
+      "id": "testing",
+      "check": "Unit, integration, end-to-end, asynchronous, regression, and security tests cover critical behavior."
+    },
+    {
+      "id": "deployment",
+      "check": "Production bundles, source maps, environment configuration, dependency locks, and runtime versions are reproducible."
+    }
+  ],
+  "open_questions": [
+    "Should the next iteration focus exclusively on modern ECMAScript features, or include the historical evolution from ES5 through current ECMAScript?",
+    "Should the ECMAScript execution model be expanded into a formal treatment of realms, agents, execution contexts, environment records, references, and abstract operations?",
+    "Should the event loop be separated into ECMAScript job semantics and detailed browser versus Node.js scheduling models?",
+    "Should JavaScript security be expanded into a dedicated web-security taxonomy covering XSS, CSRF, CSP, Trusted Types, prototype pollution, supply-chain attacks, and sandbox boundaries?",
+    "Should the browser platform be expanded into DOM, Web APIs, rendering, storage, networking, workers, service workers, and WebAssembly?",
+    "Should Node.js be expanded into filesystem, streams, networking, child processes, worker threads, module resolution, and server architecture?",
+    "Should JavaScript performance be expanded into JIT internals, hidden classes, inline caches, garbage collectors, profiling methodology, and benchmark design?",
+    "Should TypeScript be treated as a separate language/toolchain layer rather than part of JavaScript itself?",
+    "Should frontend architecture be expanded into component systems, state management, routing, hydration, server-side rendering, and client-side rendering?",
+    "Should backend architecture be expanded into HTTP services, queues, databases, caching, observability, authentication, authorization, and distributed systems?"
+  ]
+}
