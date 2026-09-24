@@ -1,0 +1,1238 @@
+```json
+{
+  "topic": "HTML5",
+  "objective": "Provide an expert-level, implementation-oriented outline of HTML5 covering document structure, semantics, elements, attributes, forms, multimedia, graphics, accessibility, APIs, browser behavior, security considerations, performance, interoperability, validation, and modern web-development practices.",
+  "scope": "Modern HTML as standardized by WHATWG, with emphasis on authoring, parsing, semantics, accessibility, browser interoperability, and integration with CSS and JavaScript. Legacy features are included where necessary to explain compatibility, migration, or historical context.",
+  "architecture": {
+    "sections": [
+      {
+        "id": "html-foundations",
+        "name": "HTML Foundations",
+        "purpose": "Establish the document model, syntax, parsing rules, and core authoring concepts.",
+        "concepts": [
+          "HTML document",
+          "DOM",
+          "elements",
+          "tags",
+          "attributes",
+          "text nodes",
+          "comments",
+          "document tree",
+          "HTML parser",
+          "doctype",
+          "character encoding"
+        ],
+        "subsections": [
+          {
+            "name": "Document Structure",
+            "details": [
+              "DOCTYPE declaration",
+              "html root element",
+              "head metadata container",
+              "body document content",
+              "document language declaration",
+              "character encoding declaration",
+              "viewport metadata"
+            ],
+            "examples": [
+              "<!doctype html>",
+              "<html lang=\"en\">",
+              "<meta charset=\"utf-8\">"
+            ],
+            "dependencies": [
+              "HTML syntax",
+              "browser parsing"
+            ]
+          },
+          {
+            "name": "Syntax and Parsing",
+            "details": [
+              "Start tags and end tags",
+              "Void elements",
+              "Optional tags",
+              "Attribute syntax",
+              "Boolean attributes",
+              "Entity references",
+              "Whitespace handling",
+              "Error recovery",
+              "HTML parsing insertion modes"
+            ],
+            "examples": [
+              "<input disabled>",
+              "<img src=\"image.webp\" alt=\"Example\">"
+            ],
+            "dependencies": [
+              "HTML parser",
+              "DOM construction"
+            ]
+          },
+          {
+            "name": "DOM Relationship",
+            "details": [
+              "HTML source as parser input",
+              "DOM tree as parsed representation",
+              "Element nodes",
+              "Text nodes",
+              "Attributes",
+              "Document object",
+              "Dynamic DOM mutation through JavaScript"
+            ],
+            "examples": [
+              "document.querySelector('main')",
+              "element.setAttribute('aria-label', 'Navigation')"
+            ],
+            "dependencies": [
+              "JavaScript",
+              "DOM APIs"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "semantic-structure",
+        "name": "Semantic Document Structure",
+        "purpose": "Define meaningful document structure that communicates information hierarchy to browsers, assistive technologies, search systems, and developers.",
+        "concepts": [
+          "Semantic HTML",
+          "landmarks",
+          "headings",
+          "sections",
+          "articles",
+          "navigation",
+          "content hierarchy"
+        ],
+        "subsections": [
+          {
+            "name": "Landmark Elements",
+            "details": [
+              "header",
+              "nav",
+              "main",
+              "aside",
+              "footer"
+            ],
+            "examples": [
+              "<header>Site header</header>",
+              "<nav aria-label=\"Primary\">...</nav>",
+              "<main>...</main>",
+              "<aside>Related content</aside>",
+              "<footer>...</footer>"
+            ],
+            "dependencies": [
+              "document structure",
+              "accessibility semantics"
+            ]
+          },
+          {
+            "name": "Content Sectioning",
+            "details": [
+              "section",
+              "article",
+              "h1 through h6",
+              "heading hierarchy",
+              "outline concepts",
+              "section ownership"
+            ],
+            "examples": [
+              "<article><h2>Article title</h2>...</article>"
+            ],
+            "dependencies": [
+              "semantic structure"
+            ]
+          },
+          {
+            "name": "Text Semantics",
+            "details": [
+              "p",
+              "strong",
+              "em",
+              "mark",
+              "small",
+              "abbr",
+              "cite",
+              "q",
+              "blockquote",
+              "code",
+              "pre",
+              "kbd",
+              "samp",
+              "time",
+              "data",
+              "sub",
+              "sup"
+            ],
+            "examples": [
+              "<strong>Important</strong>",
+              "<time datetime=\"2026-09-23\">September 23, 2026</time>"
+            ],
+            "dependencies": [
+              "semantic HTML",
+              "text content"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "metadata",
+        "name": "Document Metadata",
+        "purpose": "Define information about the document, resource relationships, rendering behavior, and discoverability.",
+        "concepts": [
+          "title",
+          "meta",
+          "link",
+          "style",
+          "base",
+          "favicon",
+          "resource hints",
+          "SEO metadata"
+        ],
+        "subsections": [
+          {
+            "name": "Core Metadata",
+            "details": [
+              "title",
+              "charset",
+              "viewport",
+              "description",
+              "robots directives",
+              "theme metadata"
+            ],
+            "examples": [
+              "<title>Example Page</title>",
+              "<meta name=\"description\" content=\"Example description\">"
+            ],
+            "dependencies": [
+              "head element"
+            ]
+          },
+          {
+            "name": "Resource Relationships",
+            "details": [
+              "stylesheet",
+              "icon",
+              "canonical",
+              "alternate resources",
+              "preload",
+              "prefetch",
+              "modulepreload"
+            ],
+            "examples": [
+              "<link rel=\"stylesheet\" href=\"styles.css\">",
+              "<link rel=\"icon\" href=\"/favicon.ico\">"
+            ],
+            "dependencies": [
+              "HTTP",
+              "CSS",
+              "resource loading"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "content-elements",
+        "name": "Content and Embedded Resources",
+        "purpose": "Cover images, figures, links, embedded content, and resource presentation.",
+        "concepts": [
+          "a",
+          "img",
+          "picture",
+          "source",
+          "figure",
+          "figcaption",
+          "iframe",
+          "embed",
+          "object",
+          "canvas",
+          "SVG integration"
+        ],
+        "subsections": [
+          {
+            "name": "Hyperlinks",
+            "details": [
+              "Absolute URLs",
+              "Relative URLs",
+              "Fragments",
+              "Download links",
+              "Target browsing contexts",
+              "Link security",
+              "Relationship attributes"
+            ],
+            "examples": [
+              "<a href=\"/docs\">Documentation</a>",
+              "<a href=\"report.pdf\" download>Download</a>"
+            ],
+            "dependencies": [
+              "URL processing",
+              "navigation"
+            ]
+          },
+          {
+            "name": "Images",
+            "details": [
+              "src",
+              "alt",
+              "width and height",
+              "responsive images",
+              "srcset",
+              "sizes",
+              "picture",
+              "source",
+              "lazy loading",
+              "decoding hints"
+            ],
+            "examples": [
+              "<img src=\"photo.webp\" alt=\"Mountain landscape\" loading=\"lazy\">",
+              "<picture><source srcset=\"large.webp\" media=\"(min-width: 800px)\"><img src=\"small.webp\" alt=\"Landscape\"></picture>"
+            ],
+            "dependencies": [
+              "HTTP",
+              "responsive design",
+              "accessibility"
+            ]
+          },
+          {
+            "name": "Embedded Documents",
+            "details": [
+              "iframe",
+              "sandboxing",
+              "referrer policy",
+              "permissions policy",
+              "cross-origin restrictions"
+            ],
+            "examples": [
+              "<iframe src=\"/embedded.html\" sandbox></iframe>"
+            ],
+            "dependencies": [
+              "web security",
+              "same-origin policy"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "lists-tables",
+        "name": "Lists and Tabular Data",
+        "purpose": "Represent ordered, unordered, descriptive, and tabular information correctly.",
+        "concepts": [
+          "ul",
+          "ol",
+          "li",
+          "dl",
+          "dt",
+          "dd",
+          "table",
+          "caption",
+          "thead",
+          "tbody",
+          "tfoot",
+          "tr",
+          "th",
+          "td",
+          "scope"
+        ],
+        "subsections": [
+          {
+            "name": "Lists",
+            "details": [
+              "Unordered lists",
+              "Ordered lists",
+              "Description lists",
+              "Nested lists",
+              "Semantic list usage"
+            ],
+            "examples": [
+              "<ul><li>Item</li></ul>",
+              "<ol><li>Step one</li></ol>"
+            ],
+            "dependencies": [
+              "semantic content"
+            ]
+          },
+          {
+            "name": "Tables",
+            "details": [
+              "Header identification",
+              "Row and column relationships",
+              "Captions",
+              "Column groups",
+              "Row groups",
+              "Spanning cells",
+              "Accessible table markup"
+            ],
+            "examples": [
+              "<table><caption>Sales</caption><thead>...</thead><tbody>...</tbody></table>"
+            ],
+            "dependencies": [
+              "accessibility",
+              "tabular data modeling"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "forms",
+        "name": "Forms and User Input",
+        "purpose": "Define structured user input, constraints, submission behavior, validation, and accessible controls.",
+        "concepts": [
+          "form",
+          "input",
+          "label",
+          "button",
+          "textarea",
+          "select",
+          "option",
+          "optgroup",
+          "datalist",
+          "output",
+          "fieldset",
+          "legend",
+          "constraint validation"
+        ],
+        "subsections": [
+          {
+            "name": "Input Types",
+            "details": [
+              "text",
+              "search",
+              "email",
+              "url",
+              "tel",
+              "number",
+              "range",
+              "date",
+              "time",
+              "datetime-local",
+              "month",
+              "week",
+              "color",
+              "checkbox",
+              "radio",
+              "file",
+              "hidden",
+              "password",
+              "submit",
+              "reset",
+              "button"
+            ],
+            "examples": [
+              "<input type=\"email\" name=\"email\" required>",
+              "<input type=\"date\" name=\"birthDate\">"
+            ],
+            "dependencies": [
+              "form controls",
+              "constraint validation"
+            ]
+          },
+          {
+            "name": "Constraint Validation",
+            "details": [
+              "required",
+              "minlength",
+              "maxlength",
+              "min",
+              "max",
+              "step",
+              "pattern",
+              "type validation",
+              "custom validity",
+              "validity state"
+            ],
+            "examples": [
+              "<input required minlength=\"8\">",
+              "input.setCustomValidity('Invalid value')"
+            ],
+            "dependencies": [
+              "HTML forms",
+              "JavaScript"
+            ]
+          },
+          {
+            "name": "Form Submission",
+            "details": [
+              "GET",
+              "POST",
+              "action",
+              "method",
+              "enctype",
+              "target",
+              "formdata",
+              "submit event",
+              "requestSubmit"
+            ],
+            "examples": [
+              "<form action=\"/search\" method=\"get\">...</form>",
+              "<form enctype=\"multipart/form-data\">...</form>"
+            ],
+            "dependencies": [
+              "HTTP",
+              "server-side processing"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "multimedia",
+        "name": "Audio and Video",
+        "purpose": "Define native media playback, captions, tracks, controls, and media accessibility.",
+        "concepts": [
+          "audio",
+          "video",
+          "source",
+          "track",
+          "MediaSource integration",
+          "WebVTT",
+          "captions",
+          "subtitles",
+          "poster",
+          "controls"
+        ],
+        "subsections": [
+          {
+            "name": "Video",
+            "details": [
+              "Playback controls",
+              "Poster images",
+              "Multiple sources",
+              "Preload behavior",
+              "Muted autoplay requirements",
+              "Responsive sizing"
+            ],
+            "examples": [
+              "<video controls poster=\"poster.jpg\"><source src=\"video.mp4\" type=\"video/mp4\"></video>"
+            ],
+            "dependencies": [
+              "media formats",
+              "browser media stack",
+              "accessibility"
+            ]
+          },
+          {
+            "name": "Audio",
+            "details": [
+              "Playback",
+              "Controls",
+              "Multiple sources",
+              "Preload",
+              "Autoplay policies"
+            ],
+            "examples": [
+              "<audio controls src=\"audio.mp3\"></audio>"
+            ],
+            "dependencies": [
+              "media formats"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "graphics",
+        "name": "Graphics and Drawing",
+        "purpose": "Cover native HTML integration with raster and vector graphics.",
+        "concepts": [
+          "canvas",
+          "2D rendering context",
+          "WebGL",
+          "SVG",
+          "accessibility of graphical content"
+        ],
+        "subsections": [
+          {
+            "name": "Canvas",
+            "details": [
+              "Canvas bitmap",
+              "2D context",
+              "Drawing paths",
+              "Shapes",
+              "Text",
+              "Images",
+              "Animation",
+              "Pixel manipulation"
+            ],
+            "examples": [
+              "<canvas id=\"chart\" width=\"800\" height=\"400\"></canvas>"
+            ],
+            "dependencies": [
+              "JavaScript",
+              "Canvas API"
+            ]
+          },
+          {
+            "name": "SVG",
+            "details": [
+              "Inline SVG",
+              "Vector graphics",
+              "SVG accessibility",
+              "SVG as external resource",
+              "SVG DOM integration"
+            ],
+            "examples": [
+              "<svg viewBox=\"0 0 100 100\" role=\"img\">...</svg>"
+            ],
+            "dependencies": [
+              "XML-derived syntax",
+              "accessibility"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "interactive-elements",
+        "name": "Interactive HTML",
+        "purpose": "Use native browser interaction primitives before relying on custom JavaScript widgets.",
+        "concepts": [
+          "button",
+          "details",
+          "summary",
+          "dialog",
+          "popover",
+          "select",
+          "input controls",
+          "focus management"
+        ],
+        "subsections": [
+          {
+            "name": "Disclosure",
+            "details": [
+              "details element",
+              "summary element",
+              "open state",
+              "native keyboard behavior"
+            ],
+            "examples": [
+              "<details><summary>More information</summary><p>Content</p></details>"
+            ],
+            "dependencies": [
+              "HTML interaction model",
+              "accessibility"
+            ]
+          },
+          {
+            "name": "Dialog",
+            "details": [
+              "Modal dialog",
+              "Non-modal dialog",
+              "showModal",
+              "close",
+              "returnValue",
+              "focus behavior",
+              "backdrop"
+            ],
+            "examples": [
+              "<dialog id=\"settings\">Settings</dialog>"
+            ],
+            "dependencies": [
+              "JavaScript",
+              "focus management",
+              "accessibility"
+            ]
+          },
+          {
+            "name": "Popover",
+            "details": [
+              "Popover attribute",
+              "Invoker relationships",
+              "Light-dismiss behavior",
+              "Popover accessibility",
+              "Positioning integration"
+            ],
+            "examples": [
+              "<button popovertarget=\"info\">Info</button>",
+              "<div id=\"info\" popover>Information</div>"
+            ],
+            "dependencies": [
+              "modern browser support",
+              "CSS positioning"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "accessibility",
+        "name": "Accessibility",
+        "purpose": "Ensure HTML communicates structure and interaction semantics to users of assistive technologies and alternative input methods.",
+        "concepts": [
+          "semantic HTML",
+          "ARIA",
+          "accessible names",
+          "roles",
+          "states",
+          "properties",
+          "keyboard navigation",
+          "focus",
+          "screen readers",
+          "WCAG"
+        ],
+        "subsections": [
+          {
+            "name": "Native Semantics First",
+            "details": [
+              "Prefer native HTML controls",
+              "Avoid unnecessary ARIA",
+              "Preserve implicit roles",
+              "Use labels for form controls",
+              "Use headings for hierarchy"
+            ],
+            "examples": [
+              "<button type=\"button\">Save</button>",
+              "<label for=\"email\">Email</label><input id=\"email\" type=\"email\">"
+            ],
+            "dependencies": [
+              "semantic HTML",
+              "ARIA",
+              "WCAG"
+            ]
+          },
+          {
+            "name": "Keyboard Accessibility",
+            "details": [
+              "Logical tab order",
+              "Focus visibility",
+              "Keyboard activation",
+              "Avoid positive tabindex values",
+              "Focus restoration",
+              "Escape behavior for dialogs"
+            ],
+            "examples": [
+              "Use <button> instead of clickable <div>."
+            ],
+            "dependencies": [
+              "interaction semantics",
+              "accessibility APIs"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "web-apis",
+        "name": "HTML-Integrated Web APIs",
+        "purpose": "Identify browser APIs that commonly interact with HTML while distinguishing HTML syntax from broader platform APIs.",
+        "concepts": [
+          "DOM",
+          "Fetch",
+          "Web Storage",
+          "History",
+          "URL",
+          "Web Workers",
+          "Service Workers",
+          "Notifications",
+          "Clipboard",
+          "Drag and Drop",
+          "Web Components"
+        ],
+        "subsections": [
+          {
+            "name": "DOM APIs",
+            "details": [
+              "Element selection",
+              "Tree traversal",
+              "Event handling",
+              "Mutation",
+              "Attributes",
+              "Classes",
+              "Custom elements"
+            ],
+            "examples": [
+              "document.querySelector('#app')",
+              "element.addEventListener('click', handler)"
+            ],
+            "dependencies": [
+              "DOM",
+              "JavaScript"
+            ]
+          },
+          {
+            "name": "Web Components",
+            "details": [
+              "Custom elements",
+              "Shadow DOM",
+              "Templates",
+              "Slots",
+              "Component lifecycle",
+              "Encapsulation"
+            ],
+            "examples": [
+              "<template id=\"card-template\">...</template>",
+              "customElements.define('user-card', UserCard)"
+            ],
+            "dependencies": [
+              "DOM",
+              "JavaScript",
+              "Shadow DOM"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "name": "HTML Security",
+        "purpose": "Identify security-sensitive HTML behaviors and safe authoring practices.",
+        "concepts": [
+          "XSS",
+          "injection",
+          "same-origin policy",
+          "sandboxing",
+          "CSP",
+          "trusted types",
+          "noopener",
+          "referrer policy",
+          "permissions policy",
+          "mixed content"
+        ],
+        "subsections": [
+          {
+            "name": "Injection Prevention",
+            "details": [
+              "Treat HTML as executable parser input",
+              "Escape untrusted text",
+              "Avoid unsafe HTML construction",
+              "Sanitize untrusted markup",
+              "Use safe DOM APIs"
+            ],
+            "examples": [
+              "Prefer textContent for untrusted text instead of innerHTML."
+            ],
+            "dependencies": [
+              "DOM",
+              "application security"
+            ]
+          },
+          {
+            "name": "Cross-Origin Embedding",
+            "details": [
+              "iframe sandbox",
+              "origin isolation",
+              "postMessage",
+              "CORS interaction",
+              "COOP",
+              "COEP"
+            ],
+            "examples": [
+              "<iframe sandbox=\"allow-scripts\" src=\"...\"></iframe>"
+            ],
+            "dependencies": [
+              "HTTP security headers",
+              "browser security model"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "HTML Performance",
+        "purpose": "Optimize parsing, resource discovery, loading, rendering, and user-perceived performance.",
+        "concepts": [
+          "critical rendering path",
+          "preload",
+          "preconnect",
+          "fetchpriority",
+          "lazy loading",
+          "responsive images",
+          "script loading",
+          "resource hints"
+        ],
+        "subsections": [
+          {
+            "name": "Script Loading",
+            "details": [
+              "defer",
+              "async",
+              "module scripts",
+              "parser blocking",
+              "execution ordering"
+            ],
+            "examples": [
+              "<script defer src=\"app.js\"></script>",
+              "<script type=\"module\" src=\"app.js\"></script>"
+            ],
+            "dependencies": [
+              "HTML parser",
+              "JavaScript execution",
+              "network loading"
+            ]
+          },
+          {
+            "name": "Resource Optimization",
+            "details": [
+              "Responsive images",
+              "Lazy loading",
+              "Preload",
+              "Preconnect",
+              "Compression",
+              "Caching",
+              "Priority hints"
+            ],
+            "examples": [
+              "<link rel=\"preload\" as=\"font\" href=\"font.woff2\" crossorigin>"
+            ],
+            "dependencies": [
+              "HTTP",
+              "network performance"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "css-js-integration",
+        "name": "CSS and JavaScript Integration",
+        "purpose": "Define the boundaries and interaction points among HTML structure, CSS presentation, and JavaScript behavior.",
+        "concepts": [
+          "separation of concerns",
+          "class attributes",
+          "data attributes",
+          "style sheets",
+          "scripts",
+          "events",
+          "custom elements"
+        ],
+        "subsections": [
+          {
+            "name": "CSS Integration",
+            "details": [
+              "class",
+              "id",
+              "style",
+              "link stylesheet",
+              "media queries",
+              "CSS custom properties"
+            ],
+            "examples": [
+              "<link rel=\"stylesheet\" href=\"app.css\">",
+              "<main class=\"layout\">...</main>"
+            ],
+            "dependencies": [
+              "CSS"
+            ]
+          },
+          {
+            "name": "JavaScript Integration",
+            "details": [
+              "script",
+              "module",
+              "event attributes",
+              "DOM events",
+              "data-* attributes",
+              "declarative interaction"
+            ],
+            "examples": [
+              "<button data-action=\"save\">Save</button>"
+            ],
+            "dependencies": [
+              "DOM",
+              "JavaScript"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "modernization",
+        "name": "Modern HTML Authoring and Migration",
+        "purpose": "Guide migration from obsolete patterns toward modern semantic and interoperable HTML.",
+        "concepts": [
+          "obsolete elements",
+          "presentational markup",
+          "semantic replacements",
+          "compatibility",
+          "progressive enhancement",
+          "feature detection"
+        ],
+        "subsections": [
+          {
+            "name": "Legacy Markup",
+            "details": [
+              "Avoid deprecated presentation elements",
+              "Replace layout tables",
+              "Replace obsolete font styling",
+              "Remove unnecessary XHTML-era syntax",
+              "Use modern semantic elements"
+            ],
+            "examples": [
+              "Replace <font> with CSS.",
+              "Replace layout <table> structures with semantic containers and CSS."
+            ],
+            "dependencies": [
+              "CSS",
+              "semantic HTML"
+            ]
+          },
+          {
+            "name": "Progressive Enhancement",
+            "details": [
+              "Start with semantic HTML",
+              "Layer CSS presentation",
+              "Layer JavaScript enhancement",
+              "Maintain useful fallback behavior",
+              "Use feature detection where required"
+            ],
+            "examples": [
+              "A form should remain meaningful even when client-side JavaScript fails."
+            ],
+            "dependencies": [
+              "HTML",
+              "CSS",
+              "JavaScript"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "validation-tooling",
+        "name": "Validation and Tooling",
+        "purpose": "Verify syntax, semantics, accessibility, compatibility, security, and maintainability.",
+        "concepts": [
+          "HTML conformance",
+          "validator",
+          "linting",
+          "accessibility testing",
+          "browser testing",
+          "DOM inspection",
+          "automated testing"
+        ],
+        "subsections": [
+          {
+            "name": "Conformance",
+            "details": [
+              "Check syntax",
+              "Check element usage",
+              "Check attribute validity",
+              "Identify obsolete features",
+              "Validate document structure"
+            ],
+            "examples": [
+              "Run an HTML conformance checker against representative pages."
+            ],
+            "dependencies": [
+              "HTML specification"
+            ]
+          },
+          {
+            "name": "Accessibility Testing",
+            "details": [
+              "Keyboard-only testing",
+              "Screen-reader testing",
+              "Automated accessibility checks",
+              "Color-independent semantics",
+              "Form-label verification",
+              "Heading and landmark verification"
+            ],
+            "examples": [
+              "Navigate the complete interface without a mouse."
+            ],
+            "dependencies": [
+              "accessibility",
+              "semantic HTML"
+            ]
+          },
+          {
+            "name": "Cross-Browser Testing",
+            "details": [
+              "Test Chromium-based browsers",
+              "Test Firefox",
+              "Test WebKit-based browsers",
+              "Test responsive layouts",
+              "Test degraded network conditions",
+              "Test assistive technology combinations"
+            ],
+            "examples": [
+              "Verify critical workflows across supported browser and device matrices."
+            ],
+            "dependencies": [
+              "browser compatibility",
+              "responsive design"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "HTML",
+      "to": "DOM",
+      "relationship": "HTML source is parsed into a DOM representation."
+    },
+    {
+      "from": "HTML",
+      "to": "CSS",
+      "relationship": "HTML provides document structure while CSS controls presentation."
+    },
+    {
+      "from": "HTML",
+      "to": "JavaScript",
+      "relationship": "JavaScript can inspect, modify, and respond to HTML-derived DOM structures."
+    },
+    {
+      "from": "semantic HTML",
+      "to": "accessibility",
+      "relationship": "Native semantics provide important information to accessibility technologies."
+    },
+    {
+      "from": "forms",
+      "to": "HTTP",
+      "relationship": "Form submission can generate HTTP requests."
+    },
+    {
+      "from": "HTML",
+      "to": "browser security model",
+      "relationship": "HTML features participate in origin, embedding, navigation, and resource security rules."
+    },
+    {
+      "from": "HTML",
+      "to": "performance",
+      "relationship": "Markup determines resource discovery and parser behavior that affect loading performance."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "HTML specification",
+      "type": "normative",
+      "purpose": "Defines parsing, elements, attributes, semantics, and conformance requirements."
+    },
+    {
+      "name": "DOM",
+      "type": "platform",
+      "purpose": "Provides the runtime document representation."
+    },
+    {
+      "name": "CSS",
+      "type": "adjacent_standard",
+      "purpose": "Provides presentation and layout."
+    },
+    {
+      "name": "JavaScript",
+      "type": "adjacent_language",
+      "purpose": "Provides dynamic behavior and API interaction."
+    },
+    {
+      "name": "HTTP",
+      "type": "protocol",
+      "purpose": "Transports HTML documents and referenced resources."
+    },
+    {
+      "name": "WCAG",
+      "type": "accessibility_standard",
+      "purpose": "Provides accessibility success criteria and guidance."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "Malformed HTML",
+      "handling": "Browsers generally apply standardized error-recovery parsing rather than simply rejecting the document."
+    },
+    {
+      "case": "Missing language attribute",
+      "handling": "Add an appropriate lang attribute to improve language identification and accessibility."
+    },
+    {
+      "case": "Images without meaningful alternatives",
+      "handling": "Provide appropriate alt text, or empty alt text for genuinely decorative images."
+    },
+    {
+      "case": "Interactive div elements",
+      "handling": "Prefer native button, link, input, dialog, details, or other appropriate interactive semantics."
+    },
+    {
+      "case": "Untrusted HTML",
+      "handling": "Do not insert untrusted strings as raw HTML without appropriate sanitization and security controls."
+    },
+    {
+      "case": "Browser feature differences",
+      "handling": "Use standards-based feature detection and progressive enhancement rather than assuming identical implementation behavior."
+    },
+    {
+      "case": "JavaScript unavailable",
+      "handling": "Core content and essential workflows should remain understandable and usable where practical."
+    },
+    {
+      "case": "Responsive media",
+      "handling": "Use responsive image and media mechanisms instead of relying solely on CSS resizing."
+    },
+    {
+      "case": "Complex tables",
+      "handling": "Use explicit header relationships and appropriate grouping semantics."
+    },
+    {
+      "case": "Modal interaction",
+      "handling": "Use native dialog capabilities where appropriate and ensure focus, dismissal, and accessibility behavior are correct."
+    }
+  ],
+  "constraints": [
+    "HTML semantics should represent meaning rather than merely visual appearance.",
+    "HTML should remain conformant to the current applicable standard.",
+    "Accessibility must be considered part of document structure rather than an afterthought.",
+    "Security-sensitive contexts must treat HTML as potentially executable parser input.",
+    "Browser compatibility should be evaluated against the application's supported browser matrix.",
+    "HTML should not be used as a substitute for CSS layout or JavaScript application logic.",
+    "Obsolete elements and attributes should not be introduced into new projects.",
+    "Client-side validation must not be treated as a replacement for server-side validation.",
+    "External resources may introduce network, privacy, security, and performance dependencies."
+  ],
+  "examples": [
+    {
+      "name": "Minimal modern document",
+      "code": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Example</title></head><body><main><h1>Hello</h1><p>Accessible semantic HTML.</p></main></body></html>"
+    },
+    {
+      "name": "Accessible form",
+      "code": "<form action=\"/signup\" method=\"post\"><label for=\"email\">Email</label><input id=\"email\" name=\"email\" type=\"email\" required><button type=\"submit\">Sign up</button></form>"
+    },
+    {
+      "name": "Semantic article",
+      "code": "<article><header><h2>Article title</h2><p>Published <time datetime=\"2026-09-23\">September 23, 2026</time></p></header><p>Article content.</p><footer>Author information</footer></article>"
+    },
+    {
+      "name": "Responsive image",
+      "code": "<picture><source media=\"(min-width: 800px)\" srcset=\"large.webp\"><img src=\"small.webp\" alt=\"Mountain landscape\" width=\"640\" height=\"480\"></picture>"
+    },
+    {
+      "name": "Native disclosure",
+      "code": "<details><summary>Technical details</summary><p>Additional information.</p></details>"
+    }
+  ],
+  "validation": [
+    {
+      "id": "syntax",
+      "check": "Document parses as intended without unintended malformed markup."
+    },
+    {
+      "id": "semantics",
+      "check": "Elements accurately represent the meaning and structure of their content."
+    },
+    {
+      "id": "accessibility",
+      "check": "Landmarks, headings, labels, focus behavior, names, roles, and states are appropriate."
+    },
+    {
+      "id": "forms",
+      "check": "Controls have labels, appropriate input types, constraints, and usable submission behavior."
+    },
+    {
+      "id": "security",
+      "check": "Untrusted content is handled safely and embedding/navigation features use appropriate security controls."
+    },
+    {
+      "id": "performance",
+      "check": "Critical resources, images, scripts, and media use appropriate loading strategies."
+    },
+    {
+      "id": "compatibility",
+      "check": "Required HTML features work across the supported browser matrix."
+    },
+    {
+      "id": "conformance",
+      "check": "Markup is checked against the applicable HTML standard and obsolete constructs are identified."
+    },
+    {
+      "id": "progressive-enhancement",
+      "check": "Core content and essential workflows have a reasonable baseline without optional enhancements."
+    }
+  ],
+  "open_questions": [
+    "Should the outline focus primarily on HTML authoring, browser implementation, or standards-level specification details?",
+    "Should obsolete HTML features receive a dedicated historical migration appendix?",
+    "Should Web Components and related APIs be expanded into a separate architecture?",
+    "Should accessibility be expanded into a full WCAG-oriented implementation checklist?",
+    "Should the next iteration include a complete HTML element-by-element reference?",
+    "Should browser compatibility data be incorporated for a specific target browser matrix?"
+  ]
+}
+```
