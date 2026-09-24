@@ -1,0 +1,1363 @@
+{
+  "topic": "Rust",
+  "objective": "Provide an expert-level, implementation-oriented outline of Rust covering language foundations, ownership and borrowing, lifetimes, type systems, traits, generics, pattern matching, error handling, concurrency, async programming, memory safety, unsafe Rust, macros, modules, Cargo, testing, performance, FFI, tooling, ecosystem architecture, and production engineering.",
+  "scope": "Modern stable Rust as a systems programming language, emphasizing language semantics, compiler behavior, safe and unsafe memory models, idiomatic architecture, tooling, interoperability, performance, and production development. The structure follows the same expert-outline organization and granularity as the supplied outline template. Create Expert Outline.txt",
+  "architecture": {
+    "sections": [
+      {
+        "id": "rust-foundations",
+        "name": "Rust Foundations",
+        "purpose": "Establish Rust syntax, compilation, source organization, expressions, statements, bindings, and fundamental language constructs.",
+        "concepts": [
+          "crate",
+          "module",
+          "expression",
+          "statement",
+          "binding",
+          "mutability",
+          "shadowing",
+          "functions",
+          "blocks",
+          "comments",
+          "attributes",
+          "macros",
+          "prelude"
+        ],
+        "subsections": [
+          {
+            "name": "Basic Syntax",
+            "details": [
+              "let bindings",
+              "mutable bindings",
+              "constants",
+              "static items",
+              "functions",
+              "blocks",
+              "semicolons",
+              "expressions versus statements",
+              "comments and documentation comments"
+            ],
+            "examples": [
+              "let x = 42;",
+              "let mut counter = 0;",
+              "const MAX: usize = 1024;"
+            ],
+            "dependencies": [
+              "Rust syntax",
+              "type inference"
+            ]
+          },
+          {
+            "name": "Expressions and Control Flow",
+            "details": [
+              "if expressions",
+              "match expressions",
+              "loop",
+              "while",
+              "while let",
+              "for",
+              "break values",
+              "return expressions",
+              "block expressions"
+            ],
+            "examples": [
+              "let value = if condition { 1 } else { 2 };",
+              "match result { Ok(v) => v, Err(e) => handle(e) }"
+            ],
+            "dependencies": [
+              "ownership",
+              "pattern matching",
+              "type inference"
+            ]
+          },
+          {
+            "name": "Bindings and Shadowing",
+            "details": [
+              "immutable bindings",
+              "mutable bindings",
+              "destructuring",
+              "shadowing",
+              "type-changing shadowing",
+              "binding modes"
+            ],
+            "examples": [
+              "let x = \"42\";",
+              "let x: i32 = x.parse().unwrap();"
+            ],
+            "dependencies": [
+              "patterns",
+              "type inference"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ownership-borrowing",
+        "name": "Ownership, Borrowing, and Lifetimes",
+        "purpose": "Explain the core memory-safety model that distinguishes Rust from garbage-collected and manually managed languages.",
+        "concepts": [
+          "ownership",
+          "move semantics",
+          "copy semantics",
+          "borrowing",
+          "references",
+          "mutable references",
+          "aliasing",
+          "lifetimes",
+          "borrow checker",
+          "NLL"
+        ],
+        "subsections": [
+          {
+            "name": "Ownership",
+            "details": [
+              "single owner model",
+              "ownership transfer",
+              "move semantics",
+              "drop semantics",
+              "scope-based destruction",
+              "RAII",
+              "Copy types",
+              "Clone"
+            ],
+            "examples": [
+              "let a = String::from(\"hello\");",
+              "let b = a;",
+              "println!(\"{}\", b);"
+            ],
+            "dependencies": [
+              "stack and heap model",
+              "types",
+              "Drop"
+            ]
+          },
+          {
+            "name": "Borrowing",
+            "details": [
+              "shared references",
+              "mutable references",
+              "exclusive mutable access",
+              "aliasing rules",
+              "reborrowing",
+              "reference validity"
+            ],
+            "examples": [
+              "fn len(value: &String) -> usize { value.len() }",
+              "fn append(value: &mut String) { value.push('!'); }"
+            ],
+            "dependencies": [
+              "ownership",
+              "lifetimes"
+            ]
+          },
+          {
+            "name": "Lifetimes",
+            "details": [
+              "lifetime parameters",
+              "lifetime elision",
+              "outlives relationships",
+              "static lifetime",
+              "higher-ranked trait bounds",
+              "lifetime variance",
+              "common lifetime diagnostics"
+            ],
+            "examples": [
+              "fn longest<'a>(a: &'a str, b: &'a str) -> &'a str { if a.len() > b.len() { a } else { b } }"
+            ],
+            "dependencies": [
+              "borrowing",
+              "references",
+              "type system"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "type-system",
+        "name": "Type System",
+        "purpose": "Cover Rust's static type system, inference, algebraic data types, coercions, and type-level guarantees.",
+        "concepts": [
+          "primitive types",
+          "tuples",
+          "arrays",
+          "slices",
+          "structs",
+          "enums",
+          "newtypes",
+          "type aliases",
+          "never type",
+          "unit type",
+          "type inference"
+        ],
+        "subsections": [
+          {
+            "name": "Primitive and Compound Types",
+            "details": [
+              "integers",
+              "floating-point values",
+              "bool",
+              "char",
+              "unit",
+              "never",
+              "tuples",
+              "arrays",
+              "slices",
+              "str"
+            ],
+            "examples": [
+              "let tuple: (i32, bool) = (42, true);",
+              "let values: [u8; 4] = [1, 2, 3, 4];"
+            ],
+            "dependencies": [
+              "type inference"
+            ]
+          },
+          {
+            "name": "Structs",
+            "details": [
+              "named-field structs",
+              "tuple structs",
+              "unit structs",
+              "associated functions",
+              "methods",
+              "field visibility",
+              "struct update syntax"
+            ],
+            "examples": [
+              "struct User { id: u64, name: String }"
+            ],
+            "dependencies": [
+              "ownership",
+              "modules",
+              "visibility"
+            ]
+          },
+          {
+            "name": "Enums and Algebraic Data Types",
+            "details": [
+              "enum variants",
+              "tuple variants",
+              "struct variants",
+              "Option",
+              "Result",
+              "exhaustive matching",
+              "recursive types",
+              "Box for recursive structures"
+            ],
+            "examples": [
+              "enum Message { Quit, Text(String), Move { x: i32, y: i32 } }"
+            ],
+            "dependencies": [
+              "pattern matching",
+              "ownership"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "traits-generics",
+        "name": "Traits, Generics, and Abstraction",
+        "purpose": "Explain Rust's mechanisms for reusable, statically dispatched, and dynamically dispatched abstractions.",
+        "concepts": [
+          "generic parameters",
+          "traits",
+          "trait bounds",
+          "associated types",
+          "associated constants",
+          "default methods",
+          "impl blocks",
+          "trait objects",
+          "dyn",
+          "impl Trait"
+        ],
+        "subsections": [
+          {
+            "name": "Generics",
+            "details": [
+              "generic functions",
+              "generic structs",
+              "generic enums",
+              "generic implementations",
+              "monomorphization",
+              "where clauses"
+            ],
+            "examples": [
+              "fn identity<T>(value: T) -> T { value }"
+            ],
+            "dependencies": [
+              "type system",
+              "traits"
+            ]
+          },
+          {
+            "name": "Traits",
+            "details": [
+              "trait definitions",
+              "trait implementations",
+              "supertraits",
+              "default methods",
+              "trait bounds",
+              "blanket implementations",
+              "orphan rules"
+            ],
+            "examples": [
+              "trait Printable { fn print(&self); }"
+            ],
+            "dependencies": [
+              "generics",
+              "coherence rules"
+            ]
+          },
+          {
+            "name": "Static and Dynamic Dispatch",
+            "details": [
+              "generic static dispatch",
+              "trait objects",
+              "dyn Trait",
+              "object safety",
+              "virtual dispatch",
+              "code generation tradeoffs"
+            ],
+            "examples": [
+              "fn render(item: &dyn Render) { item.render(); }"
+            ],
+            "dependencies": [
+              "traits",
+              "generics",
+              "memory layout"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pattern-matching",
+        "name": "Pattern Matching",
+        "purpose": "Use Rust's exhaustive pattern system to safely deconstruct values and express control flow.",
+        "concepts": [
+          "match",
+          "if let",
+          "while let",
+          "let-else",
+          "destructuring",
+          "guards",
+          "ranges",
+          "binding modes",
+          "refutable patterns"
+        ],
+        "subsections": [
+          {
+            "name": "Destructuring",
+            "details": [
+              "tuple patterns",
+              "struct patterns",
+              "enum patterns",
+              "slice patterns",
+              "nested patterns",
+              "ignored fields"
+            ],
+            "examples": [
+              "let Point { x, y } = point;"
+            ],
+            "dependencies": [
+              "enums",
+              "structs"
+            ]
+          },
+          {
+            "name": "Exhaustiveness",
+            "details": [
+              "exhaustive match checking",
+              "wildcard patterns",
+              "unreachable patterns",
+              "compiler diagnostics",
+              "enum evolution considerations"
+            ],
+            "examples": [
+              "match option { Some(v) => use_value(v), None => handle_none() }"
+            ],
+            "dependencies": [
+              "enum types",
+              "compiler analysis"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "error-handling",
+        "name": "Error Handling",
+        "purpose": "Model recoverable and unrecoverable failures using Rust's type system and idiomatic error-propagation mechanisms.",
+        "concepts": [
+          "Result",
+          "Option",
+          "panic",
+          "? operator",
+          "error propagation",
+          "custom errors",
+          "error conversion",
+          "anyhow-style application errors",
+          "thiserror-style library errors"
+        ],
+        "subsections": [
+          {
+            "name": "Result and Option",
+            "details": [
+              "Ok and Err",
+              "Some and None",
+              "map",
+              "and_then",
+              "unwrap",
+              "expect",
+              "unwrap_or",
+              "unwrap_or_else"
+            ],
+            "examples": [
+              "fn read() -> Result<String, Error> { ... }"
+            ],
+            "dependencies": [
+              "enums",
+              "pattern matching"
+            ]
+          },
+          {
+            "name": "Propagation",
+            "details": [
+              "question-mark operator",
+              "From conversions",
+              "error context",
+              "early returns",
+              "nested Result handling"
+            ],
+            "examples": [
+              "let value = operation()?;"
+            ],
+            "dependencies": [
+              "Result",
+              "traits"
+            ]
+          },
+          {
+            "name": "Panics",
+            "details": [
+              "panic!",
+              "assert!",
+              "debug_assert!",
+              "unrecoverable invariants",
+              "panic strategy",
+              "unwinding versus abort"
+            ],
+            "examples": [
+              "assert!(index < len);"
+            ],
+            "dependencies": [
+              "error model",
+              "runtime configuration"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "collections-iterators",
+        "name": "Collections and Iterators",
+        "purpose": "Cover standard collection types, iteration, ownership-aware traversal, and functional-style transformations.",
+        "concepts": [
+          "Vec",
+          "VecDeque",
+          "LinkedList",
+          "HashMap",
+          "HashSet",
+          "BTreeMap",
+          "BTreeSet",
+          "String",
+          "str",
+          "Iterator",
+          "IntoIterator"
+        ],
+        "subsections": [
+          {
+            "name": "Collections",
+            "details": [
+              "capacity",
+              "allocation",
+              "indexing",
+              "ownership of elements",
+              "hashing",
+              "ordering",
+              "entry APIs"
+            ],
+            "examples": [
+              "let mut values = Vec::new();",
+              "values.push(42);"
+            ],
+            "dependencies": [
+              "ownership",
+              "generics"
+            ]
+          },
+          {
+            "name": "Iterators",
+            "details": [
+              "iter",
+              "iter_mut",
+              "into_iter",
+              "map",
+              "filter",
+              "fold",
+              "collect",
+              "zip",
+              "enumerate",
+              "flat_map"
+            ],
+            "examples": [
+              "let squares: Vec<_> = values.iter().map(|x| x * x).collect();"
+            ],
+            "dependencies": [
+              "closures",
+              "traits",
+              "ownership"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "concurrency",
+        "name": "Concurrency and Parallelism",
+        "purpose": "Explain safe shared-state and message-passing concurrency using Rust's ownership and type systems.",
+        "concepts": [
+          "threads",
+          "Send",
+          "Sync",
+          "Arc",
+          "Mutex",
+          "RwLock",
+          "channels",
+          "atomics",
+          "memory ordering",
+          "data races"
+        ],
+        "subsections": [
+          {
+            "name": "Threads",
+            "details": [
+              "thread::spawn",
+              "join",
+              "move closures",
+              "thread ownership",
+              "thread-local state"
+            ],
+            "examples": [
+              "std::thread::spawn(move || worker()).join().unwrap();"
+            ],
+            "dependencies": [
+              "ownership",
+              "closures",
+              "Send"
+            ]
+          },
+          {
+            "name": "Shared State",
+            "details": [
+              "Arc",
+              "Mutex",
+              "RwLock",
+              "poisoning",
+              "lock scope",
+              "deadlock risks"
+            ],
+            "examples": [
+              "Arc::new(Mutex::new(counter))"
+            ],
+            "dependencies": [
+              "ownership",
+              "Send",
+              "Sync"
+            ]
+          },
+          {
+            "name": "Atomics",
+            "details": [
+              "atomic integer types",
+              "compare-and-swap",
+              "memory ordering",
+              "Acquire",
+              "Release",
+              "Relaxed",
+              "SeqCst"
+            ],
+            "examples": [
+              "counter.fetch_add(1, Ordering::Relaxed);"
+            ],
+            "dependencies": [
+              "concurrency",
+              "memory model"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "async",
+        "name": "Asynchronous Rust",
+        "purpose": "Explain futures, async/await, executors, tasks, cancellation, and asynchronous I/O.",
+        "concepts": [
+          "Future",
+          "async",
+          "await",
+          "Pin",
+          "Waker",
+          "executor",
+          "runtime",
+          "tasks",
+          "streams",
+          "async traits"
+        ],
+        "subsections": [
+          {
+            "name": "Future Model",
+            "details": [
+              "Future polling",
+              "Pending",
+              "Ready",
+              "Waker",
+              "Pinning",
+              "state-machine transformation"
+            ],
+            "examples": [
+              "async fn fetch() -> Result<Data, Error> { ... }"
+            ],
+            "dependencies": [
+              "traits",
+              "ownership",
+              "concurrency"
+            ]
+          },
+          {
+            "name": "Async Runtime",
+            "details": [
+              "executor responsibilities",
+              "task scheduling",
+              "reactor/event notification",
+              "timers",
+              "network I/O",
+              "runtime-specific APIs"
+            ],
+            "examples": [
+              "runtime::spawn(async move { worker().await });"
+            ],
+            "dependencies": [
+              "Future",
+              "async I/O"
+            ]
+          },
+          {
+            "name": "Cancellation and Lifetimes",
+            "details": [
+              "dropping futures",
+              "task cancellation",
+              "resource cleanup",
+              "select-style concurrency",
+              "cancellation safety"
+            ],
+            "examples": [
+              "Dropping a future can stop its progress before completion."
+            ],
+            "dependencies": [
+              "Drop",
+              "Future",
+              "ownership"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-model",
+        "name": "Memory Model and Data Representation",
+        "purpose": "Explain stack and heap allocation, layout, alignment, ownership, destructors, and low-level representation.",
+        "concepts": [
+          "stack",
+          "heap",
+          "allocation",
+          "alignment",
+          "size_of",
+          "align_of",
+          "fat pointers",
+          "slices",
+          "trait objects",
+          "drop glue",
+          "memory layout"
+        ],
+        "subsections": [
+          {
+            "name": "Memory Layout",
+            "details": [
+              "primitive layout",
+              "struct layout",
+              "alignment",
+              "padding",
+              "repr attributes",
+              "niche optimization"
+            ],
+            "examples": [
+              "std::mem::size_of::<T>()"
+            ],
+            "dependencies": [
+              "type system",
+              "compiler layout"
+            ]
+          },
+          {
+            "name": "Smart Pointers",
+            "details": [
+              "Box",
+              "Rc",
+              "Arc",
+              "Cell",
+              "RefCell",
+              "Weak",
+              "interior mutability"
+            ],
+            "examples": [
+              "let shared = std::sync::Arc::new(value);"
+            ],
+            "dependencies": [
+              "ownership",
+              "borrowing",
+              "reference counting"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unsafe-rust",
+        "name": "Unsafe Rust",
+        "purpose": "Define the boundary where programmers assume obligations the compiler cannot fully verify.",
+        "concepts": [
+          "unsafe blocks",
+          "unsafe functions",
+          "raw pointers",
+          "unsafe traits",
+          "extern functions",
+          "invariants",
+          "undefined behavior",
+          "soundness"
+        ],
+        "subsections": [
+          {
+            "name": "Raw Pointers",
+            "details": [
+              "const pointers",
+              "mut pointers",
+              "pointer dereferencing",
+              "pointer arithmetic",
+              "alignment",
+              "validity"
+            ],
+            "examples": [
+              "let ptr: *const T = &value;"
+            ],
+            "dependencies": [
+              "memory model",
+              "ownership"
+            ]
+          },
+          {
+            "name": "Unsafe Invariants",
+            "details": [
+              "valid references",
+              "aliasing",
+              "initialization",
+              "lifetime validity",
+              "data-race freedom",
+              "FFI assumptions"
+            ],
+            "examples": [
+              "An unsafe abstraction should encapsulate and enforce its required invariants."
+            ],
+            "dependencies": [
+              "Rust memory model",
+              "compiler guarantees"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "macros",
+        "name": "Macros and Metaprogramming",
+        "purpose": "Cover declarative and procedural macro systems for code generation and compile-time transformation.",
+        "concepts": [
+          "macro_rules!",
+          "token trees",
+          "fragment specifiers",
+          "hygiene",
+          "procedural macros",
+          "derive macros",
+          "attribute macros",
+          "function-like procedural macros"
+        ],
+        "subsections": [
+          {
+            "name": "Declarative Macros",
+            "details": [
+              "macro patterns",
+              "macro expansion",
+              "repetition",
+              "fragment types",
+              "hygiene"
+            ],
+            "examples": [
+              "macro_rules! say { ($msg:expr) => { println!(\"{}\", $msg) }; }"
+            ],
+            "dependencies": [
+              "Rust syntax",
+              "token trees"
+            ]
+          },
+          {
+            "name": "Procedural Macros",
+            "details": [
+              "TokenStream",
+              "derive macros",
+              "attribute macros",
+              "function-like macros",
+              "syn",
+              "quote"
+            ],
+            "examples": [
+              "#[derive(Debug)]"
+            ],
+            "dependencies": [
+              "proc-macro crates",
+              "compiler expansion"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "modules-crates-cargo",
+        "name": "Modules, Crates, Workspaces, and Cargo",
+        "purpose": "Define project organization, dependency management, builds, features, publishing, and reproducibility.",
+        "concepts": [
+          "packages",
+          "crates",
+          "modules",
+          "paths",
+          "visibility",
+          "Cargo.toml",
+          "Cargo.lock",
+          "workspaces",
+          "features",
+          "build scripts"
+        ],
+        "subsections": [
+          {
+            "name": "Module System",
+            "details": [
+              "mod",
+              "pub",
+              "use",
+              "self",
+              "super",
+              "crate",
+              "module paths",
+              "visibility boundaries"
+            ],
+            "examples": [
+              "pub mod api;",
+              "use crate::api::Client;"
+            ],
+            "dependencies": [
+              "crate structure"
+            ]
+          },
+          {
+            "name": "Cargo",
+            "details": [
+              "cargo new",
+              "cargo build",
+              "cargo check",
+              "cargo run",
+              "cargo test",
+              "cargo fmt",
+              "cargo clippy",
+              "dependency resolution",
+              "profiles"
+            ],
+            "examples": [
+              "cargo check",
+              "cargo test"
+            ],
+            "dependencies": [
+              "package structure",
+              "Rust compiler"
+            ]
+          },
+          {
+            "name": "Workspaces",
+            "details": [
+              "workspace members",
+              "shared dependencies",
+              "workspace inheritance",
+              "multi-crate architectures",
+              "dependency organization"
+            ],
+            "examples": [
+              "[workspace]\nmembers = [\"app\", \"core\", \"cli\"]"
+            ],
+            "dependencies": [
+              "Cargo",
+              "crate architecture"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "testing",
+        "name": "Testing and Verification",
+        "purpose": "Cover unit testing, integration testing, documentation tests, property-based approaches, benchmarking, and correctness verification.",
+        "concepts": [
+          "unit tests",
+          "integration tests",
+          "doc tests",
+          "test modules",
+          "assertions",
+          "mocking",
+          "property testing",
+          "benchmarks",
+          "fuzzing"
+        ],
+        "subsections": [
+          {
+            "name": "Built-in Testing",
+            "details": [
+              "#[test]",
+              "assert!",
+              "assert_eq!",
+              "assert_ne!",
+              "should_panic",
+              "test organization"
+            ],
+            "examples": [
+              "#[test]\nfn adds() { assert_eq!(2 + 2, 4); }"
+            ],
+            "dependencies": [
+              "Cargo",
+              "modules"
+            ]
+          },
+          {
+            "name": "Integration and Documentation Tests",
+            "details": [
+              "tests directory",
+              "public API testing",
+              "rustdoc examples",
+              "compile-fail expectations",
+              "documentation as executable examples"
+            ],
+            "examples": [
+              "cargo test --doc"
+            ],
+            "dependencies": [
+              "Cargo",
+              "rustdoc"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "Performance and Optimization",
+        "purpose": "Explain how Rust programs are optimized while preserving correctness and maintainability.",
+        "concepts": [
+          "release profiles",
+          "LLVM",
+          "inlining",
+          "monomorphization",
+          "zero-cost abstractions",
+          "allocation behavior",
+          "cache locality",
+          "benchmarking",
+          "profiling"
+        ],
+        "subsections": [
+          {
+            "name": "Compiler Optimization",
+            "details": [
+              "debug versus release builds",
+              "optimization levels",
+              "LTO",
+              "code generation units",
+              "target CPU configuration",
+              "dead-code elimination"
+            ],
+            "examples": [
+              "cargo build --release"
+            ],
+            "dependencies": [
+              "Cargo profiles",
+              "LLVM"
+            ]
+          },
+          {
+            "name": "Allocation and Data Locality",
+            "details": [
+              "heap allocation costs",
+              "capacity planning",
+              "contiguous storage",
+              "small data optimization",
+              "allocation reuse",
+              "cache behavior"
+            ],
+            "examples": [
+              "Vec::with_capacity(expected_size)"
+            ],
+            "dependencies": [
+              "collections",
+              "memory model"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ffi",
+        "name": "Foreign Function Interface",
+        "purpose": "Explain interoperability between Rust and external languages and native libraries.",
+        "concepts": [
+          "extern blocks",
+          "C ABI",
+          "repr(C)",
+          "raw pointers",
+          "CString",
+          "CStr",
+          "bindgen",
+          "callbacks",
+          "ownership transfer"
+        ],
+        "subsections": [
+          {
+            "name": "C Interoperability",
+            "details": [
+              "extern \"C\"",
+              "ABI compatibility",
+              "C-compatible layouts",
+              "null pointers",
+              "string conversion",
+              "resource ownership"
+            ],
+            "examples": [
+              "#[repr(C)] struct Config { value: u32 }"
+            ],
+            "dependencies": [
+              "unsafe Rust",
+              "memory layout"
+            ]
+          },
+          {
+            "name": "FFI Safety",
+            "details": [
+              "valid pointer requirements",
+              "lifetime boundaries",
+              "threading assumptions",
+              "panic boundaries",
+              "ABI correctness",
+              "resource cleanup"
+            ],
+            "examples": [
+              "Encapsulate unsafe FFI operations behind safe Rust interfaces when invariants can be guaranteed."
+            ],
+            "dependencies": [
+              "unsafe invariants",
+              "ownership"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tooling-ecosystem",
+        "name": "Tooling and Ecosystem",
+        "purpose": "Cover the standard Rust development workflow and ecosystem infrastructure.",
+        "concepts": [
+          "rustc",
+          "Cargo",
+          "rustup",
+          "rustfmt",
+          "Clippy",
+          "rustdoc",
+          "crates.io",
+          "docs.rs",
+          "edition system"
+        ],
+        "subsections": [
+          {
+            "name": "Compiler Toolchain",
+            "details": [
+              "rustc",
+              "rustup toolchains",
+              "stable channel",
+              "beta channel",
+              "nightly channel",
+              "target triples",
+              "cross compilation"
+            ],
+            "examples": [
+              "rustup show",
+              "rustc --version"
+            ],
+            "dependencies": [
+              "Rust toolchain"
+            ]
+          },
+          {
+            "name": "Quality Tooling",
+            "details": [
+              "rustfmt",
+              "Clippy",
+              "rustdoc",
+              "cargo check",
+              "cargo audit-style dependency review",
+              "CI integration"
+            ],
+            "examples": [
+              "cargo fmt --check",
+              "cargo clippy --all-targets --all-features"
+            ],
+            "dependencies": [
+              "Cargo",
+              "compiler"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "ownership",
+      "to": "borrowing",
+      "relationship": "Borrowing temporarily accesses owned values without transferring ownership."
+    },
+    {
+      "from": "borrowing",
+      "to": "lifetimes",
+      "relationship": "Lifetimes describe the validity relationships of references."
+    },
+    {
+      "from": "traits",
+      "to": "generics",
+      "relationship": "Trait bounds constrain generic types and enable reusable abstractions."
+    },
+    {
+      "from": "ownership",
+      "to": "concurrency",
+      "relationship": "Ownership and Send/Sync constraints provide compile-time guarantees against many data races."
+    },
+    {
+      "from": "Future",
+      "to": "async/await",
+      "relationship": "Async functions and await expressions are expressed through the Future abstraction."
+    },
+    {
+      "from": "unsafe Rust",
+      "to": "FFI",
+      "relationship": "FFI commonly requires unsafe operations because external interfaces cannot be fully verified by the Rust compiler."
+    },
+    {
+      "from": "Cargo",
+      "to": "crates",
+      "relationship": "Cargo builds packages, resolves dependencies, runs tests, and manages project metadata."
+    },
+    {
+      "from": "type system",
+      "to": "error handling",
+      "relationship": "Result and Option encode recoverable absence and failure in types."
+    },
+    {
+      "from": "pattern matching",
+      "to": "enums",
+      "relationship": "Pattern matching provides exhaustive deconstruction of enum variants."
+    },
+    {
+      "from": "memory model",
+      "to": "performance",
+      "relationship": "Data representation, allocation, locality, and ownership behavior affect runtime performance."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Rust compiler",
+      "type": "compiler",
+      "purpose": "Performs parsing, type checking, borrow checking, code generation, and diagnostics."
+    },
+    {
+      "name": "LLVM",
+      "type": "backend",
+      "purpose": "Provides the primary optimization and native-code generation infrastructure for common Rust targets."
+    },
+    {
+      "name": "Cargo",
+      "type": "build_system",
+      "purpose": "Manages packages, dependencies, builds, tests, features, and workflows."
+    },
+    {
+      "name": "Rust standard library",
+      "type": "runtime_library",
+      "purpose": "Provides core language-adjacent abstractions, collections, synchronization primitives, I/O, networking, and platform interfaces."
+    },
+    {
+      "name": "rustup",
+      "type": "toolchain_manager",
+      "purpose": "Installs and manages Rust toolchains and compilation targets."
+    },
+    {
+      "name": "crates.io",
+      "type": "package_registry",
+      "purpose": "Hosts publishable Rust packages and dependency metadata."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "Borrow checker rejection",
+      "handling": "Restructure ownership, borrowing, lifetimes, or data representation rather than bypassing the checker without establishing equivalent invariants."
+    },
+    {
+      "case": "Self-referential structures",
+      "handling": "Recognize that ordinary Rust references make many self-referential designs difficult; consider ownership indirection, pinning, or alternative representations."
+    },
+    {
+      "case": "Reference cycles",
+      "handling": "Use appropriate ownership graphs such as Rc with Weak when strong reference cycles would prevent destruction."
+    },
+    {
+      "case": "Deadlock",
+      "handling": "Design lock ordering, minimize lock scope, and consider message passing or lock-free approaches where appropriate."
+    },
+    {
+      "case": "Async blocking",
+      "handling": "Avoid blocking operations on asynchronous executor threads unless the runtime explicitly supports or isolates them."
+    },
+    {
+      "case": "Unsafe code",
+      "handling": "Document safety invariants and keep unsafe boundaries small and auditable."
+    },
+    {
+      "case": "FFI panic crossing",
+      "handling": "Do not allow incompatible panic behavior to cross foreign ABI boundaries without deliberate handling."
+    },
+    {
+      "case": "Integer overflow",
+      "handling": "Understand debug and release behavior and explicitly choose checked, wrapping, saturating, or overflowing operations when required."
+    },
+    {
+      "case": "Trait object limitations",
+      "handling": "Check object-safety requirements before using a trait as dyn Trait."
+    },
+    {
+      "case": "Large async state machines",
+      "handling": "Consider boxing, decomposition, or alternative state representations when future types become excessively large."
+    },
+    {
+      "case": "Dependency feature interactions",
+      "handling": "Audit enabled Cargo features and transitive dependencies to avoid unexpected code inclusion or conflicting configurations."
+    }
+  ],
+  "constraints": [
+    "Safe Rust must not rely on undefined behavior.",
+    "Unsafe Rust requires explicit justification through documented invariants.",
+    "Ownership and borrowing rules cannot be bypassed merely to silence compiler diagnostics.",
+    "Public APIs should expose stable and understandable ownership semantics.",
+    "Concurrency abstractions must preserve the required Send, Sync, and synchronization guarantees.",
+    "FFI boundaries must account for ABI, representation, ownership, lifetime, and error-handling differences.",
+    "Performance optimization should be driven by measurement rather than assumptions.",
+    "Dependencies should be reviewed for licensing, security, maintenance, and feature implications.",
+    "Async code should distinguish cooperative asynchronous execution from blocking work.",
+    "Production code should use reproducible dependency and toolchain configuration."
+  ],
+  "examples": [
+    {
+      "name": "Basic ownership",
+      "code": "let first = String::from(\"hello\");\nlet second = first;\nprintln!(\"{second}\");"
+    },
+    {
+      "name": "Borrowing",
+      "code": "fn length(value: &str) -> usize {\n    value.len()\n}\n\nlet text = String::from(\"hello\");\nlet size = length(&text);"
+    },
+    {
+      "name": "Result propagation",
+      "code": "fn load() -> Result<String, std::io::Error> {\n    let text = std::fs::read_to_string(\"config.toml\")?;\n    Ok(text)\n}"
+    },
+    {
+      "name": "Trait abstraction",
+      "code": "trait Render {\n    fn render(&self) -> String;\n}\n\nfn render_item<T: Render>(item: &T) -> String {\n    item.render()\n}"
+    },
+    {
+      "name": "Pattern matching",
+      "code": "match value {\n    Some(v) => println!(\"{v}\"),\n    None => println!(\"missing\"),\n}"
+    },
+    {
+      "name": "Concurrency",
+      "code": "use std::sync::{Arc, Mutex};\n\nlet counter = Arc::new(Mutex::new(0));"
+    },
+    {
+      "name": "Async function",
+      "code": "async fn fetch_value() -> Result<String, Error> {\n    let response = client.get(url).await?;\n    Ok(response.text().await?)\n}"
+    },
+    {
+      "name": "Unsafe boundary",
+      "code": "unsafe fn read_ptr<T>(ptr: *const T) -> T\nwhere\n    T: Copy,\n{\n    unsafe { *ptr }\n}"
+    }
+  ],
+  "validation": [
+    {
+      "id": "compile",
+      "check": "Code compiles with the intended Rust toolchain and target."
+    },
+    {
+      "id": "ownership",
+      "check": "Ownership transfers, borrows, lifetimes, and destructors behave as intended."
+    },
+    {
+      "id": "type-safety",
+      "check": "Generic constraints, trait bounds, pattern matches, and conversions express the intended invariants."
+    },
+    {
+      "id": "error-handling",
+      "check": "Recoverable failures are represented explicitly and propagated appropriately."
+    },
+    {
+      "id": "concurrency",
+      "check": "Shared state, synchronization, Send/Sync requirements, and cancellation behavior are correct."
+    },
+    {
+      "id": "unsafe-safety",
+      "check": "Every unsafe block has explicit, reviewable safety invariants."
+    },
+    {
+      "id": "ffi",
+      "check": "ABI, memory layout, pointer validity, ownership, and error boundaries are verified."
+    },
+    {
+      "id": "testing",
+      "check": "Unit, integration, documentation, and relevant property or fuzz tests cover critical behavior."
+    },
+    {
+      "id": "performance",
+      "check": "Performance-sensitive behavior is measured with representative workloads."
+    },
+    {
+      "id": "tooling",
+      "check": "Formatting, linting, documentation, builds, and CI checks succeed."
+    },
+    {
+      "id": "dependency",
+      "check": "Dependency versions, feature flags, lockfiles, and security considerations are reviewed."
+    }
+  ],
+  "open_questions": [
+    "Should the outline focus primarily on beginner-to-advanced language mastery, compiler internals, or production systems engineering?",
+    "Should ownership and borrowing be expanded into a dedicated formal model of Rust's aliasing and lifetime rules?",
+    "Should unsafe Rust include a deeper treatment of undefined behavior, provenance, aliasing, and sound abstraction design?",
+    "Should async Rust be expanded around a specific runtime such as Tokio or remain runtime-neutral?",
+    "Should the next iteration include a complete Rust standard-library reference organized by module?",
+    "Should Cargo workspaces, feature resolution, dependency management, publishing, and reproducible builds receive a dedicated architecture?",
+    "Should FFI include C, C++, Python, WebAssembly, and operating-system-specific interoperability?",
+    "Should the outline include compiler internals such as MIR, borrow checking, monomorphization, LLVM IR, and code generation?",
+    "Should production deployment targets such as Linux, Windows, macOS, embedded systems, and WebAssembly be modeled separately?"
+  ]
+}
