@@ -1,0 +1,1585 @@
+{
+  "topic": "Swift",
+  "objective": "Provide an expert-level, implementation-oriented outline of Swift covering language fundamentals, type safety, value and reference semantics, generics, protocols, optionals, error handling, closures, concurrency, memory management, collections, interoperability, package management, testing, performance, security, and production architecture.",
+  "scope": "Modern Swift with emphasis on current Swift language concepts, Swift Package Manager, structured concurrency, protocol-oriented design, ownership and memory semantics, and Apple-platform interoperability where relevant.",
+  "architecture": {
+    "sections": [
+      {
+        "id": "language-foundations",
+        "name": "Language Foundations",
+        "purpose": "Establish Swift syntax, compilation, declarations, expressions, control flow, modules, access control, and compile-time safety.",
+        "concepts": [
+          "Swift compiler",
+          "source files",
+          "modules",
+          "declarations",
+          "expressions",
+          "statements",
+          "type inference",
+          "access control",
+          "attributes",
+          "compiler diagnostics"
+        ],
+        "subsections": [
+          {
+            "name": "Program Structure",
+            "details": [
+              "imports",
+              "declarations",
+              "expressions",
+              "statements",
+              "top-level code where supported",
+              "module boundaries"
+            ],
+            "examples": [
+              "import Foundation",
+              "let message = \"Hello, Swift\""
+            ],
+            "dependencies": [
+              "syntax",
+              "modules"
+            ]
+          },
+          {
+            "name": "Declarations",
+            "details": [
+              "let constants",
+              "var variables",
+              "functions",
+              "types",
+              "properties",
+              "subscripts",
+              "initializers"
+            ],
+            "examples": [
+              "let answer = 42",
+              "var count = 0"
+            ],
+            "dependencies": [
+              "type system",
+              "scope"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "type-system",
+        "name": "Type System",
+        "purpose": "Explain Swift's static type system, inference, nominal types, structural composition, conversions, and type relationships.",
+        "concepts": [
+          "static typing",
+          "type inference",
+          "nominal typing",
+          "struct",
+          "class",
+          "enum",
+          "tuple",
+          "function types",
+          "metatypes",
+          "Any",
+          "AnyObject"
+        ],
+        "subsections": [
+          {
+            "name": "Primitive and Standard Types",
+            "details": [
+              "Bool",
+              "Int",
+              "UInt",
+              "Float",
+              "Double",
+              "String",
+              "Character",
+              "Array",
+              "Set",
+              "Dictionary"
+            ],
+            "examples": [
+              "let count: Int = 42",
+              "let ratio: Double = 0.75"
+            ],
+            "dependencies": [
+              "declarations",
+              "type inference"
+            ]
+          },
+          {
+            "name": "Type Inference and Conversion",
+            "details": [
+              "inferred types",
+              "explicit annotations",
+              "numeric conversions",
+              "bridging",
+              "conditional casts",
+              "forced casts"
+            ],
+            "examples": [
+              "let count = 42",
+              "let value = Double(count)"
+            ],
+            "dependencies": [
+              "type system",
+              "optionals"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "optionals",
+        "name": "Optionals",
+        "purpose": "Explain Swift's explicit representation of missing values and safe unwrapping mechanisms.",
+        "concepts": [
+          "Optional",
+          "nil",
+          "optional binding",
+          "if let",
+          "guard let",
+          "optional chaining",
+          "nil-coalescing",
+          "implicitly unwrapped optionals"
+        ],
+        "subsections": [
+          {
+            "name": "Optional Values",
+            "details": [
+              "T?",
+              "nil",
+              "wrapped values",
+              "nested optionals",
+              "optional transformations"
+            ],
+            "examples": [
+              "var username: String? = nil"
+            ],
+            "dependencies": [
+              "type system",
+              "control flow"
+            ]
+          },
+          {
+            "name": "Safe Unwrapping",
+            "details": [
+              "if let",
+              "guard let",
+              "optional chaining",
+              "map",
+              "flatMap",
+              "nil-coalescing"
+            ],
+            "examples": [
+              "guard let name = username else { return }",
+              "let length = username?.count ?? 0"
+            ],
+            "dependencies": [
+              "optionals",
+              "control flow"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "value-reference-semantics",
+        "name": "Value and Reference Semantics",
+        "purpose": "Explain structs, enums, classes, copying behavior, identity, mutation, and ownership implications.",
+        "concepts": [
+          "value semantics",
+          "reference semantics",
+          "struct",
+          "enum",
+          "class",
+          "identity",
+          "copy-on-write",
+          "mutating",
+          "final"
+        ],
+        "subsections": [
+          {
+            "name": "Value Types",
+            "details": [
+              "structs",
+              "enums",
+              "copy semantics",
+              "mutating methods",
+              "memberwise initialization"
+            ],
+            "examples": [
+              "struct Point { var x: Double; var y: Double }"
+            ],
+            "dependencies": [
+              "type system",
+              "properties"
+            ]
+          },
+          {
+            "name": "Reference Types",
+            "details": [
+              "classes",
+              "object identity",
+              "inheritance",
+              "reference sharing",
+              "deinitialization"
+            ],
+            "examples": [
+              "final class Cache { var values: [String: Data] = [:] }"
+            ],
+            "dependencies": [
+              "classes",
+              "memory management"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "enums-pattern-matching",
+        "name": "Enumerations and Pattern Matching",
+        "purpose": "Cover Swift enums as algebraic data types and their integration with exhaustive pattern matching.",
+        "concepts": [
+          "enum",
+          "associated values",
+          "raw values",
+          "switch",
+          "case patterns",
+          "if case",
+          "guard case",
+          "indirect"
+        ],
+        "subsections": [
+          {
+            "name": "Enumerations",
+            "details": [
+              "cases",
+              "associated values",
+              "raw values",
+              "computed properties",
+              "methods",
+              "recursive enums"
+            ],
+            "examples": [
+              "enum Result { case success(Data); case failure(Error) }"
+            ],
+            "dependencies": [
+              "value semantics",
+              "pattern matching"
+            ]
+          },
+          {
+            "name": "Pattern Matching",
+            "details": [
+              "switch exhaustiveness",
+              "value binding",
+              "where clauses",
+              "tuple patterns",
+              "optional patterns"
+            ],
+            "examples": [
+              "switch result { case .success(let data): process(data); case .failure(let error): report(error) }"
+            ],
+            "dependencies": [
+              "enums",
+              "control flow"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "functions-closures",
+        "name": "Functions and Closures",
+        "purpose": "Explain function declarations, higher-order functions, closure capture, escaping behavior, autoclosures, and function composition.",
+        "concepts": [
+          "functions",
+          "closures",
+          "higher-order functions",
+          "escaping closures",
+          "capture lists",
+          "autoclosure",
+          "function types",
+          "trailing closures"
+        ],
+        "subsections": [
+          {
+            "name": "Functions",
+            "details": [
+              "parameters",
+              "argument labels",
+              "return types",
+              "default arguments",
+              "variadic parameters",
+              "inout parameters",
+              "overloading"
+            ],
+            "examples": [
+              "func add(_ a: Int, _ b: Int) -> Int { a + b }"
+            ],
+            "dependencies": [
+              "type system",
+              "value semantics"
+            ]
+          },
+          {
+            "name": "Closures",
+            "details": [
+              "closure expressions",
+              "capture semantics",
+              "escaping closures",
+              "capture lists",
+              "weak captures",
+              "unowned captures"
+            ],
+            "examples": [
+              "let doubled = values.map { $0 * 2 }"
+            ],
+            "dependencies": [
+              "functions",
+              "memory management"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "collections",
+        "name": "Collections",
+        "purpose": "Cover Swift's standard collection types, algorithms, mutation behavior, slicing, and performance characteristics.",
+        "concepts": [
+          "Array",
+          "Set",
+          "Dictionary",
+          "Collection",
+          "Sequence",
+          "IteratorProtocol",
+          "Slice",
+          "higher-order collection methods"
+        ],
+        "subsections": [
+          {
+            "name": "Core Collections",
+            "details": [
+              "Array ordering",
+              "Set uniqueness",
+              "Dictionary key-value mapping",
+              "mutation",
+              "iteration",
+              "capacity"
+            ],
+            "examples": [
+              "var users = [\"Ada\", \"Grace\"]",
+              "var roles: Set = [\"admin\", \"editor\"]"
+            ],
+            "dependencies": [
+              "generics",
+              "value semantics"
+            ]
+          },
+          {
+            "name": "Collection Algorithms",
+            "details": [
+              "map",
+              "compactMap",
+              "flatMap",
+              "filter",
+              "reduce",
+              "sorted",
+              "contains",
+              "first(where:)"
+            ],
+            "examples": [
+              "let names = users.filter { !$0.isEmpty }.map { $0.uppercased() }"
+            ],
+            "dependencies": [
+              "closures",
+              "collections"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "protocols",
+        "name": "Protocols and Protocol-Oriented Design",
+        "purpose": "Explain Swift protocols, protocol extensions, associated types, existentials, opaque types, and composition.",
+        "concepts": [
+          "protocol",
+          "protocol requirements",
+          "protocol extensions",
+          "associatedtype",
+          "Self",
+          "existentials",
+          "opaque types",
+          "protocol composition",
+          "conditional conformance"
+        ],
+        "subsections": [
+          {
+            "name": "Protocol Requirements",
+            "details": [
+              "properties",
+              "methods",
+              "initializers",
+              "associated types",
+              "static requirements",
+              "mutating requirements"
+            ],
+            "examples": [
+              "protocol IdentifiableEntity { associatedtype ID: Hashable; var id: ID { get } }"
+            ],
+            "dependencies": [
+              "type system",
+              "generics"
+            ]
+          },
+          {
+            "name": "Protocol Extensions",
+            "details": [
+              "default implementations",
+              "constrained extensions",
+              "conditional behavior",
+              "static versus dynamic dispatch implications"
+            ],
+            "examples": [
+              "extension Collection where Element: Equatable { ... }"
+            ],
+            "dependencies": [
+              "protocols",
+              "generics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "generics",
+        "name": "Generics and Type-Level Abstraction",
+        "purpose": "Cover generic functions, generic types, constraints, associated types, opaque types, and specialization.",
+        "concepts": [
+          "generic parameters",
+          "where clauses",
+          "generic constraints",
+          "associated types",
+          "same-type requirements",
+          "protocol constraints",
+          "opaque result types",
+          "type erasure"
+        ],
+        "subsections": [
+          {
+            "name": "Generic Functions and Types",
+            "details": [
+              "generic parameters",
+              "constraints",
+              "where clauses",
+              "multiple generic parameters",
+              "type inference"
+            ],
+            "examples": [
+              "func first<T>(_ values: [T]) -> T? { values.first }"
+            ],
+            "dependencies": [
+              "type system",
+              "protocols"
+            ]
+          },
+          {
+            "name": "Advanced Generic Design",
+            "details": [
+              "associated types",
+              "opaque types",
+              "existential types",
+              "type erasure",
+              "conditional conformances",
+              "generic specialization"
+            ],
+            "examples": [
+              "some Sequence",
+              "any Error"
+            ],
+            "dependencies": [
+              "protocols",
+              "compiler",
+              "type system"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "error-handling",
+        "name": "Error Handling",
+        "purpose": "Explain typed errors, throwing functions, propagation, recovery, Result, and error-domain architecture.",
+        "concepts": [
+          "Error",
+          "throws",
+          "throw",
+          "try",
+          "try?",
+          "try!",
+          "do-catch",
+          "rethrows",
+          "Result"
+        ],
+        "subsections": [
+          {
+            "name": "Throwing Functions",
+            "details": [
+              "Error conformances",
+              "throw",
+              "throws",
+              "try",
+              "propagation"
+            ],
+            "examples": [
+              "enum ValidationError: Error { case invalid }",
+              "func validate() throws { ... }"
+            ],
+            "dependencies": [
+              "enums",
+              "functions"
+            ]
+          },
+          {
+            "name": "Recovery",
+            "details": [
+              "do-catch",
+              "pattern matching errors",
+              "try?",
+              "try!",
+              "Result conversion",
+              "error wrapping"
+            ],
+            "examples": [
+              "do { try save() } catch { log(error) }"
+            ],
+            "dependencies": [
+              "error handling",
+              "pattern matching"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "access-control-modules",
+        "name": "Access Control and Modules",
+        "purpose": "Explain Swift visibility, module boundaries, imports, library evolution, and API surface design.",
+        "concepts": [
+          "private",
+          "fileprivate",
+          "internal",
+          "package",
+          "public",
+          "open",
+          "module",
+          "import",
+          "library evolution"
+        ],
+        "subsections": [
+          {
+            "name": "Access Levels",
+            "details": [
+              "private",
+              "fileprivate",
+              "internal",
+              "package",
+              "public",
+              "open",
+              "member visibility"
+            ],
+            "examples": [
+              "public struct APIClient { ... }",
+              "private let cache: Cache"
+            ],
+            "dependencies": [
+              "modules",
+              "types"
+            ]
+          },
+          {
+            "name": "API Design",
+            "details": [
+              "minimal public surface",
+              "ABI considerations",
+              "library evolution",
+              "SPI considerations",
+              "source compatibility"
+            ],
+            "examples": [
+              "Expose protocols or public value types only where they form intentional API contracts."
+            ],
+            "dependencies": [
+              "access control",
+              "generics",
+              "protocols"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-management",
+        "name": "Memory Management and ARC",
+        "purpose": "Explain Swift reference counting, object lifetime, retain cycles, weak and unowned references, and ownership-aware design.",
+        "concepts": [
+          "ARC",
+          "strong references",
+          "weak",
+          "unowned",
+          "retain cycles",
+          "deinit",
+          "capture lists",
+          "lifetime"
+        ],
+        "subsections": [
+          {
+            "name": "Automatic Reference Counting",
+            "details": [
+              "strong references",
+              "reference counts",
+              "object lifetime",
+              "deinitialization",
+              "ownership graphs"
+            ],
+            "examples": [
+              "class Node { var next: Node? }"
+            ],
+            "dependencies": [
+              "classes",
+              "reference semantics"
+            ]
+          },
+          {
+            "name": "Retain Cycles",
+            "details": [
+              "strong reference cycles",
+              "weak references",
+              "unowned references",
+              "closure capture cycles",
+              "lifetime invariants"
+            ],
+            "examples": [
+              "[weak self] in",
+              "weak delegate references"
+            ],
+            "dependencies": [
+              "closures",
+              "classes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "concurrency",
+        "name": "Concurrency and Swift Concurrency",
+        "purpose": "Cover modern structured concurrency, async functions, tasks, actors, isolation, cancellation, task groups, and Sendable.",
+        "concepts": [
+          "async",
+          "await",
+          "Task",
+          "TaskGroup",
+          "async let",
+          "actor",
+          "MainActor",
+          "Sendable",
+          "structured concurrency",
+          "unstructured concurrency",
+          "cancellation"
+        ],
+        "subsections": [
+          {
+            "name": "Async Functions",
+            "details": [
+              "async functions",
+              "await",
+              "suspension points",
+              "async sequences",
+              "asynchronous error propagation"
+            ],
+            "examples": [
+              "func load() async throws -> Data { ... }"
+            ],
+            "dependencies": [
+              "functions",
+              "error handling"
+            ]
+          },
+          {
+            "name": "Tasks",
+            "details": [
+              "Task",
+              "task priority",
+              "task lifetime",
+              "structured task hierarchy",
+              "task groups",
+              "async let",
+              "cancellation"
+            ],
+            "examples": [
+              "async let profile = loadProfile()",
+              "let value = try await profile"
+            ],
+            "dependencies": [
+              "async/await",
+              "structured concurrency"
+            ]
+          },
+          {
+            "name": "Actors and Isolation",
+            "details": [
+              "actor isolation",
+              "MainActor",
+              "cross-actor calls",
+              "Sendable",
+              "data-race prevention",
+              "global actors"
+            ],
+            "examples": [
+              "actor Cache { var values: [String: Data] = [:] }"
+            ],
+            "dependencies": [
+              "reference semantics",
+              "concurrency",
+              "type system"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "name": "Ownership and Advanced Memory Semantics",
+        "purpose": "Explain ownership-oriented language features and how they affect mutation, borrowing, consuming values, and performance.",
+        "concepts": [
+          "borrowing",
+          "consuming",
+          "ownership modifiers",
+          "move semantics",
+          "inout",
+          "exclusivity",
+          "noncopyable types"
+        ],
+        "subsections": [
+          {
+            "name": "Exclusivity",
+            "details": [
+              "exclusive access to memory",
+              "overlapping accesses",
+              "inout behavior",
+              "runtime versus compile-time enforcement"
+            ],
+            "examples": [
+              "Modify values without creating overlapping conflicting accesses."
+            ],
+            "dependencies": [
+              "value semantics",
+              "memory model"
+            ]
+          },
+          {
+            "name": "Ownership-Aware APIs",
+            "details": [
+              "borrowing",
+              "consuming",
+              "copy avoidance",
+              "noncopyable values",
+              "lifetime guarantees"
+            ],
+            "examples": [
+              "Design APIs to express whether values are borrowed, consumed, or independently owned when supported by the target Swift version."
+            ],
+            "dependencies": [
+              "generics",
+              "value semantics",
+              "compiler"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "property-system",
+        "name": "Properties, Initialization, and Subscripts",
+        "purpose": "Explain stored and computed properties, observers, lazy values, wrappers, initialization rules, and subscripts.",
+        "concepts": [
+          "stored properties",
+          "computed properties",
+          "willSet",
+          "didSet",
+          "lazy",
+          "static properties",
+          "property wrappers",
+          "initializers",
+          "deinitializers",
+          "subscripts"
+        ],
+        "subsections": [
+          {
+            "name": "Properties",
+            "details": [
+              "stored properties",
+              "computed properties",
+              "property observers",
+              "lazy properties",
+              "static properties"
+            ],
+            "examples": [
+              "var fullName: String { firstName + \" \" + lastName }"
+            ],
+            "dependencies": [
+              "types",
+              "value/reference semantics"
+            ]
+          },
+          {
+            "name": "Property Wrappers",
+            "details": [
+              "wrappedValue",
+              "projectedValue",
+              "storage transformation",
+              "composition",
+              "framework-specific wrappers"
+            ],
+            "examples": [
+              "@Wrapper var value: Int"
+            ],
+            "dependencies": [
+              "properties",
+              "generics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "macros-metaprogramming",
+        "name": "Macros and Metaprogramming",
+        "purpose": "Cover Swift macros, compile-time code generation, attached and freestanding macros, and generated API design.",
+        "concepts": [
+          "macros",
+          "freestanding macros",
+          "attached macros",
+          "SwiftSyntax",
+          "SwiftCompilerPlugin",
+          "compile-time generation"
+        ],
+        "subsections": [
+          {
+            "name": "Macro Categories",
+            "details": [
+              "freestanding declaration macros",
+              "freestanding expression macros",
+              "attached member macros",
+              "attached peer macros",
+              "attached accessor macros",
+              "attached conformance macros"
+            ],
+            "examples": [
+              "Use a macro to generate repetitive declarations while keeping generated behavior inspectable."
+            ],
+            "dependencies": [
+              "compiler",
+              "modules",
+              "SwiftSyntax"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "interop",
+        "name": "Interoperability",
+        "purpose": "Explain Swift interoperability with Objective-C, C, C++, system APIs, and foreign data representations.",
+        "concepts": [
+          "Objective-C interoperability",
+          "C interoperability",
+          "C++ interoperability",
+          "bridging",
+          "C pointers",
+          "unsafe pointers",
+          "imported APIs",
+          "ABI"
+        ],
+        "subsections": [
+          {
+            "name": "Objective-C",
+            "details": [
+              "@objc",
+              "NSObject",
+              "Foundation bridging",
+              "selectors",
+              "KVO",
+              "Objective-C runtime constraints"
+            ],
+            "examples": [
+              "@objc class Controller: NSObject { ... }"
+            ],
+            "dependencies": [
+              "classes",
+              "Apple SDKs"
+            ]
+          },
+          {
+            "name": "C and C++",
+            "details": [
+              "imported C functions",
+              "pointers",
+              "memory ownership",
+              "C++ interoperability",
+              "unsafe APIs",
+              "ABI boundaries"
+            ],
+            "examples": [
+              "Use UnsafePointer only when the lifetime and ownership contract of the pointed-to memory is understood."
+            ],
+            "dependencies": [
+              "memory management",
+              "ownership",
+              "toolchains"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "swift-package-manager",
+        "name": "Swift Package Manager",
+        "purpose": "Explain package manifests, targets, products, dependencies, resources, plugins, build configurations, and package distribution.",
+        "concepts": [
+          "Package.swift",
+          "targets",
+          "products",
+          "dependencies",
+          "resources",
+          "plugins",
+          "executable targets",
+          "library targets",
+          "test targets"
+        ],
+        "subsections": [
+          {
+            "name": "Package Structure",
+            "details": [
+              "Sources",
+              "Tests",
+              "Package.swift",
+              "products",
+              "targets",
+              "resources"
+            ],
+            "examples": [
+              "A package can expose a library product backed by one or more targets."
+            ],
+            "dependencies": [
+              "modules",
+              "build system"
+            ]
+          },
+          {
+            "name": "Dependency Management",
+            "details": [
+              "version requirements",
+              "branch and revision dependencies",
+              "dependency resolution",
+              "package identity",
+              "binary dependencies",
+              "plugins"
+            ],
+            "examples": [
+              "Pin production dependencies using explicit version requirements and review transitive changes."
+            ],
+            "dependencies": [
+              "packages",
+              "security"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "foundation",
+        "name": "Foundation and Platform APIs",
+        "purpose": "Cover commonly used platform-neutral Foundation facilities and their relationship to Swift-native APIs.",
+        "concepts": [
+          "Foundation",
+          "URL",
+          "Data",
+          "Date",
+          "Calendar",
+          "FileManager",
+          "JSONDecoder",
+          "JSONEncoder",
+          "URLSession",
+          "Formatter APIs"
+        ],
+        "subsections": [
+          {
+            "name": "Data and Serialization",
+            "details": [
+              "Data",
+              "Codable",
+              "Encodable",
+              "Decodable",
+              "JSONEncoder",
+              "JSONDecoder",
+              "date strategies",
+              "key strategies"
+            ],
+            "examples": [
+              "struct User: Codable { let id: Int; let name: String }"
+            ],
+            "dependencies": [
+              "structs",
+              "protocols",
+              "generics"
+            ]
+          },
+          {
+            "name": "Networking",
+            "details": [
+              "URL",
+              "URLRequest",
+              "URLSession",
+              "HTTP status handling",
+              "timeouts",
+              "cancellation",
+              "TLS"
+            ],
+            "examples": [
+              "let (data, response) = try await URLSession.shared.data(for: request)"
+            ],
+            "dependencies": [
+              "concurrency",
+              "error handling",
+              "Foundation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "testing",
+        "name": "Testing and Quality Assurance",
+        "purpose": "Cover unit testing, integration testing, UI testing, modern Swift testing tools, concurrency testing, and deterministic test design.",
+        "concepts": [
+          "Swift Testing",
+          "XCTest",
+          "assertions",
+          "parameterized tests",
+          "async tests",
+          "UI testing",
+          "test doubles",
+          "dependency injection",
+          "code coverage"
+        ],
+        "subsections": [
+          {
+            "name": "Unit Tests",
+            "details": [
+              "isolated behavior",
+              "assertions",
+              "parameterized tests",
+              "fixtures",
+              "error tests",
+              "async tests"
+            ],
+            "examples": [
+              "Test pure functions independently from network and filesystem dependencies."
+            ],
+            "dependencies": [
+              "functions",
+              "protocols"
+            ]
+          },
+          {
+            "name": "Integration and UI Tests",
+            "details": [
+              "network boundaries",
+              "database boundaries",
+              "filesystem behavior",
+              "UI flows",
+              "test environments",
+              "flakiness control"
+            ],
+            "examples": [
+              "Use deterministic mocks or local test servers for network-dependent integration tests."
+            ],
+            "dependencies": [
+              "Foundation",
+              "platform frameworks"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "Performance Engineering",
+        "purpose": "Explain Swift performance through value semantics, allocation behavior, generics, copy-on-write, concurrency, profiling, and compiler optimization.",
+        "concepts": [
+          "Instruments",
+          "Time Profiler",
+          "Allocations",
+          "copy-on-write",
+          "ARC overhead",
+          "generic specialization",
+          "inlining",
+          "dynamic dispatch",
+          "memory locality"
+        ],
+        "subsections": [
+          {
+            "name": "Profiling",
+            "details": [
+              "CPU profiling",
+              "allocation profiling",
+              "memory graph",
+              "signposts",
+              "release-build measurements"
+            ],
+            "examples": [
+              "Measure representative workloads in optimized builds before changing data structures or concurrency strategies."
+            ],
+            "dependencies": [
+              "runtime",
+              "testing"
+            ]
+          },
+          {
+            "name": "Value-Type Performance",
+            "details": [
+              "copy-on-write",
+              "large value types",
+              "inout",
+              "storage sharing",
+              "mutation costs"
+            ],
+            "examples": [
+              "Prefer appropriate standard collections and avoid unnecessary materialization of large intermediate arrays."
+            ],
+            "dependencies": [
+              "value semantics",
+              "collections"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "name": "Security",
+        "purpose": "Cover Swift application security including memory safety boundaries, input validation, networking, secrets, serialization, dependency security, and unsafe code.",
+        "concepts": [
+          "memory safety",
+          "input validation",
+          "TLS",
+          "certificate validation",
+          "secure storage",
+          "Keychain",
+          "unsafe Swift",
+          "dependency security",
+          "serialization security"
+        ],
+        "subsections": [
+          {
+            "name": "Unsafe Code",
+            "details": [
+              "UnsafePointer",
+              "UnsafeMutablePointer",
+              "buffer pointers",
+              "manual lifetime requirements",
+              "C interoperability",
+              "memory ownership contracts"
+            ],
+            "examples": [
+              "Minimize unsafe code and isolate it behind small, audited abstractions."
+            ],
+            "dependencies": [
+              "interop",
+              "ownership",
+              "memory management"
+            ]
+          },
+          {
+            "name": "Network Security",
+            "details": [
+              "TLS",
+              "certificate validation",
+              "URLSession security",
+              "authentication tokens",
+              "secure credential storage"
+            ],
+            "examples": [
+              "Store long-lived credentials in an appropriate secure storage facility rather than ordinary application preferences."
+            ],
+            "dependencies": [
+              "Foundation",
+              "networking",
+              "platform APIs"
+            ]
+          },
+          {
+            "name": "Dependency Security",
+            "details": [
+              "package provenance",
+              "version constraints",
+              "transitive dependencies",
+              "dependency review",
+              "supply-chain attacks"
+            ],
+            "examples": [
+              "Review package updates and their transitive dependency changes before production release."
+            ],
+            "dependencies": [
+              "Swift Package Manager"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "architecture",
+        "name": "Production Architecture",
+        "purpose": "Organize Swift applications and libraries into maintainable modules, domain layers, dependency boundaries, concurrency boundaries, and platform adapters.",
+        "concepts": [
+          "modularity",
+          "dependency injection",
+          "protocol abstractions",
+          "feature modules",
+          "domain layer",
+          "data layer",
+          "UI layer",
+          "actors",
+          "observability"
+        ],
+        "subsections": [
+          {
+            "name": "Layered Design",
+            "details": [
+              "presentation",
+              "application logic",
+              "domain models",
+              "repositories",
+              "network clients",
+              "persistence",
+              "platform adapters"
+            ],
+            "examples": [
+              "Keep business logic independent of concrete network and persistence implementations where practical."
+            ],
+            "dependencies": [
+              "protocols",
+              "modules",
+              "testing"
+            ]
+          },
+          {
+            "name": "Concurrency Architecture",
+            "details": [
+              "actor ownership",
+              "MainActor boundaries",
+              "task hierarchies",
+              "cancellation propagation",
+              "Sendable boundaries",
+              "shared mutable state"
+            ],
+            "examples": [
+              "Assign ownership of mutable shared state to an actor rather than exposing unsynchronized mutable storage."
+            ],
+            "dependencies": [
+              "concurrency",
+              "ownership",
+              "memory management"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "static type system",
+      "to": "optionals",
+      "relationship": "Optionals encode the possibility of missing values explicitly in the type system."
+    },
+    {
+      "from": "value/reference semantics",
+      "to": "memory management",
+      "relationship": "Reference types participate directly in ARC while value types primarily express independent value semantics."
+    },
+    {
+      "from": "protocols",
+      "to": "generics",
+      "relationship": "Protocols provide constraints and abstractions used extensively by generic APIs."
+    },
+    {
+      "from": "generics",
+      "to": "collections",
+      "relationship": "Standard collections are generic types parameterized over their element or key/value types."
+    },
+    {
+      "from": "closures",
+      "to": "concurrency",
+      "relationship": "Tasks and asynchronous APIs frequently use closures and captured state."
+    },
+    {
+      "from": "closures",
+      "to": "memory management",
+      "relationship": "Captured class references can create retain cycles, requiring deliberate capture semantics."
+    },
+    {
+      "from": "enums",
+      "to": "error handling",
+      "relationship": "Enums are commonly used to define structured error domains."
+    },
+    {
+      "from": "protocols",
+      "to": "architecture",
+      "relationship": "Protocols can define dependency boundaries and enable substitution in tests and production implementations."
+    },
+    {
+      "from": "Swift Package Manager",
+      "to": "modules",
+      "relationship": "Packages organize source into targets and products that form module and dependency boundaries."
+    },
+    {
+      "from": "Foundation",
+      "to": "concurrency",
+      "relationship": "Modern Foundation APIs expose asynchronous operations that integrate with Swift concurrency."
+    },
+    {
+      "from": "actors",
+      "to": "Sendable",
+      "relationship": "Actor isolation and Sendable checking constrain how data crosses concurrency boundaries."
+    },
+    {
+      "from": "ownership",
+      "to": "performance",
+      "relationship": "Ownership-aware APIs can reduce unnecessary copying and clarify value lifetimes."
+    },
+    {
+      "from": "unsafe interoperability",
+      "to": "security",
+      "relationship": "Foreign-memory APIs can bypass some of Swift's safety guarantees and therefore require explicit lifetime and bounds reasoning."
+    },
+    {
+      "from": "testing",
+      "to": "architecture",
+      "relationship": "Explicit dependency boundaries improve isolation and deterministic testing."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Swift compiler and toolchain",
+      "type": "runtime_build_system",
+      "purpose": "Parses, type-checks, compiles, and links Swift source."
+    },
+    {
+      "name": "Swift standard library",
+      "type": "standard_library",
+      "purpose": "Provides core types, protocols, collections, algorithms, and language support."
+    },
+    {
+      "name": "Swift Package Manager",
+      "type": "package_manager",
+      "purpose": "Builds packages and resolves package dependencies."
+    },
+    {
+      "name": "Foundation",
+      "type": "framework",
+      "purpose": "Provides widely used data, networking, filesystem, date, serialization, and interoperability APIs."
+    },
+    {
+      "name": "Apple SDKs",
+      "type": "platform_sdk",
+      "purpose": "Provide platform-specific APIs for Apple operating systems."
+    },
+    {
+      "name": "LLVM",
+      "type": "compiler_backend",
+      "purpose": "Provides the low-level compilation infrastructure used by Swift's compiler toolchain."
+    },
+    {
+      "name": "Xcode or Swift toolchain",
+      "type": "development_environment",
+      "purpose": "Provides compilation, debugging, testing, profiling, and platform SDK integration."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "force unwrapping",
+      "handling": "Avoid ! unless the invariant is established and failure is intentionally unrecoverable."
+    },
+    {
+      "case": "implicitly unwrapped optionals",
+      "handling": "Treat them as optionals with automatic unwrapping and understand that invalid access can trap."
+    },
+    {
+      "case": "value versus reference semantics",
+      "handling": "Choose struct, enum, or class based on identity and sharing requirements rather than convenience alone."
+    },
+    {
+      "case": "retain cycles",
+      "handling": "Audit ownership graphs involving delegates, closures, parent-child relationships, and asynchronous callbacks."
+    },
+    {
+      "case": "actor reentrancy",
+      "handling": "Do not assume actor-isolated state remains unchanged across an await suspension point."
+    },
+    {
+      "case": "Sendable violations",
+      "handling": "Ensure values crossing concurrency boundaries satisfy the required isolation and Sendable guarantees."
+    },
+    {
+      "case": "Task cancellation",
+      "handling": "Cancellation is cooperative; asynchronous operations must check and propagate cancellation where appropriate."
+    },
+    {
+      "case": "MainActor isolation",
+      "handling": "Keep UI-bound state on the appropriate actor and avoid unnecessary main-thread work."
+    },
+    {
+      "case": "existential versus generic abstraction",
+      "handling": "Understand the tradeoffs between any Protocol existentials, generic parameters, and opaque some Protocol types."
+    },
+    {
+      "case": "copy-on-write",
+      "handling": "Do not assume every value assignment immediately duplicates underlying storage."
+    },
+    {
+      "case": "unsafe pointers",
+      "handling": "Validate pointer lifetime, alignment, initialization state, bounds, and ownership at every unsafe boundary."
+    },
+    {
+      "case": "bridged Foundation types",
+      "handling": "Account for semantic and performance differences when crossing between Swift-native and Objective-C representations."
+    },
+    {
+      "case": "protocol extension dispatch",
+      "handling": "Distinguish requirements dynamically dispatched through protocol witnesses from methods introduced only by protocol extensions."
+    },
+    {
+      "case": "generic specialization",
+      "handling": "Avoid assuming a generic abstraction has a fixed performance cost; compiler specialization can materially change generated code."
+    },
+    {
+      "case": "exclusivity violations",
+      "handling": "Avoid overlapping conflicting accesses to the same storage, especially through inout and nested mutation."
+    }
+  ],
+  "constraints": [
+    "The exact language features available depend on the target Swift version and compiler toolchain.",
+    "Apple-platform APIs are platform-specific and should be separated from language-level Swift concepts.",
+    "Swift's concurrency diagnostics and ownership features evolve with compiler versions.",
+    "Objective-C and C interoperability can introduce semantics that differ from native Swift safety guarantees.",
+    "Unsafe Swift code can bypass some compile-time memory-safety protections.",
+    "Package dependency resolution affects reproducibility and supply-chain risk.",
+    "Performance conclusions should be based on representative release-build measurements.",
+    "Protocol existentials, generics, and opaque types have different type-system and dispatch semantics.",
+    "ARC applies primarily to class instances and does not imply that all Swift values have reference semantics.",
+    "Concurrency safety depends on isolation and ownership design, not merely on using async and await.",
+    "SwiftUI, UIKit, AppKit, server-side Swift, and embedded Swift have different platform and architectural requirements."
+  ],
+  "examples": [
+    {
+      "name": "Basic declaration",
+      "code": "let name = \"Ada\"\nvar count = 0\ncount += 1"
+    },
+    {
+      "name": "Optional binding",
+      "code": "guard let name = username else {\n    return\n}\nprint(name)"
+    },
+    {
+      "name": "Value type",
+      "code": "struct Point {\n    var x: Double\n    var y: Double\n}"
+    },
+    {
+      "name": "Enum with associated values",
+      "code": "enum Result<Value> {\n    case success(Value)\n    case failure(Error)\n}"
+    },
+    {
+      "name": "Protocol",
+      "code": "protocol Repository {\n    associatedtype Item\n    func load() async throws -> Item\n}"
+    },
+    {
+      "name": "Generic function",
+      "code": "func first<T>(_ values: [T]) -> T? {\n    values.first\n}"
+    },
+    {
+      "name": "Throwing function",
+      "code": "func validate(_ value: String) throws {\n    if value.isEmpty {\n        throw ValidationError.empty\n    }\n}"
+    },
+    {
+      "name": "Async function",
+      "code": "func fetchUser() async throws -> User {\n    let (data, _) = try await URLSession.shared.data(from: url)\n    return try JSONDecoder().decode(User.self, from: data)\n}"
+    },
+    {
+      "name": "Actor",
+      "code": "actor Cache {\n    private var values: [String: Data] = [:]\n\n    func value(for key: String) -> Data? {\n        values[key]\n    }\n}"
+    },
+    {
+      "name": "Weak capture",
+      "code": "service.load { [weak self] result in\n    self?.handle(result)\n}"
+    },
+    {
+      "name": "Codable",
+      "code": "struct User: Codable {\n    let id: Int\n    let name: String\n}"
+    },
+    {
+      "name": "Collection transformation",
+      "code": "let names = users\n    .filter { !$0.name.isEmpty }\n    .map(\\.name)"
+    },
+    {
+      "name": "Swift Package structure",
+      "code": "Package.swift\nSources/\nTests/"
+    }
+  ],
+  "validation": [
+    {
+      "id": "compile",
+      "check": "The source compiles with the intended Swift compiler and target SDK."
+    },
+    {
+      "id": "type-safety",
+      "check": "Optional, generic, protocol, and type-conversion behavior is explicitly represented and unintended force casts or unwraps are eliminated."
+    },
+    {
+      "id": "ownership",
+      "check": "Value/reference semantics and object ownership are consistent with the intended lifecycle."
+    },
+    {
+      "id": "memory",
+      "check": "Retain cycles, unexpected allocations, and lifetime issues are tested or profiled where relevant."
+    },
+    {
+      "id": "concurrency",
+      "check": "Actor isolation, Sendable requirements, cancellation, task lifetimes, and MainActor boundaries compile and behave as intended."
+    },
+    {
+      "id": "errors",
+      "check": "Expected failures are represented with appropriate Error values and propagated or recovered deliberately."
+    },
+    {
+      "id": "interop",
+      "check": "Foreign-function interfaces correctly respect pointer lifetime, ownership, ABI, and platform requirements."
+    },
+    {
+      "id": "serialization",
+      "check": "Codable schemas handle malformed, missing, additional, and versioned data according to the intended compatibility policy."
+    },
+    {
+      "id": "networking",
+      "check": "HTTP status, transport errors, timeouts, cancellation, authentication, and TLS behavior are explicitly tested."
+    },
+    {
+      "id": "package",
+      "check": "Swift Package Manager dependency resolution, targets, products, resources, and plugins are reproducible."
+    },
+    {
+      "id": "testing",
+      "check": "Core behavior is covered by deterministic unit tests and appropriate integration or UI tests."
+    },
+    {
+      "id": "performance",
+      "check": "Representative workloads are profiled using optimized builds before performance-sensitive changes are accepted."
+    },
+    {
+      "id": "security",
+      "check": "Secrets, untrusted input, unsafe pointers, network traffic, serialization, and dependencies follow an explicit security model."
+    }
+  ],
+  "open_questions": [
+    "Should the outline target a specific Swift release, such as Swift 6, rather than modern Swift generally?",
+    "Should Swift 6 strict concurrency checking and migration from earlier concurrency modes receive a dedicated section?",
+    "Should SwiftUI be expanded into a complete framework-specific architecture covering state, observation, view identity, rendering, and data flow?",
+    "Should UIKit and AppKit interoperability receive separate platform-specific sections?",
+    "Should server-side Swift and frameworks such as Vapor be included?",
+    "Should embedded Swift and resource-constrained targets be covered?",
+    "Should Swift macros and SwiftSyntax receive a deeper compiler-plugin architecture?",
+    "Should C++ interoperability receive a detailed ABI and ownership treatment?",
+    "Should Swift compiler internals, SIL, LLVM lowering, specialization, and witness tables be covered?",
+    "Should Swift Package Manager plugins, build-tool plugins, command plugins, and binary targets receive a deeper treatment?",
+    "Should advanced ownership features and noncopyable types be expanded according to the target compiler version?",
+    "Should testing be expanded into Swift Testing, XCTest migration, property-based testing, fuzzing, and concurrency stress testing?"
+  ]
+}
