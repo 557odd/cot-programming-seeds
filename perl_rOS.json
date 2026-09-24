@@ -1,0 +1,1559 @@
+{
+  "topic": "Perl",
+  "objective": "Provide an expert-level, implementation-oriented outline of Perl covering language fundamentals, dynamic typing, scalars, arrays, hashes, references, subroutines, closures, object systems, packages, modules, regular expressions, text processing, file and process I/O, exceptions, data serialization, concurrency, networking, security, performance, testing, tooling, and production architecture.",
+  "scope": "Modern Perl with emphasis on Perl 5 language semantics, while distinguishing core language features from CPAN modules, operating-system facilities, and historical Perl conventions.",
+  "architecture": {
+    "sections": [
+      {
+        "id": "language-foundations",
+        "name": "Language Foundations",
+        "purpose": "Establish Perl syntax, compilation, execution phases, statements, expressions, declarations, pragmas, and program structure.",
+        "concepts": [
+          "Perl interpreter",
+          "source code",
+          "compile phase",
+          "run phase",
+          "statements",
+          "expressions",
+          "blocks",
+          "packages",
+          "pragmas",
+          "strict",
+          "warnings"
+        ],
+        "subsections": [
+          {
+            "name": "Program Structure",
+            "details": [
+              "shebang invocation",
+              "statements",
+              "blocks",
+              "comments",
+              "semicolon termination",
+              "package declarations",
+              "compile-time versus runtime behavior"
+            ],
+            "examples": [
+              "use strict;",
+              "use warnings;"
+            ],
+            "dependencies": [
+              "syntax",
+              "compilation model"
+            ]
+          },
+          {
+            "name": "Pragmas",
+            "details": [
+              "strict",
+              "warnings",
+              "feature",
+              "locale",
+              "utf8",
+              "integer",
+              "bigint",
+              "bigfloat"
+            ],
+            "examples": [
+              "use strict;",
+              "use warnings;"
+            ],
+            "dependencies": [
+              "lexical scope",
+              "compile-time behavior"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "scalar-data",
+        "name": "Scalars and Dynamic Values",
+        "purpose": "Explain Perl's scalar value model, strings, numbers, undef, references, context, and automatic conversion.",
+        "concepts": [
+          "scalar",
+          "string",
+          "number",
+          "undef",
+          "boolean context",
+          "numeric context",
+          "string context",
+          "dualvars",
+          "autovivification"
+        ],
+        "subsections": [
+          {
+            "name": "Scalar Values",
+            "details": [
+              "strings",
+              "integers",
+              "floating-point values",
+              "undef",
+              "numeric conversion",
+              "string conversion",
+              "truth values"
+            ],
+            "examples": [
+              "my $name = 'Perl';",
+              "my $count = 42;"
+            ],
+            "dependencies": [
+              "variables",
+              "context"
+            ]
+          },
+          {
+            "name": "Context",
+            "details": [
+              "scalar context",
+              "list context",
+              "void context",
+              "context-sensitive operators",
+              "return-value context"
+            ],
+            "examples": [
+              "my $count = @items;",
+              "my @copy = @items;"
+            ],
+            "dependencies": [
+              "scalars",
+              "arrays",
+              "subroutines"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "variables-scope",
+        "name": "Variables and Scope",
+        "purpose": "Cover Perl variable declarations, lexical scope, package variables, localization, interpolation, and lifetime.",
+        "concepts": [
+          "my",
+          "our",
+          "local",
+          "lexical variables",
+          "package variables",
+          "dynamic localization",
+          "scope",
+          "closures"
+        ],
+        "subsections": [
+          {
+            "name": "Variable Declarations",
+            "details": [
+              "my lexicals",
+              "our package variables",
+              "state variables",
+              "variable naming",
+              "scope boundaries"
+            ],
+            "examples": [
+              "my $value = 10;",
+              "our $VERSION = '1.00';"
+            ],
+            "dependencies": [
+              "packages",
+              "scope"
+            ]
+          },
+          {
+            "name": "Localization",
+            "details": [
+              "local",
+              "temporary package-variable values",
+              "dynamic scope behavior",
+              "restoration after scope exit"
+            ],
+            "examples": [
+              "local $/ = undef;"
+            ],
+            "dependencies": [
+              "package variables",
+              "scope"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "arrays-hashes",
+        "name": "Arrays and Hashes",
+        "purpose": "Explain Perl's primary aggregate data structures and their context-sensitive behavior.",
+        "concepts": [
+          "arrays",
+          "hashes",
+          "list literals",
+          "array slices",
+          "hash slices",
+          "keys",
+          "values",
+          "each",
+          "exists",
+          "delete",
+          "push",
+          "pop",
+          "shift",
+          "unshift"
+        ],
+        "subsections": [
+          {
+            "name": "Arrays",
+            "details": [
+              "ordered lists",
+              "zero-based indexing",
+              "array length",
+              "push/pop",
+              "shift/unshift",
+              "slices",
+              "list assignment"
+            ],
+            "examples": [
+              "my @numbers = (1, 2, 3);",
+              "push @numbers, 4;"
+            ],
+            "dependencies": [
+              "list context",
+              "scalars"
+            ]
+          },
+          {
+            "name": "Hashes",
+            "details": [
+              "key-value storage",
+              "hash keys",
+              "values",
+              "exists",
+              "delete",
+              "hash slices",
+              "iteration"
+            ],
+            "examples": [
+              "my %user = (name => 'Ada', role => 'developer');"
+            ],
+            "dependencies": [
+              "scalars",
+              "references"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "references-data-structures",
+        "name": "References and Nested Data Structures",
+        "purpose": "Explain Perl references, anonymous data structures, dereferencing, autovivification, and complex nested data.",
+        "concepts": [
+          "references",
+          "anonymous arrays",
+          "anonymous hashes",
+          "code references",
+          "scalar references",
+          "dereferencing",
+          "autovivification",
+          "nested structures"
+        ],
+        "subsections": [
+          {
+            "name": "Reference Creation",
+            "details": [
+              "array references",
+              "hash references",
+              "anonymous structures",
+              "reference identity",
+              "reference aliases"
+            ],
+            "examples": [
+              "my $user = { name => 'Ada', roles => ['admin', 'developer'] };"
+            ],
+            "dependencies": [
+              "scalars",
+              "arrays",
+              "hashes"
+            ]
+          },
+          {
+            "name": "Dereferencing",
+            "details": [
+              "scalar dereferencing",
+              "array dereferencing",
+              "hash dereferencing",
+              "code-reference invocation",
+              "postfix dereferencing",
+              "nested access"
+            ],
+            "examples": [
+              "print $user->{name};",
+              "push @{ $user->{roles} }, 'reviewer';"
+            ],
+            "dependencies": [
+              "references",
+              "context"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "subroutines",
+        "name": "Subroutines and Functional Programming",
+        "purpose": "Cover Perl subroutines, parameters, return values, prototypes, closures, callbacks, recursion, and higher-order programming.",
+        "concepts": [
+          "sub",
+          "parameters",
+          "@_",
+          "return",
+          "prototypes",
+          "anonymous subs",
+          "closures",
+          "callbacks",
+          "recursion",
+          "state variables"
+        ],
+        "subsections": [
+          {
+            "name": "Subroutine Definitions",
+            "details": [
+              "named subs",
+              "anonymous subs",
+              "argument handling",
+              "return values",
+              "wantarray",
+              "prototype behavior"
+            ],
+            "examples": [
+              "sub add { my ($a, $b) = @_; return $a + $b; }"
+            ],
+            "dependencies": [
+              "variables",
+              "context"
+            ]
+          },
+          {
+            "name": "Closures",
+            "details": [
+              "lexical capture",
+              "persistent state",
+              "callbacks",
+              "factory functions",
+              "closure lifetime"
+            ],
+            "examples": [
+              "sub counter { my $n = 0; return sub { ++$n }; }"
+            ],
+            "dependencies": [
+              "lexical scope",
+              "references",
+              "subroutines"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "operators-control-flow",
+        "name": "Operators and Control Flow",
+        "purpose": "Explain Perl operators, precedence, conditionals, loops, flow-control modifiers, and exception-like control mechanisms.",
+        "concepts": [
+          "arithmetic operators",
+          "string operators",
+          "comparison operators",
+          "logical operators",
+          "defined-or",
+          "ternary operator",
+          "if",
+          "unless",
+          "for",
+          "foreach",
+          "while",
+          "until",
+          "last",
+          "next",
+          "redo"
+        ],
+        "subsections": [
+          {
+            "name": "Operator Families",
+            "details": [
+              "numeric versus string comparison",
+              "concatenation",
+              "repetition",
+              "bitwise operations",
+              "logical operators",
+              "defined-or",
+              "range operators"
+            ],
+            "examples": [
+              "$a == $b",
+              "$a eq $b",
+              "$name // 'unknown'"
+            ],
+            "dependencies": [
+              "scalar values",
+              "context"
+            ]
+          },
+          {
+            "name": "Control Flow",
+            "details": [
+              "conditional statements",
+              "loop constructs",
+              "statement modifiers",
+              "labels",
+              "loop control",
+              "continue blocks"
+            ],
+            "examples": [
+              "next if $item->{disabled};"
+            ],
+            "dependencies": [
+              "operators",
+              "blocks"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "regex-text",
+        "name": "Regular Expressions and Text Processing",
+        "purpose": "Cover Perl's regex engine, pattern matching, substitution, transliteration, captures, assertions, and text-processing idioms.",
+        "concepts": [
+          "m//",
+          "s///",
+          "tr///",
+          "capture groups",
+          "named captures",
+          "lookahead",
+          "lookbehind",
+          "quantifiers",
+          "character classes",
+          "regex modifiers",
+          "backreferences"
+        ],
+        "subsections": [
+          {
+            "name": "Pattern Matching",
+            "details": [
+              "literal patterns",
+              "variables in patterns",
+              "capture groups",
+              "named captures",
+              "anchors",
+              "alternation",
+              "quantifiers"
+            ],
+            "examples": [
+              "if ($text =~ /^(?<name>\\w+)$/) { ... }"
+            ],
+            "dependencies": [
+              "strings",
+              "scalar context"
+            ]
+          },
+          {
+            "name": "Substitution and Transliteration",
+            "details": [
+              "global substitution",
+              "case conversion",
+              "transliteration",
+              "evaluation substitutions",
+              "regex modifiers"
+            ],
+            "examples": [
+              "$text =~ s/old/new/g;",
+              "$text =~ tr/a-z/A-Z/;"
+            ],
+            "dependencies": [
+              "regular expressions",
+              "strings"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "packages-modules",
+        "name": "Packages, Modules, and Namespaces",
+        "purpose": "Explain Perl namespaces, packages, module loading, exports, versioning, and CPAN-oriented architecture.",
+        "concepts": [
+          "package",
+          "use",
+          "require",
+          "import",
+          "Exporter",
+          "INC",
+          "module files",
+          "versioning",
+          "CPAN"
+        ],
+        "subsections": [
+          {
+            "name": "Packages",
+            "details": [
+              "namespace qualification",
+              "package variables",
+              "fully qualified names",
+              "symbol tables",
+              "package versioning"
+            ],
+            "examples": [
+              "package MyApp::User;"
+            ],
+            "dependencies": [
+              "scope",
+              "symbol tables"
+            ]
+          },
+          {
+            "name": "Modules",
+            "details": [
+              "require",
+              "use",
+              "BEGIN blocks",
+              "module search paths",
+              "exports",
+              "dependencies",
+              "distribution structure"
+            ],
+            "examples": [
+              "use JSON::PP;",
+            ],
+            "dependencies": [
+              "packages",
+              "compile-time execution"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "object-systems",
+        "name": "Object-Oriented Perl",
+        "purpose": "Explain Perl's class and object mechanisms, including traditional blessed references and modern object frameworks.",
+        "concepts": [
+          "blessing",
+          "constructors",
+          "methods",
+          "inheritance",
+          "ISA",
+          "AUTOLOAD",
+          "DESTROY",
+          "roles",
+          "Moo",
+          "Moose"
+        ],
+        "subsections": [
+          {
+            "name": "Blessed References",
+            "details": [
+              "bless",
+              "object identity",
+              "method dispatch",
+              "constructors",
+              "instance data",
+              "destructors"
+            ],
+            "examples": [
+              "bless { name => $name }, $class;"
+            ],
+            "dependencies": [
+              "references",
+              "packages",
+              "symbol tables"
+            ]
+          },
+          {
+            "name": "Inheritance and Roles",
+            "details": [
+              "ISA",
+              "method resolution",
+              "multiple inheritance",
+              "roles",
+              "composition",
+              "framework-provided attributes and methods"
+            ],
+            "examples": [
+              "package Admin;\nour @ISA = ('User');"
+            ],
+            "dependencies": [
+              "packages",
+              "objects"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "io-files",
+        "name": "Files, Handles, and I/O",
+        "purpose": "Cover filehandles, text and binary I/O, encoding, buffering, paths, directory traversal, and safe resource handling.",
+        "concepts": [
+          "open",
+          "close",
+          "read",
+          "sysread",
+          "write",
+          "syswrite",
+          "print",
+          "printf",
+          "filehandles",
+          "binmode",
+          "encoding",
+          "directories"
+        ],
+        "subsections": [
+          {
+            "name": "File Operations",
+            "details": [
+              "three-argument open",
+              "read modes",
+              "write modes",
+              "append modes",
+              "lexical filehandles",
+              "error checking"
+            ],
+            "examples": [
+              "open my $fh, '<', $path or die $!;"
+            ],
+            "dependencies": [
+              "exceptions",
+              "scalars"
+            ]
+          },
+          {
+            "name": "Encoding",
+            "details": [
+              "UTF-8",
+              "PerlIO layers",
+              "binmode",
+              "decoded text",
+              "encoded bytes",
+              "newline handling"
+            ],
+            "examples": [
+              "open my $fh, '<:encoding(UTF-8)', $path or die $!;"
+            ],
+            "dependencies": [
+              "I/O",
+              "Unicode"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "processes-ipc",
+        "name": "Processes and Interprocess Communication",
+        "purpose": "Explain process creation, system commands, pipes, signals, IPC, and subprocess management.",
+        "concepts": [
+          "system",
+          "exec",
+          "qx",
+          "backticks",
+          "fork",
+          "wait",
+          "waitpid",
+          "pipes",
+          "signals",
+          "IPC"
+        ],
+        "subsections": [
+          {
+            "name": "Process Execution",
+            "details": [
+              "system",
+              "exec",
+              "argument handling",
+              "exit status",
+              "shell invocation",
+              "safe process spawning"
+            ],
+            "examples": [
+              "system($command) == 0 or die 'command failed';"
+            ],
+            "dependencies": [
+              "operating system",
+              "security"
+            ]
+          },
+          {
+            "name": "Signals",
+            "details": [
+              "signal handlers",
+              "SIGINT",
+              "SIGTERM",
+              "graceful shutdown",
+              "signal safety considerations"
+            ],
+            "examples": [
+              "$SIG{TERM} = sub { $shutdown = 1 };"
+            ],
+            "dependencies": [
+              "processes",
+              "runtime behavior"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exceptions-errors",
+        "name": "Errors and Exception Handling",
+        "purpose": "Cover Perl's die/eval exception model, error variables, object exceptions, and reliable failure propagation.",
+        "concepts": [
+          "die",
+          "warn",
+          "eval",
+          "$@",
+          "$!",
+          "$?",
+          "exception objects",
+          "Try::Tiny",
+          "autodie"
+        ],
+        "subsections": [
+          {
+            "name": "Exceptions",
+            "details": [
+              "die",
+              "eval BLOCK",
+              "eval STRING",
+              "exception capture",
+              "nested evaluation",
+              "exception objects"
+            ],
+            "examples": [
+              "eval { risky_operation(); 1 } or die $@;"
+            ],
+            "dependencies": [
+              "control flow",
+              "subroutines"
+            ]
+          },
+          {
+            "name": "System Errors",
+            "details": [
+              "$!",
+              "errno",
+              "exit status",
+              "$?",
+              "warnings",
+              "diagnostic messages"
+            ],
+            "examples": [
+              "open my $fh, '<', $file or die \"open failed: $!\";"
+            ],
+            "dependencies": [
+              "I/O",
+              "process management"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "unicode",
+        "name": "Unicode and International Text",
+        "purpose": "Explain Perl's distinction between characters and bytes and the handling of Unicode throughout input, processing, and output.",
+        "concepts": [
+          "Unicode",
+          "characters",
+          "bytes",
+          "UTF-8",
+          "encoding",
+          "decoding",
+          "PerlIO layers",
+          "Unicode normalization",
+          "locale"
+        ],
+        "subsections": [
+          {
+            "name": "Characters Versus Bytes",
+            "details": [
+              "decoded strings",
+              "encoded byte streams",
+              "UTF-8 encoding",
+              "I/O boundaries",
+              "regex Unicode behavior"
+            ],
+            "examples": [
+              "Encode text at system boundaries and operate on decoded text internally."
+            ],
+            "dependencies": [
+              "scalar values",
+              "I/O"
+            ]
+          },
+          {
+            "name": "Normalization",
+            "details": [
+              "canonical equivalence",
+              "normalization forms",
+              "Unicode::Normalize",
+              "comparison hazards"
+            ],
+            "examples": [
+              "Normalize externally supplied text before semantic comparison when required."
+            ],
+            "dependencies": [
+              "Unicode",
+              "text processing"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "serialization",
+        "name": "Serialization and Data Interchange",
+        "purpose": "Cover JSON, YAML, XML, Storable, binary representations, and safe data interchange.",
+        "concepts": [
+          "JSON",
+          "YAML",
+          "XML",
+          "Storable",
+          "serialization",
+          "deserialization",
+          "schema validation",
+          "tainted input"
+        ],
+        "subsections": [
+          {
+            "name": "JSON",
+            "details": [
+              "encoding",
+              "decoding",
+              "arrays",
+              "objects",
+              "Unicode",
+              "numeric representation",
+              "error handling"
+            ],
+            "examples": [
+              "my $data = decode_json($json);"
+            ],
+            "dependencies": [
+              "references",
+              "Unicode"
+            ]
+          },
+          {
+            "name": "Storable",
+            "details": [
+              "Perl-specific serialization",
+              "binary representation",
+              "freezing",
+              "thawing",
+              "security restrictions"
+            ],
+            "examples": [
+              "Do not deserialize untrusted Storable data without an appropriate security boundary."
+            ],
+            "dependencies": [
+              "references",
+              "security"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "networking",
+        "name": "Networking and Web Programming",
+        "purpose": "Cover sockets, HTTP clients, servers, asynchronous networking, and common Perl web architectures.",
+        "concepts": [
+          "IO::Socket",
+          "TCP",
+          "UDP",
+          "HTTP",
+          "TLS",
+          "LWP",
+          "HTTP::Tiny",
+          "PSGI",
+          "Plack",
+          "web frameworks"
+        ],
+        "subsections": [
+          {
+            "name": "Sockets",
+            "details": [
+              "TCP clients",
+              "TCP servers",
+              "UDP",
+              "socket lifecycle",
+              "timeouts",
+              "blocking I/O"
+            ],
+            "examples": [
+              "Create a socket, connect or bind, exchange data, and close it with explicit error handling."
+            ],
+            "dependencies": [
+              "filehandles",
+              "processes",
+              "networking"
+            ]
+          },
+          {
+            "name": "HTTP Applications",
+            "details": [
+              "request construction",
+              "response parsing",
+              "TLS verification",
+              "timeouts",
+              "authentication",
+              "PSGI application model"
+            ],
+            "examples": [
+              "my $response = HTTP::Tiny->new->get($url);"
+            ],
+            "dependencies": [
+              "HTTP",
+              "Unicode",
+              "security"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "concurrency",
+        "name": "Concurrency and Parallelism",
+        "purpose": "Explain Perl concurrency through processes, threads, event-driven systems, and asynchronous libraries.",
+        "concepts": [
+          "fork",
+          "threads",
+          "Thread::Queue",
+          "process isolation",
+          "event loops",
+          "AnyEvent",
+          "Future",
+          "Promises",
+          "parallelism"
+        ],
+        "subsections": [
+          {
+            "name": "Process-Based Parallelism",
+            "details": [
+              "fork",
+              "copy-on-write",
+              "IPC",
+              "worker processes",
+              "process supervision"
+            ],
+            "examples": [
+              "Use worker processes when isolation and independent address spaces are desirable."
+            ],
+            "dependencies": [
+              "processes",
+              "IPC"
+            ]
+          },
+          {
+            "name": "Threads",
+            "details": [
+              "threads",
+              "shared state",
+              "thread-safe queues",
+              "locking",
+              "thread lifecycle"
+            ],
+            "examples": [
+              "Use Thread::Queue to coordinate work between Perl threads."
+            ],
+            "dependencies": [
+              "references",
+              "synchronization"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "testing",
+        "name": "Testing and Quality Assurance",
+        "purpose": "Cover Perl testing conventions, TAP, unit tests, integration tests, mocking, coverage, and property-based verification.",
+        "concepts": [
+          "TAP",
+          "Test::More",
+          "Test2",
+          "Test::Deep",
+          "Test::Exception",
+          "Test::MockObject",
+          "Devel::Cover",
+          "property testing"
+        ],
+        "subsections": [
+          {
+            "name": "Unit Testing",
+            "details": [
+              "assertions",
+              "test plans",
+              "fixtures",
+              "subroutine tests",
+              "exception tests",
+              "test isolation"
+            ],
+            "examples": [
+              "use Test::More tests => 1;",
+              "is add(2, 3), 5;"
+            ],
+            "dependencies": [
+              "subroutines",
+              "modules"
+            ]
+          },
+          {
+            "name": "Integration Testing",
+            "details": [
+              "filesystem integration",
+              "database integration",
+              "network integration",
+              "subprocess testing",
+              "temporary resources"
+            ],
+            "examples": [
+              "Test external boundaries separately from pure business logic."
+            ],
+            "dependencies": [
+              "I/O",
+              "networking",
+              "processes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tooling-packaging",
+        "name": "Tooling, CPAN, and Packaging",
+        "purpose": "Explain Perl development tooling, dependency management, distributions, testing, installation, and reproducibility.",
+        "concepts": [
+          "CPAN",
+          "CPAN.pm",
+          "CPAN client",
+          "cpanm",
+          "CPAN Testers",
+          "Makefile.PL",
+          "Build.PL",
+          "Dist::Zilla",
+          "META.json",
+          "META.yml"
+        ],
+        "subsections": [
+          {
+            "name": "Distribution Structure",
+            "details": [
+              "lib/",
+              "t/",
+              "script/",
+              "Makefile.PL",
+              "Build.PL",
+              "metadata",
+              "versioning"
+            ],
+            "examples": [
+              "lib/MyApp.pm",
+              "t/basic.t"
+            ],
+            "dependencies": [
+              "modules",
+              "testing"
+            ]
+          },
+          {
+            "name": "Dependency Management",
+            "details": [
+              "runtime dependencies",
+              "test dependencies",
+              "version constraints",
+              "lock strategies",
+              "deployment environments"
+            ],
+            "examples": [
+              "Declare dependencies explicitly in distribution metadata."
+            ],
+            "dependencies": [
+              "CPAN",
+              "packaging"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security",
+        "name": "Security",
+        "purpose": "Cover Perl-specific and general application-security concerns involving interpolation, shell execution, tainting, serialization, regexes, dependencies, and input validation.",
+        "concepts": [
+          "input validation",
+          "taint mode",
+          "shell injection",
+          "command injection",
+          "SQL injection",
+          "unsafe deserialization",
+          "regex denial of service",
+          "dependency security",
+          "file-system security"
+        ],
+        "subsections": [
+          {
+            "name": "Command Execution",
+            "details": [
+              "shell metacharacters",
+              "system",
+              "exec",
+              "list-form process execution",
+              "argument validation",
+              "environment handling"
+            ],
+            "examples": [
+              "Prefer list-form process invocation when a shell is not required."
+            ],
+            "dependencies": [
+              "process management",
+              "input validation"
+            ]
+          },
+          {
+            "name": "Regular Expression Security",
+            "details": [
+              "catastrophic backtracking",
+              "untrusted patterns",
+              "large-input processing",
+              "regex complexity",
+              "timeouts and resource limits"
+            ],
+            "examples": [
+              "Avoid accepting unrestricted user-supplied regular expressions in latency-sensitive services."
+            ],
+            "dependencies": [
+              "regex",
+              "resource management"
+            ]
+          },
+          {
+            "name": "Dependency Security",
+            "details": [
+              "CPAN dependency auditing",
+              "version constraints",
+              "supply-chain risk",
+              "distribution integrity",
+              "minimal dependency surfaces"
+            ],
+            "examples": [
+              "Review transitive dependencies before deploying security-sensitive Perl services."
+            ],
+            "dependencies": [
+              "CPAN",
+              "packaging"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "Performance Engineering",
+        "purpose": "Explain Perl performance through profiling, allocation behavior, regex optimization, I/O strategy, memory usage, and algorithm selection.",
+        "concepts": [
+          "Devel::NYTProf",
+          "Benchmark",
+          "algorithmic complexity",
+          "memory usage",
+          "regex performance",
+          "I/O buffering",
+          "object overhead",
+          "caching"
+        ],
+        "subsections": [
+          {
+            "name": "Profiling",
+            "details": [
+              "CPU profiling",
+              "hot paths",
+              "call frequency",
+              "allocation analysis",
+              "benchmark methodology"
+            ],
+            "examples": [
+              "Profile representative workloads before optimizing application internals."
+            ],
+            "dependencies": [
+              "runtime",
+              "testing"
+            ]
+          },
+          {
+            "name": "Text Processing Performance",
+            "details": [
+              "regex complexity",
+              "streaming input",
+              "line processing",
+              "slurping tradeoffs",
+              "buffering",
+              "Unicode conversion costs"
+            ],
+            "examples": [
+              "Stream very large files instead of loading the entire file when memory constraints matter."
+            ],
+            "dependencies": [
+              "regex",
+              "I/O",
+              "Unicode"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "architecture",
+        "name": "Production Architecture",
+        "purpose": "Organize Perl applications into maintainable modules, services, workers, interfaces, configuration layers, and operational boundaries.",
+        "concepts": [
+          "separation of concerns",
+          "module boundaries",
+          "dependency injection",
+          "configuration",
+          "logging",
+          "observability",
+          "workers",
+          "service layers",
+          "database boundaries"
+        ],
+        "subsections": [
+          {
+            "name": "Application Layers",
+            "details": [
+              "presentation",
+              "application services",
+              "domain logic",
+              "repositories",
+              "infrastructure adapters",
+              "configuration"
+            ],
+            "examples": [
+              "Keep domain logic independent of filesystem, network, and database implementations where practical."
+            ],
+            "dependencies": [
+              "packages",
+              "object systems",
+              "testing"
+            ]
+          },
+          {
+            "name": "Operational Design",
+            "details": [
+              "structured logging",
+              "metrics",
+              "health checks",
+              "graceful shutdown",
+              "configuration management",
+              "process supervision",
+              "deployment reproducibility"
+            ],
+            "examples": [
+              "Handle SIGTERM by stopping new work, completing safe in-flight operations, and exiting cleanly."
+            ],
+            "dependencies": [
+              "signals",
+              "processes",
+              "networking"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "scalars",
+      "to": "arrays and hashes",
+      "relationship": "Perl aggregate structures contain scalar values and references."
+    },
+    {
+      "from": "context",
+      "to": "subroutines",
+      "relationship": "Subroutine behavior and return values can depend on scalar, list, or void context."
+    },
+    {
+      "from": "references",
+      "to": "nested data structures",
+      "relationship": "References allow arrays, hashes, and other values to form arbitrarily nested structures."
+    },
+    {
+      "from": "lexical variables",
+      "to": "closures",
+      "relationship": "Anonymous subroutines can retain access to lexically scoped variables."
+    },
+    {
+      "from": "packages",
+      "to": "modules",
+      "relationship": "Packages provide namespaces while modules package reusable Perl code and dependencies."
+    },
+    {
+      "from": "references",
+      "to": "objects",
+      "relationship": "Traditional Perl objects are commonly implemented by blessing references into packages."
+    },
+    {
+      "from": "regular expressions",
+      "to": "text processing",
+      "relationship": "Perl's regex engine is deeply integrated into string processing and substitution."
+    },
+    {
+      "from": "I/O",
+      "to": "Unicode",
+      "relationship": "Encoding and decoding boundaries are essential when reading and writing Unicode text."
+    },
+    {
+      "from": "processes",
+      "to": "concurrency",
+      "relationship": "Process creation and IPC provide one mechanism for parallel or concurrent Perl workloads."
+    },
+    {
+      "from": "exceptions",
+      "to": "I/O",
+      "relationship": "File and system operations commonly communicate failure through return values and system error variables."
+    },
+    {
+      "from": "modules",
+      "to": "testing",
+      "relationship": "Modular boundaries make units independently testable."
+    },
+    {
+      "from": "CPAN",
+      "to": "production architecture",
+      "relationship": "CPAN supplies reusable libraries and frameworks but also introduces dependency-management and supply-chain considerations."
+    },
+    {
+      "from": "security",
+      "to": "process execution",
+      "relationship": "Untrusted input passed to shell commands can create command-injection vulnerabilities."
+    },
+    {
+      "from": "security",
+      "to": "serialization",
+      "relationship": "Deserializing untrusted data can create code-execution or object-integrity risks depending on the format and implementation."
+    },
+    {
+      "from": "performance",
+      "to": "regex",
+      "relationship": "Pattern complexity can materially affect CPU consumption."
+    },
+    {
+      "from": "architecture",
+      "to": "testing",
+      "relationship": "Clear module and service boundaries enable isolated and integration testing."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Perl 5 interpreter",
+      "type": "runtime",
+      "purpose": "Compiles and executes Perl programs."
+    },
+    {
+      "name": "Perl core libraries",
+      "type": "standard_library",
+      "purpose": "Provide built-in modules and runtime functionality."
+    },
+    {
+      "name": "CPAN",
+      "type": "package_ecosystem",
+      "purpose": "Provides third-party Perl distributions and reusable modules."
+    },
+    {
+      "name": "Operating system",
+      "type": "host_environment",
+      "purpose": "Provides processes, filesystems, sockets, signals, permissions, and other system facilities."
+    },
+    {
+      "name": "PerlIO",
+      "type": "I/O_subsystem",
+      "purpose": "Provides layered I/O and encoding facilities."
+    },
+    {
+      "name": "TAP-compatible test tooling",
+      "type": "testing_infrastructure",
+      "purpose": "Runs and reports Perl test results."
+    },
+    {
+      "name": "CPAN packaging infrastructure",
+      "type": "distribution_system",
+      "purpose": "Builds, tests, publishes, and installs Perl distributions."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "undef versus false",
+      "handling": "Distinguish undefined values from other false values when absence has semantic meaning."
+    },
+    {
+      "case": "scalar versus list context",
+      "handling": "Verify the caller's context before assuming a subroutine receives or returns a particular shape."
+    },
+    {
+      "case": "numeric versus string comparison",
+      "handling": "Use numeric operators for numeric semantics and string operators for textual semantics."
+    },
+    {
+      "case": "autovivification",
+      "handling": "Be aware that nested dereferencing can implicitly create intermediate structures."
+    },
+    {
+      "case": "regex catastrophic backtracking",
+      "handling": "Constrain pattern complexity and untrusted input where resource exhaustion is possible."
+    },
+    {
+      "case": "Unicode boundary errors",
+      "handling": "Keep character processing and byte I/O conceptually separate and encode/decode explicitly at boundaries."
+    },
+    {
+      "case": "shell metacharacters",
+      "handling": "Avoid unintended shell interpretation and prefer safe argument-list execution."
+    },
+    {
+      "case": "global package variables",
+      "handling": "Prefer lexical variables unless package-level state is intentionally required."
+    },
+    {
+      "case": "exception capture",
+      "handling": "Capture and inspect $@ immediately because subsequent operations can alter diagnostic state."
+    },
+    {
+      "case": "system exit status",
+      "handling": "Interpret $? carefully rather than treating it as a simple boolean."
+    },
+    {
+      "case": "cyclic references",
+      "handling": "Use weak references or explicit lifecycle management where reference cycles would prevent expected cleanup."
+    },
+    {
+      "case": "deserialization of untrusted data",
+      "handling": "Use safe formats and validation boundaries rather than blindly thawing arbitrary serialized data."
+    },
+    {
+      "case": "module load order",
+      "handling": "Account for compile-time effects of use, BEGIN blocks, and imports."
+    },
+    {
+      "case": "fork portability",
+      "handling": "Treat process-based concurrency as platform-dependent and validate deployment targets."
+    },
+    {
+      "case": "signal handling",
+      "handling": "Keep signal handlers simple and coordinate graceful shutdown through safe application state."
+    }
+  ],
+  "constraints": [
+    "The outline targets Perl 5 rather than Perl 6/Raku.",
+    "Core Perl language features must be distinguished from CPAN modules and third-party frameworks.",
+    "Operating-system behavior can vary by platform.",
+    "Perl's context-sensitive semantics must be considered when analyzing expressions and subroutine interfaces.",
+    "Unicode handling requires explicit attention to character and byte boundaries.",
+    "Shell execution must not be treated as inherently safe.",
+    "Third-party CPAN dependencies introduce compatibility and supply-chain considerations.",
+    "Performance conclusions should be established through representative profiling rather than assumptions.",
+    "Serialization formats have different compatibility and security properties.",
+    "Object-oriented Perl can use several competing object systems and frameworks.",
+    "Concurrency mechanisms differ substantially in portability, isolation, shared-state behavior, and operational complexity.",
+    "Legacy Perl code may use idioms that modern Perl style discourages."
+  ],
+  "examples": [
+    {
+      "name": "Strict and warnings",
+      "code": "use strict;\nuse warnings;"
+    },
+    {
+      "name": "Scalar and hash",
+      "code": "my $name = 'Ada';\nmy %user = (name => $name, active => 1);"
+    },
+    {
+      "name": "Nested data",
+      "code": "my $config = {\n  server => {\n    host => 'localhost',\n    port => 8080\n  }\n};"
+    },
+    {
+      "name": "Subroutine",
+      "code": "sub add {\n  my ($a, $b) = @_;\n  return $a + $b;\n}"
+    },
+    {
+      "name": "Closure",
+      "code": "sub counter {\n  my $n = 0;\n  return sub { ++$n };\n}"
+    },
+    {
+      "name": "Regular expression",
+      "code": "if ($text =~ /^(?<word>\\w+)$/) {\n  print $+{word};\n}"
+    },
+    {
+      "name": "File I/O",
+      "code": "open my $fh, '<:encoding(UTF-8)', $path or die \"open: $!\";\nwhile (my $line = <$fh>) {\n  chomp $line;\n  process($line);\n}"
+    },
+    {
+      "name": "Exception handling",
+      "code": "eval {\n  risky_operation();\n  1;\n} or die $@;"
+    },
+    {
+      "name": "Traditional object",
+      "code": "package User;\nsub new {\n  my ($class, %args) = @_;\n  return bless \\%args, $class;\n}"
+    },
+    {
+      "name": "Safe subprocess invocation",
+      "code": "system($program, @arguments) == 0 or die \"command failed: $?\";"
+    },
+    {
+      "name": "JSON",
+      "code": "use JSON::PP qw(encode_json decode_json);\nmy $json = encode_json($data);\nmy $data2 = decode_json($json);"
+    },
+    {
+      "name": "Testing",
+      "code": "use Test::More;\nis add(2, 3), 5;\ndone_testing;"
+    }
+  ],
+  "validation": [
+    {
+      "id": "syntax",
+      "check": "The program compiles successfully under the target Perl version."
+    },
+    {
+      "id": "strictness",
+      "check": "strict and warnings are enabled where appropriate and unintended symbolic or package-variable behavior is detected."
+    },
+    {
+      "id": "context",
+      "check": "Subroutine arguments and return values behave correctly in scalar, list, and void contexts."
+    },
+    {
+      "id": "data-structures",
+      "check": "References, dereferencing, nested structures, slices, and autovivification produce the intended data model."
+    },
+    {
+      "id": "regex",
+      "check": "Patterns correctly handle expected input, Unicode requirements, malformed input, and worst-case resource behavior."
+    },
+    {
+      "id": "unicode",
+      "check": "Text is decoded before character processing and encoded correctly at external I/O boundaries."
+    },
+    {
+      "id": "errors",
+      "check": "Expected failures are detected, diagnostic variables are captured correctly, and exceptions propagate through intended boundaries."
+    },
+    {
+      "id": "security",
+      "check": "Untrusted input cannot unintentionally alter shell commands, SQL, filesystem operations, regex execution, or deserialization behavior."
+    },
+    {
+      "id": "modules",
+      "check": "Module dependencies, namespaces, imports, versions, and load-time behavior are deterministic."
+    },
+    {
+      "id": "testing",
+      "check": "Critical functionality has unit and integration tests with meaningful failure diagnostics."
+    },
+    {
+      "id": "performance",
+      "check": "Representative workloads are profiled and resource-intensive operations are measured before optimization."
+    },
+    {
+      "id": "packaging",
+      "check": "The distribution builds, tests, declares dependencies, and installs reproducibly in the target environment."
+    },
+    {
+      "id": "portability",
+      "check": "Platform-specific assumptions involving paths, processes, signals, sockets, and fork behavior are explicitly tested."
+    }
+  ],
+  "open_questions": [
+    "Should the next iteration focus on Perl 5.40+ semantics and current best practices?",
+    "Should the outline include a formal treatment of Perl's parser, compilation phases, op tree, pads, symbol tables, and interpreter internals?",
+    "Should regex internals and performance analysis receive a dedicated deep-dive?",
+    "Should CPAN ecosystem architecture be expanded into dependency resolution, distribution authoring, release automation, and supply-chain security?",
+    "Should Moose, Moo, and native Perl object systems be compared descriptively?",
+    "Should Perl web development be expanded into PSGI/Plack and major web frameworks?",
+    "Should database programming be expanded into DBI, transactions, connection pooling, and ORM approaches?",
+    "Should asynchronous Perl be expanded into event-loop frameworks and modern async/await-style libraries?",
+    "Should Perl XS and FFI interoperability be included for native extensions?",
+    "Should Perl testing be expanded into TAP internals, property-based testing, mutation testing, fuzzing, and CI/CD?",
+    "Should Perl performance internals be expanded into reference counting, copy-on-write, memory allocation, regex engine behavior, and profiling methodology?"
+  ]
+}
