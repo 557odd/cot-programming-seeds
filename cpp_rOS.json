@@ -1,0 +1,1673 @@
+{
+  "topic": "C++",
+  "objective": "Provide an expert-level, implementation-oriented outline of modern C++ covering language fundamentals, object lifetime, RAII, value categories, templates, concepts, generic programming, STL, memory management, concurrency, coroutines, modules, metaprogramming, compile-time programming, exceptions, ABI and linkage, performance, tooling, testing, interoperability, and production architecture.",
+  "scope": "Modern ISO C++ with emphasis on C++20 and C++23 concepts and facilities, while maintaining the historical context necessary to understand C++11 through C++23 evolution. Focus on portable language and standard-library semantics rather than compiler-specific extensions.",
+  "architecture": {
+    "sections": [
+      {
+        "id": "cpp-foundations",
+        "name": "C++ Foundations",
+        "purpose": "Establish syntax, translation units, declarations, definitions, expressions, statements, namespaces, scopes, and the compilation model.",
+        "concepts": [
+          "translation units",
+          "preprocessing",
+          "declarations",
+          "definitions",
+          "expressions",
+          "statements",
+          "scope",
+          "lifetime",
+          "namespaces",
+          "headers",
+          "source files",
+          "linkage",
+          "ODR"
+        ],
+        "subsections": [
+          {
+            "name": "Program Structure",
+            "details": [
+              "main function",
+              "translation units",
+              "header/source organization",
+              "declarations versus definitions",
+              "include directives",
+              "preprocessor phase",
+              "namespace scope",
+              "local scope",
+              "class scope"
+            ],
+            "examples": [
+              "int main() { return 0; }"
+            ],
+            "dependencies": [
+              "compiler",
+              "linker",
+              "preprocessor"
+            ]
+          },
+          {
+            "name": "Expressions and Statements",
+            "details": [
+              "expression statements",
+              "compound statements",
+              "selection",
+              "iteration",
+              "jump statements",
+              "declarations",
+              "operator expressions",
+              "sequencing"
+            ],
+            "examples": [
+              "if (value > 0) { ++value; }"
+            ],
+            "dependencies": [
+              "type system",
+              "control flow"
+            ]
+          },
+          {
+            "name": "Namespaces and Name Lookup",
+            "details": [
+              "qualified names",
+              "using declarations",
+              "using directives",
+              "unnamed namespaces",
+              "argument-dependent lookup",
+              "scope resolution",
+              "qualified lookup",
+              "unqualified lookup"
+            ],
+            "examples": [
+              "std::vector<int> values;"
+            ],
+            "dependencies": [
+              "declarations",
+              "types"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "type-system",
+        "name": "Type System",
+        "purpose": "Explain C++'s static type system, object representations, conversions, qualifiers, compound types, and type traits.",
+        "concepts": [
+          "fundamental types",
+          "cv-qualification",
+          "references",
+          "pointers",
+          "arrays",
+          "enumerations",
+          "classes",
+          "unions",
+          "function types",
+          "type aliases",
+          "decltype",
+          "auto",
+          "type deduction"
+        ],
+        "subsections": [
+          {
+            "name": "Fundamental Types",
+            "details": [
+              "bool",
+              "character types",
+              "integral types",
+              "floating-point types",
+              "void",
+              "nullptr_t",
+              "signedness",
+              "implementation-defined widths"
+            ],
+            "examples": [
+              "std::int32_t value = 42;"
+            ],
+            "dependencies": [
+              "implementation-defined type properties"
+            ]
+          },
+          {
+            "name": "References and Pointers",
+            "details": [
+              "lvalue references",
+              "rvalue references",
+              "pointer types",
+              "null pointers",
+              "pointer arithmetic",
+              "const pointers",
+              "pointer-to-member types",
+              "reference collapsing"
+            ],
+            "examples": [
+              "int value = 42;\nint& ref = value;\nint* ptr = &value;"
+            ],
+            "dependencies": [
+              "object lifetime",
+              "value categories"
+            ]
+          },
+          {
+            "name": "Type Deduction",
+            "details": [
+              "auto deduction",
+              "decltype",
+              "decltype(auto)",
+              "template argument deduction",
+              "reference preservation",
+              "cv/ref collapsing"
+            ],
+            "examples": [
+              "auto value = expression;",
+              "decltype(auto) result = expression;"
+            ],
+            "dependencies": [
+              "templates",
+              "value categories"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "classes-objects",
+        "name": "Classes, Objects, and Encapsulation",
+        "purpose": "Model C++ object-oriented facilities, class invariants, access control, constructors, destructors, methods, and object representation.",
+        "concepts": [
+          "class",
+          "struct",
+          "constructors",
+          "destructors",
+          "member functions",
+          "data members",
+          "static members",
+          "access control",
+          "invariants",
+          "friend declarations",
+          "nested classes"
+        ],
+        "subsections": [
+          {
+            "name": "Construction and Destruction",
+            "details": [
+              "default constructors",
+              "delegating constructors",
+              "member initialization lists",
+              "destructors",
+              "construction order",
+              "destruction order",
+              "exception safety during construction"
+            ],
+            "examples": [
+              "class Resource { public: Resource(); ~Resource(); };"
+            ],
+            "dependencies": [
+              "object lifetime",
+              "RAII"
+            ]
+          },
+          {
+            "name": "Encapsulation",
+            "details": [
+              "public",
+              "private",
+              "protected",
+              "class invariants",
+              "representation hiding",
+              "const member functions",
+              "logical constness"
+            ],
+            "examples": [
+              "class Account { private: int balance_; public: int balance() const; };"
+            ],
+            "dependencies": [
+              "classes",
+              "const correctness"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "object-lifetime-raii",
+        "name": "Object Lifetime, RAII, and Resource Management",
+        "purpose": "Explain one of C++'s central design models: deterministic object lifetime combined with ownership-aware resource management.",
+        "concepts": [
+          "object lifetime",
+          "storage duration",
+          "RAII",
+          "scope",
+          "destruction",
+          "ownership",
+          "smart pointers",
+          "custom deleters",
+          "resource handles"
+        ],
+        "subsections": [
+          {
+            "name": "Storage Duration",
+            "details": [
+              "automatic storage duration",
+              "static storage duration",
+              "thread storage duration",
+              "dynamic storage duration",
+              "placement construction",
+              "lifetime beginning and ending"
+            ],
+            "examples": [
+              "Local objects normally have automatic storage duration."
+            ],
+            "dependencies": [
+              "object model",
+              "allocation"
+            ]
+          },
+          {
+            "name": "RAII",
+            "details": [
+              "constructor acquires resource",
+              "destructor releases resource",
+              "exception-safe cleanup",
+              "scope-bound resources",
+              "file handles",
+              "locks",
+              "memory",
+              "transactions"
+            ],
+            "examples": [
+              "std::lock_guard<std::mutex> guard(mutex);"
+            ],
+            "dependencies": [
+              "destructors",
+              "exceptions",
+              "scope"
+            ]
+          },
+          {
+            "name": "Smart Pointers",
+            "details": [
+              "unique_ptr",
+              "shared_ptr",
+              "weak_ptr",
+              "ownership transfer",
+              "reference counting",
+              "custom deleters",
+              "aliasing constructors",
+              "cycle avoidance"
+            ],
+            "examples": [
+              "auto object = std::make_unique<T>();",
+              "auto shared = std::make_shared<T>();"
+            ],
+            "dependencies": [
+              "RAII",
+              "move semantics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "value-categories",
+        "name": "Value Categories, Moves, and Copy Semantics",
+        "purpose": "Explain lvalues, prvalues, xvalues, move construction, move assignment, copy semantics, and temporary materialization.",
+        "concepts": [
+          "lvalue",
+          "xvalue",
+          "prvalue",
+          "glvalue",
+          "rvalue",
+          "copy constructor",
+          "move constructor",
+          "copy assignment",
+          "move assignment",
+          "copy elision",
+          "NRVO",
+          "RVO"
+        ],
+        "subsections": [
+          {
+            "name": "Value Categories",
+            "details": [
+              "lvalue expressions",
+              "xvalue expressions",
+              "prvalue expressions",
+              "glvalue classification",
+              "rvalue classification",
+              "reference binding"
+            ],
+            "examples": [
+              "T value;",
+              "T&& reference = std::move(value);"
+            ],
+            "dependencies": [
+              "references",
+              "object lifetime"
+            ]
+          },
+          {
+            "name": "Rule of Zero and Special Member Functions",
+            "details": [
+              "default constructor",
+              "destructor",
+              "copy constructor",
+              "copy assignment",
+              "move constructor",
+              "move assignment",
+              "Rule of Three",
+              "Rule of Five",
+              "Rule of Zero"
+            ],
+            "examples": [
+              "Prefer member types whose destructors and ownership semantics make custom special members unnecessary."
+            ],
+            "dependencies": [
+              "RAII",
+              "move semantics"
+            ]
+          },
+          {
+            "name": "Copy Elision",
+            "details": [
+              "guaranteed copy elision contexts",
+              "NRVO",
+              "temporary materialization",
+              "observable behavior"
+            ],
+            "examples": [
+              "T make() { return T{}; }"
+            ],
+            "dependencies": [
+              "prvalues",
+              "object lifetime"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "inheritance-polymorphism",
+        "name": "Inheritance and Polymorphism",
+        "purpose": "Cover class inheritance, virtual dispatch, abstract interfaces, multiple inheritance, and object-oriented substitution.",
+        "concepts": [
+          "base classes",
+          "derived classes",
+          "virtual functions",
+          "override",
+          "final",
+          "abstract classes",
+          "virtual destructors",
+          "multiple inheritance",
+          "virtual inheritance",
+          "object slicing",
+          "RTTI"
+        ],
+        "subsections": [
+          {
+            "name": "Virtual Dispatch",
+            "details": [
+              "virtual functions",
+              "override",
+              "final",
+              "dynamic dispatch",
+              "vtable implementation as common ABI technique",
+              "virtual destructor requirements"
+            ],
+            "examples": [
+              "struct Shape { virtual double area() const = 0; virtual ~Shape() = default; };"
+            ],
+            "dependencies": [
+              "classes",
+              "pointers and references"
+            ]
+          },
+          {
+            "name": "Multiple Inheritance",
+            "details": [
+              "multiple base classes",
+              "diamond inheritance",
+              "virtual bases",
+              "interface inheritance",
+              "ambiguity resolution",
+              "pointer adjustment"
+            ],
+            "examples": [
+              "struct Derived : BaseA, BaseB {};"
+            ],
+            "dependencies": [
+              "inheritance",
+              "object layout"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "templates",
+        "name": "Templates and Generic Programming",
+        "purpose": "Explain compile-time polymorphism, template declaration, deduction, specialization, instantiation, and generic design.",
+        "concepts": [
+          "function templates",
+          "class templates",
+          "variable templates",
+          "template parameters",
+          "template argument deduction",
+          "specialization",
+          "partial specialization",
+          "dependent names",
+          "two-phase lookup",
+          "SFINAE"
+        ],
+        "subsections": [
+          {
+            "name": "Template Fundamentals",
+            "details": [
+              "type parameters",
+              "non-type template parameters",
+              "template-template parameters",
+              "deduction",
+              "explicit template arguments",
+              "instantiation"
+            ],
+            "examples": [
+              "template<class T> T max_value(T a, T b) { return a > b ? a : b; }"
+            ],
+            "dependencies": [
+              "type system",
+              "compile-time programming"
+            ]
+          },
+          {
+            "name": "Specialization",
+            "details": [
+              "full specialization",
+              "partial specialization",
+              "overload selection",
+              "dependent contexts",
+              "customization points"
+            ],
+            "examples": [
+              "template<class T> struct Traits;"
+            ],
+            "dependencies": [
+              "templates",
+              "type traits"
+            ]
+          },
+          {
+            "name": "Two-Phase Lookup",
+            "details": [
+              "dependent names",
+              "typename",
+              "template disambiguator",
+              "unqualified lookup",
+              "instantiation-time lookup"
+            ],
+            "examples": [
+              "typename T::value_type"
+            ],
+            "dependencies": [
+              "templates",
+              "name lookup"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "concepts-constraints",
+        "name": "Concepts and Constraints",
+        "purpose": "Explain modern C++ constraints as a structured alternative to many historical SFINAE techniques.",
+        "concepts": [
+          "concept",
+          "requires-expression",
+          "requires-clause",
+          "constrained templates",
+          "constraint normalization",
+          "subsumption",
+          "abbreviated function templates"
+        ],
+        "subsections": [
+          {
+            "name": "Concept Definitions",
+            "details": [
+              "named requirements",
+              "compound requirements",
+              "nested requirements",
+              "type requirements",
+              "simple requirements"
+            ],
+            "examples": [
+              "template<class T> concept Addable = requires(T a, T b) { a + b; };"
+            ],
+            "dependencies": [
+              "templates",
+              "requires expressions"
+            ]
+          },
+          {
+            "name": "Constrained Interfaces",
+            "details": [
+              "requires clauses",
+              "constrained auto",
+              "abbreviated templates",
+              "constraint diagnostics",
+              "overload selection"
+            ],
+            "examples": [
+              "template<Addable T> T add(T a, T b) { return a + b; }"
+            ],
+            "dependencies": [
+              "concepts",
+              "overload resolution"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "stl",
+        "name": "Standard Library and STL",
+        "purpose": "Provide a systematic model of standard containers, iterators, algorithms, ranges, utilities, strings, numerics, and resource abstractions.",
+        "concepts": [
+          "containers",
+          "iterators",
+          "algorithms",
+          "ranges",
+          "views",
+          "strings",
+          "optional",
+          "variant",
+          "any",
+          "tuple",
+          "pair",
+          "utility"
+        ],
+        "subsections": [
+          {
+            "name": "Containers",
+            "details": [
+              "vector",
+              "array",
+              "deque",
+              "list",
+              "forward_list",
+              "map",
+              "set",
+              "unordered_map",
+              "unordered_set",
+              "priority_queue",
+              "queue",
+              "stack"
+            ],
+            "examples": [
+              "std::vector<int> values;"
+            ],
+            "dependencies": [
+              "templates",
+              "allocators",
+              "iterators"
+            ]
+          },
+          {
+            "name": "Algorithms",
+            "details": [
+              "sorting",
+              "searching",
+              "partitioning",
+              "transformations",
+              "numeric algorithms",
+              "comparison",
+              "execution policies"
+            ],
+            "examples": [
+              "std::sort(values.begin(), values.end());"
+            ],
+            "dependencies": [
+              "iterators",
+              "ranges"
+            ]
+          },
+          {
+            "name": "Ranges",
+            "details": [
+              "range concepts",
+              "views",
+              "pipelines",
+              "lazy evaluation",
+              "range adaptors",
+              "sentinels",
+              "borrowed ranges"
+            ],
+            "examples": [
+              "auto result = values | std::views::filter(predicate);"
+            ],
+            "dependencies": [
+              "concepts",
+              "iterators"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "error-handling",
+        "name": "Exceptions and Error Handling",
+        "purpose": "Cover C++ exception semantics, exception safety, error-value approaches, and modern alternatives.",
+        "concepts": [
+          "throw",
+          "try",
+          "catch",
+          "exception specifications",
+          "noexcept",
+          "exception safety",
+          "std::exception",
+          "error codes",
+          "expected"
+        ],
+        "subsections": [
+          {
+            "name": "Exceptions",
+            "details": [
+              "throw expressions",
+              "catch handlers",
+              "stack unwinding",
+              "exception object lifetime",
+              "nested exceptions",
+              "exception propagation"
+            ],
+            "examples": [
+              "try { operation(); } catch (const std::exception& e) { handle(e); }"
+            ],
+            "dependencies": [
+              "RAII",
+              "object lifetime"
+            ]
+          },
+          {
+            "name": "Exception Safety",
+            "details": [
+              "no-throw guarantee",
+              "strong guarantee",
+              "basic guarantee",
+              "no guarantee",
+              "transactional updates",
+              "commit-or-rollback design"
+            ],
+            "examples": [
+              "Design operations so resource invariants remain valid when an exception is thrown."
+            ],
+            "dependencies": [
+              "RAII",
+              "move semantics",
+              "noexcept"
+            ]
+          },
+          {
+            "name": "std::expected",
+            "details": [
+              "value-or-error representation",
+              "monadic operations",
+              "error propagation",
+              "exception-free interfaces",
+              "API-level error contracts"
+            ],
+            "examples": [
+              "std::expected<Value, Error>"
+            ],
+            "dependencies": [
+              "templates",
+              "value semantics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "memory-undefined-behavior",
+        "name": "Memory Safety and Undefined Behavior",
+        "purpose": "Identify the major classes of memory and language-level undefined behavior that must be controlled in C++.",
+        "concepts": [
+          "dangling pointers",
+          "use-after-free",
+          "double deletion",
+          "buffer overflow",
+          "out-of-bounds access",
+          "uninitialized values",
+          "strict aliasing",
+          "object lifetime violations",
+          "data races",
+          "undefined behavior"
+        ],
+        "subsections": [
+          {
+            "name": "Lifetime Hazards",
+            "details": [
+              "dangling references",
+              "dangling iterators",
+              "use-after-destruction",
+              "temporary lifetime",
+              "invalidated container references"
+            ],
+            "examples": [
+              "Do not retain a reference to an object after its lifetime ends."
+            ],
+            "dependencies": [
+              "object lifetime",
+              "containers"
+            ]
+          },
+          {
+            "name": "Pointer and Bounds Hazards",
+            "details": [
+              "out-of-bounds indexing",
+              "invalid pointer arithmetic",
+              "null dereference",
+              "double delete",
+              "allocation/deallocation mismatch"
+            ],
+            "examples": [
+              "Prefer standard containers and ownership abstractions to reduce manual pointer management."
+            ],
+            "dependencies": [
+              "memory management",
+              "RAII"
+            ]
+          },
+          {
+            "name": "Data Races",
+            "details": [
+              "conflicting concurrent accesses",
+              "happens-before",
+              "atomic operations",
+              "mutex synchronization",
+              "undefined behavior from data races"
+            ],
+            "examples": [
+              "std::atomic<int> counter{0};"
+            ],
+            "dependencies": [
+              "concurrency",
+              "memory model"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "concurrency",
+        "name": "Concurrency and Parallelism",
+        "purpose": "Explain C++ threading, synchronization, atomics, futures, tasks, memory ordering, and parallel algorithms.",
+        "concepts": [
+          "std::thread",
+          "jthread",
+          "mutex",
+          "shared_mutex",
+          "condition_variable",
+          "semaphore",
+          "latch",
+          "barrier",
+          "atomic",
+          "memory ordering",
+          "futures",
+          "async"
+        ],
+        "subsections": [
+          {
+            "name": "Thread Management",
+            "details": [
+              "thread creation",
+              "join",
+              "detach",
+              "jthread",
+              "stop tokens",
+              "thread lifetime"
+            ],
+            "examples": [
+              "std::jthread worker([] { do_work(); });"
+            ],
+            "dependencies": [
+              "object lifetime",
+              "synchronization"
+            ]
+          },
+          {
+            "name": "Synchronization",
+            "details": [
+              "mutex",
+              "lock_guard",
+              "unique_lock",
+              "scoped_lock",
+              "condition_variable",
+              "shared_mutex",
+              "semaphore",
+              "barrier",
+              "latch"
+            ],
+            "examples": [
+              "std::lock_guard lock(mutex);"
+            ],
+            "dependencies": [
+              "RAII",
+              "memory model"
+            ]
+          },
+          {
+            "name": "Atomics and Memory Ordering",
+            "details": [
+              "atomic objects",
+              "load",
+              "store",
+              "exchange",
+              "compare_exchange",
+              "relaxed ordering",
+              "acquire/release",
+              "sequential consistency"
+            ],
+            "examples": [
+              "counter.fetch_add(1, std::memory_order_relaxed);"
+            ],
+            "dependencies": [
+              "C++ memory model",
+              "concurrency"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "coroutines",
+        "name": "Coroutines",
+        "purpose": "Explain the C++ coroutine machinery introduced in C++20 and the abstractions built on top of it.",
+        "concepts": [
+          "co_await",
+          "co_yield",
+          "co_return",
+          "promise type",
+          "coroutine frame",
+          "awaiter",
+          "awaitable",
+          "coroutine_handle",
+          "generator patterns"
+        ],
+        "subsections": [
+          {
+            "name": "Coroutine Mechanics",
+            "details": [
+              "compiler-generated state machines",
+              "promise objects",
+              "suspension points",
+              "resume and destroy",
+              "coroutine frames"
+            ],
+            "examples": [
+              "co_await operation;"
+            ],
+            "dependencies": [
+              "object lifetime",
+              "templates",
+              "async design"
+            ]
+          },
+          {
+            "name": "Coroutine Abstractions",
+            "details": [
+              "task types",
+              "generators",
+              "lazy operations",
+              "eager operations",
+              "cancellation design",
+              "executor integration"
+            ],
+            "examples": [
+              "A library can build task or generator abstractions around the standard coroutine machinery."
+            ],
+            "dependencies": [
+              "coroutine mechanics",
+              "concurrency"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "compile-time",
+        "name": "Compile-Time Programming and Metaprogramming",
+        "purpose": "Cover constexpr, consteval, constinit, type traits, compile-time evaluation, and template metaprogramming.",
+        "concepts": [
+          "constexpr",
+          "consteval",
+          "constinit",
+          "type_traits",
+          "integral_constant",
+          "conditional",
+          "enable_if",
+          "integer_sequence",
+          "fold expressions",
+          "template metaprogramming"
+        ],
+        "subsections": [
+          {
+            "name": "Constant Evaluation",
+            "details": [
+              "constexpr functions",
+              "constexpr variables",
+              "consteval functions",
+              "immediate invocation",
+              "compile-time branches",
+              "constant initialization"
+            ],
+            "examples": [
+              "constexpr int square(int x) { return x * x; }"
+            ],
+            "dependencies": [
+              "expressions",
+              "templates"
+            ]
+          },
+          {
+            "name": "Type-Level Computation",
+            "details": [
+              "type traits",
+              "conditional types",
+              "detected properties",
+              "fold expressions",
+              "parameter packs",
+              "compile-time dispatch"
+            ],
+            "examples": [
+              "template<class... Ts> constexpr std::size_t count = sizeof...(Ts);"
+            ],
+            "dependencies": [
+              "templates",
+              "concepts"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "modules",
+        "name": "Modules and Modern Translation Architecture",
+        "purpose": "Explain C++ modules as a modern alternative and complement to traditional header inclusion.",
+        "concepts": [
+          "module units",
+          "module interface units",
+          "module implementation units",
+          "import",
+          "export",
+          "global module fragment",
+          "private module fragment",
+          "header units"
+        ],
+        "subsections": [
+          {
+            "name": "Module Interfaces",
+            "details": [
+              "exported declarations",
+              "module interface",
+              "module implementation",
+              "import dependencies",
+              "encapsulation"
+            ],
+            "examples": [
+              "export module graphics;"
+            ],
+            "dependencies": [
+              "translation units",
+              "linkage"
+            ]
+          },
+          {
+            "name": "Modules versus Headers",
+            "details": [
+              "macro isolation",
+              "dependency boundaries",
+              "build scalability",
+              "interface visibility",
+              "migration strategies"
+            ],
+            "examples": [
+              "import graphics;"
+            ],
+            "dependencies": [
+              "preprocessor",
+              "build system"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "linking-abi",
+        "name": "Linkage, ABI, and Binary Compatibility",
+        "purpose": "Explain how C++ source code becomes linkable binaries and why ABI boundaries are difficult to maintain.",
+        "concepts": [
+          "internal linkage",
+          "external linkage",
+          "ODR",
+          "name mangling",
+          "calling conventions",
+          "object files",
+          "static libraries",
+          "shared libraries",
+          "ABI compatibility",
+          "symbol visibility"
+        ],
+        "subsections": [
+          {
+            "name": "One Definition Rule",
+            "details": [
+              "ODR violations",
+              "inline entities",
+              "templates",
+              "multiple definitions",
+              "translation-unit consistency"
+            ],
+            "examples": [
+              "Identical definitions may be required across translation units depending on entity category."
+            ],
+            "dependencies": [
+              "translation units",
+              "linkage"
+            ]
+          },
+          {
+            "name": "ABI Boundaries",
+            "details": [
+              "binary interfaces",
+              "layout compatibility",
+              "compiler ABI differences",
+              "standard-library ABI considerations",
+              "symbol visibility",
+              "C-compatible interfaces"
+            ],
+            "examples": [
+              "extern \"C\" can suppress C++ name mangling for compatible interfaces."
+            ],
+            "dependencies": [
+              "object layout",
+              "linker"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "performance",
+        "name": "Performance Engineering",
+        "purpose": "Explain C++ performance characteristics through measurement, data representation, allocation, locality, optimization, and concurrency.",
+        "concepts": [
+          "optimization",
+          "inlining",
+          "cache locality",
+          "branch prediction",
+          "allocation",
+          "copy elision",
+          "move semantics",
+          "vectorization",
+          "profiling",
+          "benchmarking"
+        ],
+        "subsections": [
+          {
+            "name": "Data-Oriented Performance",
+            "details": [
+              "contiguous storage",
+              "cache locality",
+              "data layout",
+              "AoS versus SoA",
+              "allocation frequency",
+              "indirection costs"
+            ],
+            "examples": [
+              "Prefer contiguous storage when access patterns benefit from locality."
+            ],
+            "dependencies": [
+              "STL containers",
+              "memory model"
+            ]
+          },
+          {
+            "name": "Compiler Optimization",
+            "details": [
+              "optimization levels",
+              "LTO",
+              "PGO",
+              "inlining",
+              "devirtualization",
+              "vectorization",
+              "constant folding"
+            ],
+            "examples": [
+              "Measure release builds rather than extrapolating from debug performance."
+            ],
+            "dependencies": [
+              "compiler",
+              "benchmarking"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tooling-build",
+        "name": "Build Systems and Tooling",
+        "purpose": "Cover compilation, dependency management, build configuration, static analysis, formatting, debugging, sanitization, and CI.",
+        "concepts": [
+          "compiler drivers",
+          "CMake",
+          "Ninja",
+          "Make",
+          "package managers",
+          "compile_commands.json",
+          "clang-format",
+          "clang-tidy",
+          "sanitizers",
+          "debuggers"
+        ],
+        "subsections": [
+          {
+            "name": "Compilation Pipeline",
+            "details": [
+              "preprocessing",
+              "compilation",
+              "assembly",
+              "object generation",
+              "linking",
+              "debug information"
+            ],
+            "examples": [
+              "source -> preprocessing -> compilation -> object -> linking -> executable"
+            ],
+            "dependencies": [
+              "translation units",
+              "linker"
+            ]
+          },
+          {
+            "name": "Diagnostics and Sanitizers",
+            "details": [
+              "AddressSanitizer",
+              "UndefinedBehaviorSanitizer",
+              "ThreadSanitizer",
+              "MemorySanitizer",
+              "compiler warnings",
+              "static analysis"
+            ],
+            "examples": [
+              "-fsanitize=address,undefined"
+            ],
+            "dependencies": [
+              "compiler",
+              "runtime instrumentation"
+            ]
+          },
+          {
+            "name": "Debugging",
+            "details": [
+              "breakpoints",
+              "watchpoints",
+              "stack traces",
+              "core dumps",
+              "symbol information",
+              "debugger integration"
+            ],
+            "examples": [
+              "Use a debugger together with sanitizer output for memory and lifetime failures."
+            ],
+            "dependencies": [
+              "debug builds",
+              "debug symbols"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "testing",
+        "name": "Testing and Verification",
+        "purpose": "Cover unit, integration, property, fuzz, compile-time, concurrency, and performance testing.",
+        "concepts": [
+          "unit testing",
+          "integration testing",
+          "property testing",
+          "fuzzing",
+          "benchmarking",
+          "compile-time assertions",
+          "sanitizer testing",
+          "concurrency testing"
+        ],
+        "subsections": [
+          {
+            "name": "Unit and Integration Tests",
+            "details": [
+              "test fixtures",
+              "assertions",
+              "test isolation",
+              "integration binaries",
+              "dependency injection",
+              "mocking boundaries"
+            ],
+            "examples": [
+              "static_assert(sizeof(int) >= 2);"
+            ],
+            "dependencies": [
+              "build system",
+              "test framework"
+            ]
+          },
+          {
+            "name": "Fuzzing and Property Testing",
+            "details": [
+              "input generation",
+              "invariant checking",
+              "corpus management",
+              "crash minimization",
+              "undefined-behavior detection"
+            ],
+            "examples": [
+              "Fuzz parsers and serialization boundaries with malformed and adversarial inputs."
+            ],
+            "dependencies": [
+              "sanitizers",
+              "testing infrastructure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "interoperability",
+        "name": "Interoperability and FFI",
+        "purpose": "Explain integration with C, operating-system APIs, foreign runtimes, and language-neutral binary interfaces.",
+        "concepts": [
+          "extern C",
+          "C ABI",
+          "opaque handles",
+          "C-compatible structs",
+          "calling conventions",
+          "resource ownership",
+          "callbacks",
+          "symbol visibility"
+        ],
+        "subsections": [
+          {
+            "name": "C Interfaces",
+            "details": [
+              "extern \"C\"",
+              "C-compatible types",
+              "opaque pointers",
+              "allocation ownership",
+              "error codes",
+              "callbacks"
+            ],
+            "examples": [
+              "extern \"C\" int api_initialize();"
+            ],
+            "dependencies": [
+              "ABI",
+              "object lifetime"
+            ]
+          },
+          {
+            "name": "Platform APIs",
+            "details": [
+              "POSIX",
+              "Windows APIs",
+              "file descriptors",
+              "handles",
+              "system calls",
+              "platform-specific synchronization"
+            ],
+            "examples": [
+              "Wrap platform handles in RAII types."
+            ],
+            "dependencies": [
+              "RAII",
+              "FFI"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "architecture",
+        "name": "Production Architecture and Design",
+        "purpose": "Apply C++ language facilities to maintainable large-scale systems.",
+        "concepts": [
+          "SOLID principles",
+          "dependency inversion",
+          "value types",
+          "ownership architecture",
+          "pImpl",
+          "type erasure",
+          "policy-based design",
+          "dependency injection",
+          "API stability",
+          "library boundaries"
+        ],
+        "subsections": [
+          {
+            "name": "Ownership Architecture",
+            "details": [
+              "single ownership",
+              "shared ownership",
+              "non-owning references",
+              "observer pointers",
+              "resource handles",
+              "lifetime documentation"
+            ],
+            "examples": [
+              "Prefer unique ownership unless shared lifetime is an explicit requirement."
+            ],
+            "dependencies": [
+              "RAII",
+              "smart pointers",
+              "object lifetime"
+            ]
+          },
+          {
+            "name": "pImpl and ABI Stability",
+            "details": [
+              "implementation hiding",
+              "compile-time dependency reduction",
+              "binary compatibility",
+              "private data isolation",
+              "library evolution"
+            ],
+            "examples": [
+              "class Widget { struct Impl; std::unique_ptr<Impl> impl_; };"
+            ],
+            "dependencies": [
+              "unique_ptr",
+              "ABI",
+              "incomplete types"
+            ]
+          },
+          {
+            "name": "Type Erasure",
+            "details": [
+              "runtime polymorphism without inheritance",
+              "std::function",
+              "std::any",
+              "custom erased interfaces",
+              "small-object optimization"
+            ],
+            "examples": [
+              "std::function<void()> callback;"
+            ],
+            "dependencies": [
+              "templates",
+              "polymorphism",
+              "value semantics"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "object lifetime",
+      "to": "RAII",
+      "relationship": "RAII uses deterministic object lifetime to manage resources automatically."
+    },
+    {
+      "from": "RAII",
+      "to": "exception safety",
+      "relationship": "Destructors provide automatic cleanup during normal scope exit and stack unwinding."
+    },
+    {
+      "from": "value categories",
+      "to": "move semantics",
+      "relationship": "Expression categories determine how objects can bind to references and participate in move operations."
+    },
+    {
+      "from": "templates",
+      "to": "concepts",
+      "relationship": "Concepts constrain template interfaces and improve overload selection and diagnostics."
+    },
+    {
+      "from": "templates",
+      "to": "STL",
+      "relationship": "The standard library relies extensively on generic programming."
+    },
+    {
+      "from": "iterators",
+      "to": "algorithms",
+      "relationship": "Classic STL algorithms operate over iterator-based ranges."
+    },
+    {
+      "from": "ranges",
+      "to": "concepts",
+      "relationship": "Ranges use concepts to express iterator and range requirements."
+    },
+    {
+      "from": "concurrency",
+      "to": "memory model",
+      "relationship": "Synchronization and atomic ordering are defined in terms of the C++ memory model."
+    },
+    {
+      "from": "coroutines",
+      "to": "concurrency",
+      "relationship": "Coroutines provide suspension and resumption machinery that libraries can use to implement asynchronous systems."
+    },
+    {
+      "from": "modules",
+      "to": "build system",
+      "relationship": "Module dependency discovery and compilation require build-system support."
+    },
+    {
+      "from": "ABI",
+      "to": "FFI",
+      "relationship": "Interoperability depends on compatible calling conventions, layouts, symbols, and ownership contracts."
+    },
+    {
+      "from": "sanitizers",
+      "to": "undefined behavior",
+      "relationship": "Runtime instrumentation can detect many classes of memory, lifetime, threading, and undefined-behavior defects."
+    },
+    {
+      "from": "performance",
+      "to": "object representation",
+      "relationship": "Layout, allocation, indirection, and locality directly influence performance characteristics."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "C++ compiler",
+      "type": "compiler",
+      "purpose": "Parses, type-checks, instantiates, optimizes, and generates code from C++ translation units."
+    },
+    {
+      "name": "linker",
+      "type": "binary_tool",
+      "purpose": "Combines object files and libraries into executable or shared binary artifacts."
+    },
+    {
+      "name": "standard library",
+      "type": "library",
+      "purpose": "Provides containers, algorithms, utilities, concurrency primitives, I/O, memory facilities, and language-support components."
+    },
+    {
+      "name": "build system",
+      "type": "infrastructure",
+      "purpose": "Coordinates compilation, dependencies, linking, testing, installation, and configuration."
+    },
+    {
+      "name": "debugger",
+      "type": "development_tool",
+      "purpose": "Provides runtime inspection, breakpoints, stack traces, and debugging facilities."
+    },
+    {
+      "name": "sanitizer instrumentation",
+      "type": "verification_tool",
+      "purpose": "Detects selected classes of memory, undefined-behavior, and concurrency errors."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "Dangling reference",
+      "handling": "Ensure referenced objects outlive all references and account for temporary and container invalidation rules."
+    },
+    {
+      "case": "Iterator invalidation",
+      "handling": "Understand container-specific invalidation rules before retaining iterators or references across mutations."
+    },
+    {
+      "case": "Object slicing",
+      "handling": "Use references, pointers, or polymorphic ownership when preserving dynamic type is required."
+    },
+    {
+      "case": "Virtual destructor omission",
+      "handling": "Use a virtual destructor when deleting derived objects through a base pointer is part of the interface."
+    },
+    {
+      "case": "Shared_ptr cycles",
+      "handling": "Use weak_ptr for non-owning edges where cycles would otherwise prevent destruction."
+    },
+    {
+      "case": "Data race",
+      "handling": "Use appropriate synchronization or atomic operations; a data race is not merely a logical race and can result in undefined behavior."
+    },
+    {
+      "case": "Static initialization order",
+      "handling": "Avoid fragile cross-translation-unit initialization dependencies and use controlled initialization patterns."
+    },
+    {
+      "case": "ODR violation",
+      "handling": "Ensure entities requiring consistent definitions have compatible definitions across translation units."
+    },
+    {
+      "case": "Exception during construction",
+      "handling": "Rely on RAII and member destruction while designing constructors to preserve class invariants."
+    },
+    {
+      "case": "Noexcept move operations",
+      "handling": "Understand how noexcept affects container relocation and exception guarantees."
+    },
+    {
+      "case": "Template instantiation explosion",
+      "handling": "Control template complexity, translation-unit boundaries, code generation, and repeated instantiation."
+    },
+    {
+      "case": "ABI incompatibility",
+      "handling": "Define explicit binary interface contracts and avoid exposing unstable implementation details across ABI boundaries."
+    },
+    {
+      "case": "Coroutine lifetime failure",
+      "handling": "Ensure coroutine frames, promise objects, awaited resources, and referenced state remain valid for the required duration."
+    },
+    {
+      "case": "Undefined behavior hidden by tests",
+      "handling": "Combine testing with compiler diagnostics, sanitizers, static analysis, and careful lifetime reasoning."
+    }
+  ],
+  "constraints": [
+    "The C++ abstract machine defines program semantics independently of any single hardware implementation.",
+    "Undefined behavior must not be treated as a recoverable runtime condition.",
+    "Ownership and lifetime contracts should be explicit in interfaces.",
+    "RAII should be preferred for resource management.",
+    "Manual memory management should be justified by a concrete ownership or performance requirement.",
+    "Concurrency must respect the C++ memory model.",
+    "Atomic ordering must match the synchronization guarantees required by the algorithm.",
+    "ABI-sensitive interfaces must account for compiler, standard-library, platform, layout, and calling-convention compatibility.",
+    "Templates and concepts should express generic requirements without unnecessarily increasing compile-time complexity.",
+    "Performance claims should be validated through representative measurement.",
+    "Compiler-specific extensions should be isolated when portability is a requirement.",
+    "Public APIs should minimize accidental exposure of implementation details.",
+    "Unsafe operations involving raw memory, casts, lifetime manipulation, and low-level synchronization require explicit invariant reasoning."
+  ],
+  "examples": [
+    {
+      "name": "RAII",
+      "code": "class File {\npublic:\n    explicit File(const char* path);\n    ~File();\n    File(const File&) = delete;\n    File& operator=(const File&) = delete;\n};"
+    },
+    {
+      "name": "Move semantics",
+      "code": "std::vector<int> make_values() {\n    std::vector<int> values{1, 2, 3};\n    return values;\n}"
+    },
+    {
+      "name": "Concept",
+      "code": "template<class T>\nconcept Addable = requires(T a, T b) {\n    a + b;\n};"
+    },
+    {
+      "name": "Ranges",
+      "code": "auto result = values\n    | std::views::filter([](int x) { return x > 0; })\n    | std::views::transform([](int x) { return x * 2; });"
+    },
+    {
+      "name": "Smart pointer",
+      "code": "auto resource = std::make_unique<Resource>();"
+    },
+    {
+      "name": "Concurrency",
+      "code": "std::mutex mutex;\n{\n    std::lock_guard lock(mutex);\n    update_state();\n}"
+    },
+    {
+      "name": "Atomic operation",
+      "code": "std::atomic<int> counter{0};\ncounter.fetch_add(1, std::memory_order_relaxed);"
+    },
+    {
+      "name": "Expected-based error handling",
+      "code": "std::expected<int, Error> parse();\nauto value = parse();\nif (!value) {\n    handle_error(value.error());\n}"
+    },
+    {
+      "name": "Module",
+      "code": "export module math;\n\nexport int add(int a, int b) {\n    return a + b;\n}"
+    },
+    {
+      "name": "Compile-time evaluation",
+      "code": "consteval int square(int value) {\n    return value * value;\n}"
+    },
+    {
+      "name": "C interoperability",
+      "code": "extern \"C\" int initialize_library();"
+    }
+  ],
+  "validation": [
+    {
+      "id": "compile",
+      "check": "The program compiles under the intended C++ standard mode and supported compiler set."
+    },
+    {
+      "id": "lifetime",
+      "check": "All objects, references, pointers, iterators, and resources obey their required lifetime constraints."
+    },
+    {
+      "id": "ownership",
+      "check": "Ownership transfer, destruction, copying, and moving are explicit and correct."
+    },
+    {
+      "id": "type-safety",
+      "check": "Conversions, overloads, templates, concepts, and polymorphic interfaces express the intended type relationships."
+    },
+    {
+      "id": "undefined-behavior",
+      "check": "The implementation is reviewed and instrumented for major classes of undefined behavior."
+    },
+    {
+      "id": "concurrency",
+      "check": "Synchronization, atomic ordering, thread lifetime, and shared-state access satisfy the required happens-before relationships."
+    },
+    {
+      "id": "exception-safety",
+      "check": "Operations preserve documented invariants under exceptions and use appropriate exception guarantees."
+    },
+    {
+      "id": "abi",
+      "check": "Binary interfaces are compatible across intended compiler, platform, and library boundaries."
+    },
+    {
+      "id": "testing",
+      "check": "Unit, integration, fuzz, sanitizer, concurrency, and regression tests cover critical behavior."
+    },
+    {
+      "id": "performance",
+      "check": "Performance-sensitive behavior is measured using representative workloads and appropriate profiling tools."
+    },
+    {
+      "id": "tooling",
+      "check": "Warnings, static analysis, formatting, sanitizers, builds, tests, and CI checks pass."
+    },
+    {
+      "id": "portability",
+      "check": "Platform assumptions and compiler extensions are identified and isolated where portability matters."
+    }
+  ],
+  "open_questions": [
+    "Should the next iteration focus on C++23 language and library facilities exclusively, or retain C++11-C++23 historical progression?",
+    "Should the object model and lifetime model be expanded into a formal treatment of storage, object lifetime, pointer validity, and aliasing?",
+    "Should templates receive a deeper compiler-oriented treatment covering deduction, overload resolution, instantiation, SFINAE, concepts, and constraint normalization?",
+    "Should undefined behavior be expanded into a dedicated taxonomy covering lifetime, bounds, aliasing, concurrency, initialization, arithmetic, and library preconditions?",
+    "Should concurrency be expanded into a formal C++ memory-model hierarchy covering sequenced-before, synchronizes-with, happens-before, atomics, and memory-order relations?",
+    "Should coroutines be expanded into a complete promise/awaiter/awaitable design model?",
+    "Should modules include migration strategies from header-heavy legacy systems?",
+    "Should the standard library be expanded into a complete namespace-by-namespace reference?",
+    "Should build architecture include CMake, Ninja, package managers, cross-compilation, reproducible builds, and CI/CD?",
+    "Should production architecture include game engines, embedded systems, high-performance computing, networking, desktop applications, and large-scale backend systems as separate application domains?"
+  ]
+}
+
+
