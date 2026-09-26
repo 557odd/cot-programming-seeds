@@ -1,0 +1,1128 @@
+{
+  "topic": "Apple Cloud Compute",
+  "objective": "Provide an expert-level outline of Apple's cloud-compute ecosystem, focusing on Apple's publicly documented cloud infrastructure, compute architecture, developer-facing cloud services, private cloud computing, and the architectural implications of Apple's device-to-cloud platform.",
+  "scope": "Apple's cloud computing capabilities and infrastructure as publicly documented, including iCloud, Private Cloud Compute, Apple silicon server infrastructure where publicly disclosed, cloud-backed Apple platforms, developer cloud services, security architecture, privacy, distributed systems, storage, networking, reliability, observability, and operational constraints. This outline distinguishes publicly documented capabilities from implementation details that Apple does not disclose.",
+  "architecture": {
+    "sections": [
+      {
+        "id": "apple-cloud-landscape",
+        "name": "Apple Cloud Computing Landscape",
+        "purpose": "Establish the terminology and boundaries around Apple's cloud computing ecosystem.",
+        "concepts": [
+          "iCloud",
+          "Apple services infrastructure",
+          "Private Cloud Compute",
+          "Apple silicon",
+          "device-cloud architecture",
+          "managed cloud services",
+          "Apple developer services",
+          "privacy-preserving cloud computation"
+        ],
+        "subsections": [
+          {
+            "name": "Apple's Cloud Model",
+            "details": [
+              "consumer cloud services",
+              "device synchronization",
+              "cloud storage",
+              "application data",
+              "identity",
+              "media services",
+              "private cloud computation",
+              "developer-facing cloud capabilities"
+            ],
+            "examples": [
+              "iCloud synchronizes supported user data across Apple devices while Apple's cloud infrastructure provides the backend services required for those experiences."
+            ],
+            "dependencies": [
+              "Apple Account",
+              "network connectivity",
+              "Apple data centers and cloud infrastructure"
+            ]
+          },
+          {
+            "name": "Public Versus Undisclosed Infrastructure",
+            "details": [
+              "Apple publicly documents service behavior and selected security architecture",
+              "Apple does not publicly expose a complete equivalent to AWS or GCP infrastructure catalogs",
+              "internal compute topology",
+              "capacity",
+              "exact data-center architecture",
+              "internal orchestration systems",
+              "internal fleet-management systems"
+            ],
+            "examples": [
+              "A production architecture should not assume undocumented Apple internal APIs or infrastructure components."
+            ],
+            "dependencies": [
+              "public Apple documentation",
+              "Apple platform documentation"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "icloud",
+        "name": "iCloud",
+        "purpose": "Explain Apple's primary consumer cloud platform and the services built around synchronization, storage, backup, and application data.",
+        "concepts": [
+          "iCloud Drive",
+          "iCloud Photos",
+          "iCloud Backup",
+          "iCloud Mail",
+          "iCloud Keychain",
+          "Contacts",
+          "Calendars",
+          "Notes",
+          "Reminders",
+          "CloudKit"
+        ],
+        "subsections": [
+          {
+            "name": "iCloud Data Model",
+            "details": [
+              "device synchronization",
+              "cloud-backed application data",
+              "documents",
+              "media",
+              "metadata",
+              "backup data",
+              "account-scoped data"
+            ],
+            "examples": [
+              "An application can synchronize supported user data through CloudKit rather than implementing an entire synchronization backend independently."
+            ],
+            "dependencies": [
+              "Apple Account",
+              "CloudKit",
+              "iCloud services"
+            ]
+          },
+          {
+            "name": "iCloud Drive",
+            "details": [
+              "file storage",
+              "document synchronization",
+              "folder hierarchy",
+              "device access",
+              "file metadata",
+              "sharing"
+            ],
+            "examples": [
+              "Store application or user documents in iCloud Drive so they can be accessed across supported Apple devices."
+            ],
+            "dependencies": [
+              "iCloud",
+              "Apple Account",
+              "network connectivity"
+            ]
+          },
+          {
+            "name": "iCloud Backup",
+            "details": [
+              "device backup",
+              "application data",
+              "configuration",
+              "restore",
+              "backup lifecycle",
+              "encrypted backup data"
+            ],
+            "examples": [
+              "Restore a supported device from an iCloud Backup after device replacement."
+            ],
+            "dependencies": [
+              "iCloud storage",
+              "Apple Account",
+              "device authentication"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "private-cloud-compute",
+        "name": "Private Cloud Compute",
+        "purpose": "Explain Apple's privacy-oriented cloud computation architecture for supported Apple Intelligence workloads.",
+        "concepts": [
+          "Private Cloud Compute",
+          "Apple silicon",
+          "Apple Intelligence",
+          "stateless computation",
+          "privacy",
+          "data minimization",
+          "attestation",
+          "verifiability",
+          "secure boot",
+          "software transparency"
+        ],
+        "subsections": [
+          {
+            "name": "Purpose and Architecture",
+            "details": [
+              "cloud execution for computationally demanding AI tasks",
+              "extension of Apple's on-device privacy model",
+              "Apple silicon-based compute",
+              "controlled software environment",
+              "stateless processing model",
+              "limited retention of user data"
+            ],
+            "examples": [
+              "A supported AI request that exceeds on-device capability can use Private Cloud Compute while applying Apple's documented privacy architecture."
+            ],
+            "dependencies": [
+              "Apple Intelligence",
+              "Apple silicon",
+              "Apple security architecture"
+            ]
+          },
+          {
+            "name": "Privacy Architecture",
+            "details": [
+              "data minimization",
+              "stateless processing",
+              "limited data retention",
+              "cryptographic protections",
+              "device-side request authorization",
+              "auditable software",
+              "independent verification"
+            ],
+            "examples": [
+              "Design assumptions should treat cloud processing as a constrained computation environment rather than a conventional persistent application backend."
+            ],
+            "dependencies": [
+              "Apple silicon",
+              "secure boot",
+              "cryptographic identity"
+            ]
+          },
+          {
+            "name": "Transparency and Verification",
+            "details": [
+              "software images",
+              "published security information",
+              "verification mechanisms",
+              "researcher inspection",
+              "attestation",
+              "trust establishment"
+            ],
+            "examples": [
+              "A client can establish that a request is being processed by an authorized Private Cloud Compute environment using Apple's documented verification mechanisms."
+            ],
+            "dependencies": [
+              "cryptography",
+              "secure enclave architecture",
+              "Apple security infrastructure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "apple-silicon-compute",
+        "name": "Apple Silicon Compute",
+        "purpose": "Examine Apple silicon as the hardware foundation for Apple's cloud and privacy-oriented compute systems where publicly documented.",
+        "concepts": [
+          "Apple silicon",
+          "ARM architecture",
+          "CPU cores",
+          "GPU",
+          "Neural Engine",
+          "unified memory",
+          "Secure Enclave",
+          "hardware root of trust",
+          "accelerated machine learning"
+        ],
+        "subsections": [
+          {
+            "name": "Compute Characteristics",
+            "details": [
+              "CPU performance",
+              "GPU acceleration",
+              "Neural Engine",
+              "memory architecture",
+              "energy efficiency",
+              "heterogeneous compute"
+            ],
+            "examples": [
+              "AI workloads can distribute computation between CPU, GPU, Neural Engine, and cloud infrastructure depending on workload requirements."
+            ],
+            "dependencies": [
+              "Apple silicon",
+              "machine-learning frameworks"
+            ]
+          },
+          {
+            "name": "Security Hardware",
+            "details": [
+              "Secure Enclave",
+              "hardware-backed key protection",
+              "secure boot",
+              "device identity",
+              "cryptographic operations"
+            ],
+            "examples": [
+              "Use hardware-backed key storage on supported Apple devices instead of treating application-managed software keys as equivalent protection."
+            ],
+            "dependencies": [
+              "Apple security architecture",
+              "cryptographic services"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cloudkit",
+        "name": "CloudKit",
+        "purpose": "Cover Apple's developer-facing cloud backend for applications using iCloud infrastructure.",
+        "concepts": [
+          "CloudKit",
+          "containers",
+          "databases",
+          "records",
+          "record zones",
+          "public database",
+          "private database",
+          "shared database",
+          "subscriptions",
+          "CloudKit Web Services",
+          "CKSyncEngine"
+        ],
+        "subsections": [
+          {
+            "name": "CloudKit Data Model",
+            "details": [
+              "containers",
+              "records",
+              "record types",
+              "fields",
+              "record zones",
+              "references",
+              "assets",
+              "indexes"
+            ],
+            "examples": [
+              "Represent application objects as CloudKit records and store large binary data as CloudKit assets."
+            ],
+            "dependencies": [
+              "CloudKit",
+              "iCloud",
+              "Apple developer account"
+            ]
+          },
+          {
+            "name": "Database Scopes",
+            "details": [
+              "public database",
+              "private database",
+              "shared database",
+              "user-scoped data",
+              "application-scoped data",
+              "sharing permissions"
+            ],
+            "examples": [
+              "Store globally discoverable application content in the public database while keeping user-specific records in private databases."
+            ],
+            "dependencies": [
+              "CloudKit containers",
+              "Apple Account"
+            ]
+          },
+          {
+            "name": "Synchronization",
+            "details": [
+              "change tracking",
+              "subscriptions",
+              "push notifications",
+              "conflict handling",
+              "record changes",
+              "CKSyncEngine",
+              "offline operation"
+            ],
+            "examples": [
+              "Synchronize local application state with CloudKit while handling intermittent connectivity and record conflicts."
+            ],
+            "dependencies": [
+              "CloudKit",
+              "APNs",
+              "local persistence"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "apple-identity",
+        "name": "Apple Identity and Authentication",
+        "purpose": "Describe identity mechanisms connecting users, devices, applications, and cloud services.",
+        "concepts": [
+          "Apple Account",
+          "Sign in with Apple",
+          "authentication",
+          "authorization",
+          "device identity",
+          "keychain",
+          "passkeys",
+          "private relay",
+          "iCloud identity"
+        ],
+        "subsections": [
+          {
+            "name": "Sign in with Apple",
+            "details": [
+              "Apple-mediated authentication",
+              "identity tokens",
+              "authorization codes",
+              "private email relay",
+              "user consent",
+              "application identity"
+            ],
+            "examples": [
+              "Allow users to authenticate to an application through Sign in with Apple without requiring the application to manage a conventional password database."
+            ],
+            "dependencies": [
+              "Apple Developer account",
+              "OAuth or OpenID Connect concepts"
+            ]
+          },
+          {
+            "name": "Device and Account Trust",
+            "details": [
+              "device credentials",
+              "keychain",
+              "hardware-backed keys",
+              "account authentication",
+              "multi-factor authentication"
+            ],
+            "examples": [
+              "Combine Apple Account authentication with hardware-backed credentials where the platform supports them."
+            ],
+            "dependencies": [
+              "Apple security architecture",
+              "Apple Account"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "security-privacy",
+        "name": "Security and Privacy",
+        "purpose": "Analyze Apple's cloud security model, encryption, device trust, privacy architecture, and data-protection mechanisms.",
+        "concepts": [
+          "end-to-end encryption",
+          "data protection",
+          "Advanced Data Protection",
+          "Secure Enclave",
+          "key hierarchy",
+          "cryptographic keys",
+          "device trust",
+          "privacy",
+          "security transparency"
+        ],
+        "subsections": [
+          {
+            "name": "Cloud Data Protection",
+            "details": [
+              "standard data protection",
+              "end-to-end encrypted categories",
+              "Advanced Data Protection",
+              "key management",
+              "trusted devices",
+              "recovery mechanisms"
+            ],
+            "examples": [
+              "Evaluate whether a particular iCloud data category is protected by end-to-end encryption before assuming Apple cannot access it."
+            ],
+            "dependencies": [
+              "Apple Account",
+              "cryptography",
+              "trusted devices"
+            ]
+          },
+          {
+            "name": "End-to-End Encryption",
+            "details": [
+              "client-side key possession",
+              "device trust",
+              "cryptographic key distribution",
+              "recovery implications",
+              "metadata considerations"
+            ],
+            "examples": [
+              "Treat end-to-end encrypted data as architecturally different from ordinary server-side encrypted cloud storage."
+            ],
+            "dependencies": [
+              "cryptographic architecture",
+              "Apple Account",
+              "device security"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "apple-networking",
+        "name": "Apple Cloud Networking",
+        "purpose": "Describe the networking requirements and publicly observable architecture supporting Apple's cloud services without inventing undisclosed internal topology.",
+        "concepts": [
+          "internet connectivity",
+          "Apple service endpoints",
+          "TLS",
+          "CDN",
+          "edge delivery",
+          "DNS",
+          "regional service infrastructure",
+          "private networking on Apple platforms"
+        ],
+        "subsections": [
+          {
+            "name": "Service Connectivity",
+            "details": [
+              "DNS resolution",
+              "TLS",
+              "service endpoints",
+              "network reachability",
+              "firewall requirements",
+              "enterprise network configuration"
+            ],
+            "examples": [
+              "Enterprise deployments must permit the documented Apple service domains and network traffic required by the relevant services."
+            ],
+            "dependencies": [
+              "DNS",
+              "TLS",
+              "enterprise networking"
+            ]
+          },
+          {
+            "name": "Edge and Content Delivery",
+            "details": [
+              "content distribution",
+              "caching",
+              "global traffic routing",
+              "latency",
+              "regional availability"
+            ],
+            "examples": [
+              "Apple services can distribute frequently accessed content through geographically distributed infrastructure to reduce user latency."
+            ],
+            "dependencies": [
+              "DNS",
+              "global network infrastructure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "developer-cloud-services",
+        "name": "Apple Developer Cloud Services",
+        "purpose": "Cover the cloud capabilities available to application developers through Apple's platform ecosystem.",
+        "concepts": [
+          "CloudKit",
+          "APNs",
+          "Sign in with Apple",
+          "iCloud",
+          "App Store Connect",
+          "TestFlight",
+          "Xcode Cloud",
+          "StoreKit",
+          "server notifications"
+        ],
+        "subsections": [
+          {
+            "name": "Xcode Cloud",
+            "details": [
+              "cloud builds",
+              "continuous integration",
+              "workflow configuration",
+              "test automation",
+              "build environments",
+              "artifact delivery"
+            ],
+            "examples": [
+              "Run automated build and test workflows in Xcode Cloud when an Apple-managed CI environment fits the project requirements."
+            ],
+            "dependencies": [
+              "Xcode",
+              "Apple Developer Program",
+              "source-control integration"
+            ]
+          },
+          {
+            "name": "Apple Push Notification Service",
+            "details": [
+              "device tokens",
+              "topics",
+              "push providers",
+              "notification payloads",
+              "authentication keys",
+              "delivery behavior"
+            ],
+            "examples": [
+              "Use APNs to notify an application of relevant server-side or CloudKit changes rather than maintaining a persistent custom device connection."
+            ],
+            "dependencies": [
+              "Apple Developer credentials",
+              "application bundle identity"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "storage-data",
+        "name": "Apple Cloud Storage and Data Services",
+        "purpose": "Model cloud-backed application and user data across Apple's storage abstractions.",
+        "concepts": [
+          "iCloud Drive",
+          "CloudKit records",
+          "CloudKit assets",
+          "iCloud Backup",
+          "Photos",
+          "Keychain synchronization",
+          "data synchronization",
+          "metadata"
+        ],
+        "subsections": [
+          {
+            "name": "Object and Asset Storage",
+            "details": [
+              "large binary assets",
+              "documents",
+              "media",
+              "metadata",
+              "record references",
+              "storage quotas"
+            ],
+            "examples": [
+              "Store structured metadata as records and large media as assets rather than embedding large binary payloads directly into individual records."
+            ],
+            "dependencies": [
+              "CloudKit",
+              "iCloud"
+            ]
+          },
+          {
+            "name": "Synchronization Semantics",
+            "details": [
+              "offline-first behavior",
+              "change propagation",
+              "conflict resolution",
+              "eventual synchronization",
+              "local cache",
+              "push notifications"
+            ],
+            "examples": [
+              "Design the client to remain functional during temporary cloud unavailability and reconcile state after connectivity returns."
+            ],
+            "dependencies": [
+              "CloudKit",
+              "local database",
+              "APNs"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "reliability",
+        "name": "Reliability and Availability",
+        "purpose": "Analyze resilience requirements for applications depending on Apple cloud services.",
+        "concepts": [
+          "availability",
+          "offline operation",
+          "retry",
+          "backoff",
+          "idempotency",
+          "local caching",
+          "synchronization",
+          "service dependency"
+        ],
+        "subsections": [
+          {
+            "name": "Offline-First Design",
+            "details": [
+              "local persistence",
+              "queued changes",
+              "retry",
+              "conflict resolution",
+              "eventual synchronization",
+              "degraded functionality"
+            ],
+            "examples": [
+              "Allow a document editor to continue working locally when network access is unavailable and synchronize changes later."
+            ],
+            "dependencies": [
+              "local persistence",
+              "CloudKit",
+              "conflict resolution"
+            ]
+          },
+          {
+            "name": "Failure Handling",
+            "details": [
+              "transient failures",
+              "timeouts",
+              "rate limiting",
+              "retry policies",
+              "exponential backoff",
+              "idempotency",
+              "service-status monitoring"
+            ],
+            "examples": [
+              "Retry transient cloud requests with bounded exponential backoff while preventing duplicate side effects."
+            ],
+            "dependencies": [
+              "networking",
+              "application architecture"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "observability",
+        "name": "Observability and Operations",
+        "purpose": "Define application-level observability when using Apple's managed cloud services.",
+        "concepts": [
+          "application logging",
+          "metrics",
+          "CloudKit diagnostics",
+          "Xcode diagnostics",
+          "OSLog",
+          "MetricKit",
+          "server-side monitoring",
+          "App Store Connect analytics"
+        ],
+        "subsections": [
+          {
+            "name": "Client Observability",
+            "details": [
+              "OSLog",
+              "MetricKit",
+              "crash diagnostics",
+              "performance metrics",
+              "network errors",
+              "synchronization errors"
+            ],
+            "examples": [
+              "Record structured client-side synchronization failures without logging sensitive user data."
+            ],
+            "dependencies": [
+              "Apple platform APIs",
+              "privacy controls"
+            ]
+          },
+          {
+            "name": "Cloud-Service Diagnostics",
+            "details": [
+              "CloudKit operation errors",
+              "server changes",
+              "subscriptions",
+              "service status",
+              "quota errors",
+              "rate limits"
+            ],
+            "examples": [
+              "Instrument CloudKit operations so application teams can distinguish authorization failures, quota issues, transient errors, and schema problems."
+            ],
+            "dependencies": [
+              "CloudKit",
+              "application telemetry"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cost-capacity",
+        "name": "Cost, Quotas, and Capacity",
+        "purpose": "Address the resource, quota, storage, and operational constraints of Apple's developer-facing cloud services.",
+        "concepts": [
+          "iCloud storage",
+          "CloudKit quotas",
+          "API limits",
+          "data transfer",
+          "developer account limits",
+          "storage economics",
+          "usage growth"
+        ],
+        "subsections": [
+          {
+            "name": "CloudKit Capacity Planning",
+            "details": [
+              "record growth",
+              "asset growth",
+              "query volume",
+              "subscriptions",
+              "user population",
+              "public database scaling",
+              "private database scaling"
+            ],
+            "examples": [
+              "Model expected record and asset growth before launching a CloudKit-backed application at large scale."
+            ],
+            "dependencies": [
+              "CloudKit",
+              "application usage model"
+            ]
+          },
+          {
+            "name": "Quota-Aware Design",
+            "details": [
+              "API quotas",
+              "storage limits",
+              "rate limiting",
+              "batch operations",
+              "request efficiency",
+              "backoff"
+            ],
+            "examples": [
+              "Batch compatible CloudKit operations and cache data locally to reduce unnecessary cloud requests."
+            ],
+            "dependencies": [
+              "CloudKit",
+              "client caching"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "architecture-patterns",
+        "name": "Apple Cloud Architecture Patterns",
+        "purpose": "Combine Apple's services into practical application architectures.",
+        "concepts": [
+          "offline-first",
+          "device-cloud synchronization",
+          "cloud-backed application",
+          "hybrid backend",
+          "serverless Apple backend",
+          "private AI cloud",
+          "multi-cloud backend"
+        ],
+        "subsections": [
+          {
+            "name": "Apple-Native Cloud Application",
+            "details": [
+              "Swift application",
+              "CloudKit",
+              "iCloud",
+              "APNs",
+              "Sign in with Apple",
+              "local persistence"
+            ],
+            "examples": [
+              "Build a native Apple application using CloudKit for synchronized structured data and APNs for change notifications."
+            ],
+            "dependencies": [
+              "CloudKit",
+              "APNs",
+              "Apple Account"
+            ]
+          },
+          {
+            "name": "Apple Client With External Backend",
+            "details": [
+              "Swift client",
+              "custom API",
+              "AWS or GCP backend",
+              "Sign in with Apple",
+              "APNs",
+              "CloudKit where appropriate",
+              "data synchronization boundaries"
+            ],
+            "examples": [
+              "Use Apple's identity and notification capabilities while retaining an external backend for workloads requiring infrastructure or database features outside Apple's developer cloud services."
+            ],
+            "dependencies": [
+              "Apple platform",
+              "external cloud provider",
+              "authentication"
+            ]
+          },
+          {
+            "name": "On-Device Plus Private Cloud AI",
+            "details": [
+              "on-device model execution",
+              "Apple silicon",
+              "Apple Intelligence",
+              "Private Cloud Compute",
+              "privacy boundary",
+              "request routing"
+            ],
+            "examples": [
+              "Perform supported AI processing locally when possible and use Private Cloud Compute for supported requests requiring greater computational capacity."
+            ],
+            "dependencies": [
+              "Apple Intelligence",
+              "Apple silicon",
+              "Private Cloud Compute"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "Apple Account",
+      "to": "iCloud",
+      "relationship": "Provides the user identity context for supported iCloud services."
+    },
+    {
+      "from": "iCloud",
+      "to": "CloudKit",
+      "relationship": "CloudKit provides developer-facing application data capabilities integrated with Apple's iCloud ecosystem."
+    },
+    {
+      "from": "CloudKit",
+      "to": "APNs",
+      "relationship": "CloudKit synchronization workflows can use push notifications to signal relevant changes to applications."
+    },
+    {
+      "from": "Apple silicon",
+      "to": "Private Cloud Compute",
+      "relationship": "Apple documents Apple silicon as a core component of Private Cloud Compute infrastructure."
+    },
+    {
+      "from": "Apple Intelligence",
+      "to": "Private Cloud Compute",
+      "relationship": "Supported Apple Intelligence requests can use Private Cloud Compute when cloud-scale processing is required."
+    },
+    {
+      "from": "Sign in with Apple",
+      "to": "Apple applications",
+      "relationship": "Provides an Apple-managed identity mechanism for application authentication."
+    },
+    {
+      "from": "iCloud Drive",
+      "to": "Apple devices",
+      "relationship": "Provides cloud-backed file access and synchronization across supported devices."
+    },
+    {
+      "from": "Xcode Cloud",
+      "to": "Apple Developer ecosystem",
+      "relationship": "Provides cloud-hosted build and test automation for supported Apple development workflows."
+    },
+    {
+      "from": "Secure Enclave",
+      "to": "Apple Account and application security",
+      "relationship": "Provides hardware-backed security capabilities on supported Apple devices."
+    },
+    {
+      "from": "CloudKit",
+      "to": "local persistence",
+      "relationship": "Robust applications commonly combine local state with cloud synchronization to tolerate connectivity failures."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Apple Account",
+      "type": "identity",
+      "purpose": "Core identity context for many Apple cloud experiences."
+    },
+    {
+      "name": "Apple Developer Program",
+      "type": "developer-platform",
+      "purpose": "Provides access to developer capabilities, entitlements, identifiers, and cloud services."
+    },
+    {
+      "name": "Apple silicon",
+      "type": "hardware",
+      "purpose": "Provides compute and security capabilities across Apple devices and documented Private Cloud Compute infrastructure."
+    },
+    {
+      "name": "CloudKit",
+      "type": "cloud-service",
+      "purpose": "Provides developer-facing cloud data storage and synchronization."
+    },
+    {
+      "name": "APNs",
+      "type": "messaging",
+      "purpose": "Provides push notification delivery to Apple-platform applications."
+    },
+    {
+      "name": "Apple security architecture",
+      "type": "security",
+      "purpose": "Provides hardware-backed identity, key protection, secure boot, encryption, and privacy mechanisms."
+    },
+    {
+      "name": "Internet connectivity",
+      "type": "networking",
+      "purpose": "Provides connectivity between Apple devices and cloud services."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "No network connectivity",
+      "handling": "Use local persistence, offline operation, queued changes, and later synchronization where application architecture permits."
+    },
+    {
+      "case": "CloudKit synchronization conflict",
+      "handling": "Implement deterministic conflict-resolution behavior based on application data semantics rather than blindly overwriting records."
+    },
+    {
+      "case": "CloudKit quota or rate-limit exhaustion",
+      "handling": "Reduce unnecessary operations, batch compatible requests, cache locally, monitor usage, and implement backoff."
+    },
+    {
+      "case": "iCloud account unavailable",
+      "handling": "Provide graceful degraded functionality and avoid assuming iCloud is always signed in or reachable."
+    },
+    {
+      "case": "User disables iCloud for an application",
+      "handling": "Handle entitlement and account-state changes without corrupting local application state."
+    },
+    {
+      "case": "End-to-end encrypted data",
+      "handling": "Do not assume Apple server-side application code can access content protected by end-to-end encryption."
+    },
+    {
+      "case": "Lost trusted devices",
+      "handling": "Account recovery and encrypted-data recovery behavior must account for Apple's documented trusted-device and recovery mechanisms."
+    },
+    {
+      "case": "Private Cloud Compute unavailable",
+      "handling": "Supported AI experiences should have documented fallback behavior, such as on-device processing or inability to complete a request."
+    },
+    {
+      "case": "Undocumented internal infrastructure",
+      "handling": "Do not infer specific Apple data-center topology, orchestration systems, server fleet sizes, or proprietary infrastructure components without authoritative evidence."
+    },
+    {
+      "case": "External backend combined with CloudKit",
+      "handling": "Clearly define ownership of identity, authoritative data, synchronization, authorization, and deletion semantics."
+    },
+    {
+      "case": "Large CloudKit public dataset",
+      "handling": "Evaluate indexing, query patterns, record growth, quotas, synchronization behavior, and whether an external backend is more appropriate."
+    },
+    {
+      "case": "Sensitive data in application logs",
+      "handling": "Minimize telemetry content and avoid recording credentials, cryptographic secrets, private user content, or unnecessary personal information."
+    }
+  ],
+  "constraints": [
+    "Apple does not publicly document a complete general-purpose cloud infrastructure platform equivalent to AWS, Azure, or Google Cloud.",
+    "Public documentation does not justify assuming access to Apple's internal compute orchestration, storage, networking, or data-center management systems.",
+    "CloudKit is optimized for Apple-platform application integration and has service-specific semantics and limits.",
+    "Apple cloud services may require Apple-specific identities, entitlements, capabilities, or developer configuration.",
+    "CloudKit synchronization requires application-specific handling of local state, conflicts, retries, and offline behavior.",
+    "Apple's privacy architecture differs by service and data category; not all iCloud data necessarily has identical encryption properties.",
+    "Private Cloud Compute is a specialized privacy-oriented computation platform rather than a general-purpose public cloud infrastructure service.",
+    "Apple platform capabilities and cloud-service behavior can change between operating-system and service releases.",
+    "Production designs should use current Apple documentation for exact quotas, supported regions, API behavior, security guarantees, and availability.",
+    "Apple's internal infrastructure should be treated as proprietary unless Apple has publicly documented the relevant implementation detail."
+  ],
+  "examples": [
+    {
+      "name": "CloudKit-native Swift application",
+      "architecture": [
+        "Swift application",
+        "SwiftData or Core Data/local persistence",
+        "CloudKit",
+        "APNs",
+        "Apple Account"
+      ],
+      "purpose": "Build an Apple-native application with cloud synchronization and offline-capable local state."
+    },
+    {
+      "name": "Apple application with external backend",
+      "architecture": [
+        "Swift",
+        "Sign in with Apple",
+        "custom HTTPS API",
+        "external cloud database",
+        "APNs",
+        "CloudKit where appropriate"
+      ],
+      "purpose": "Combine Apple's platform identity and notification capabilities with an independently controlled cloud backend."
+    },
+    {
+      "name": "Private AI computation",
+      "architecture": [
+        "Apple device",
+        "Apple Intelligence",
+        "on-device processing",
+        "Private Cloud Compute",
+        "Apple silicon",
+        "privacy and verification controls"
+      ],
+      "purpose": "Extend AI computation into Apple's privacy-focused cloud environment for supported workloads."
+    },
+    {
+      "name": "Cross-device document application",
+      "architecture": [
+        "local document store",
+        "CloudKit records",
+        "CloudKit assets",
+        "change synchronization",
+        "APNs"
+      ],
+      "purpose": "Synchronize documents and metadata across supported Apple devices while maintaining local usability."
+    },
+    {
+      "name": "Apple CI/CD workflow",
+      "architecture": [
+        "source repository",
+        "Xcode Cloud",
+        "automated build",
+        "automated tests",
+        "App Store Connect",
+        "TestFlight"
+      ],
+      "purpose": "Automate Apple application build and testing workflows."
+    }
+  ],
+  "validation": [
+    {
+      "id": "source-authority",
+      "check": "Verify claims about Apple's infrastructure against current Apple documentation or authoritative Apple security publications."
+    },
+    {
+      "id": "cloudkit-schema",
+      "check": "Validate CloudKit record types, indexes, zones, subscriptions, permissions, and synchronization behavior."
+    },
+    {
+      "id": "identity",
+      "check": "Validate Apple Account, Sign in with Apple, entitlement, token, and authorization assumptions."
+    },
+    {
+      "id": "privacy",
+      "check": "Identify which data is end-to-end encrypted, standard encrypted, or processed by cloud services under the applicable Apple security model."
+    },
+    {
+      "id": "private-cloud-compute",
+      "check": "Validate Private Cloud Compute assumptions against Apple's current security and privacy documentation."
+    },
+    {
+      "id": "offline",
+      "check": "Test application behavior with no network, delayed synchronization, duplicate events, conflict conditions, and cloud-service errors."
+    },
+    {
+      "id": "quota",
+      "check": "Validate current CloudKit quotas, request limits, storage limits, and application-scale assumptions."
+    },
+    {
+      "id": "security",
+      "check": "Review key storage, authentication, authorization, encryption, logging, secret handling, and device trust."
+    },
+    {
+      "id": "reliability",
+      "check": "Test retries, exponential backoff, idempotency, local recovery, synchronization recovery, and service degradation."
+    },
+    {
+      "id": "external-backend",
+      "check": "If an external backend is used, validate data ownership, identity mapping, synchronization, authorization, and deletion semantics."
+    },
+    {
+      "id": "operational",
+      "check": "Verify application telemetry, CloudKit diagnostics, crash reporting, performance monitoring, and operational alerting."
+    },
+    {
+      "id": "undocumented-infrastructure",
+      "check": "Remove claims that rely on speculation about Apple's private data-center, server, networking, or orchestration implementation."
+    }
+  ],
+  "open_questions": [
+    "Should the outline focus specifically on Private Cloud Compute rather than Apple's broader cloud ecosystem?",
+    "Should CloudKit receive a dedicated deep dive covering schema design, subscriptions, sync engines, conflict resolution, quotas, and production scaling?",
+    "Should Apple's cloud architecture be compared directly with AWS, Azure, and Google Cloud?",
+    "Should Apple silicon server and Private Cloud Compute architecture be expanded using current Apple security research?",
+    "Should the outline focus on developers building Swift applications or on infrastructure engineers studying Apple's cloud infrastructure?",
+    "Should iCloud encryption and Advanced Data Protection receive a dedicated cryptographic architecture section?",
+    "Should Xcode Cloud receive a dedicated CI/CD architecture?",
+    "Should the next iteration distinguish consumer iCloud infrastructure, developer cloud services, and Private Cloud Compute into separate architectural domains?"
+  ]
+}
