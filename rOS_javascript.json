@@ -5,7 +5,7 @@
   "architecture": {
     "sections": [
       {
-        "id": "ecmascript-foundations",
+        "id": "rOS_ecmascript-foundations",
         "name": "ECMAScript Foundations",
         "purpose": "Establish JavaScript syntax, grammar, scripts, modules, statements, expressions, declarations, strict mode, and the ECMAScript execution model.",
         "concepts": [
@@ -66,7 +66,7 @@
         ]
       },
       {
-        "id": "types-values",
+        "id": "rOS_types-values",
         "name": "Types and Values",
         "purpose": "Explain JavaScript's dynamic type system, primitive values, objects, coercion, equality, and numeric semantics.",
         "concepts": [
@@ -144,7 +144,7 @@
         ]
       },
       {
-        "id": "coercion-equality",
+        "id": "rOS_coercion-equality",
         "name": "Coercion, Equality, and Operators",
         "purpose": "Model JavaScript's implicit and explicit conversion rules and operator semantics.",
         "concepts": [
@@ -206,7 +206,7 @@
         ]
       },
       {
-        "id": "variables-scope",
+        "id": "rOS_variables-scope",
         "name": "Variables, Scope, and Closures",
         "purpose": "Explain lexical scoping, declarations, hoisting behavior, temporal dead zones, closures, and binding lifetimes.",
         "concepts": [
@@ -262,7 +262,7 @@
         ]
       },
       {
-        "id": "objects-prototypes",
+        "id": "rOS_objects-prototypes",
         "name": "Objects and the Prototype System",
         "purpose": "Explain JavaScript objects, property descriptors, prototype chains, property lookup, mutation, and object identity.",
         "concepts": [
@@ -319,7 +319,7 @@
         ]
       },
       {
-        "id": "functions",
+        "id": "rOS_functions",
         "name": "Functions and Invocation",
         "purpose": "Cover function objects, invocation forms, parameters, return values, this binding, arrow functions, recursion, and higher-order programming.",
         "concepts": [
@@ -397,7 +397,7 @@
         ]
       },
       {
-        "id": "classes",
+        "id": "rOS_classes",
         "name": "Classes and Object-Oriented JavaScript",
         "purpose": "Explain class syntax as a structured layer over JavaScript's prototype-based object model.",
         "concepts": [
@@ -453,7 +453,7 @@
         ]
       },
       {
-        "id": "collections",
+        "id": "rOS_collections",
         "name": "Arrays, Maps, Sets, and Structured Data",
         "purpose": "Cover JavaScript's principal built-in collection and structured-data facilities.",
         "concepts": [
@@ -509,7 +509,7 @@
         ]
       },
       {
-        "id": "iterators-generators",
+        "id": "rOS_iterators-generators",
         "name": "Iterators and Generators",
         "purpose": "Explain JavaScript's iteration protocol and generator-based lazy computation.",
         "concepts": [
@@ -564,7 +564,7 @@
         ]
       },
       {
-        "id": "modules",
+        "id": "rOS_modules",
         "name": "Modules and Dependency Architecture",
         "purpose": "Explain ECMAScript modules, import/export semantics, module resolution concepts, and dependency boundaries.",
         "concepts": [
@@ -619,7 +619,7 @@
         ]
       },
       {
-        "id": "async-promises",
+        "id": "rOS_async-promises",
         "name": "Asynchronous JavaScript",
         "purpose": "Explain promises, async functions, await, microtasks, task scheduling, cancellation patterns, and asynchronous composition.",
         "concepts": [
@@ -692,7 +692,7 @@
         ]
       },
       {
-        "id": "event-loop-host",
+        "id": "rOS_event-loop-host",
         "name": "Event Loop and Host Environments",
         "purpose": "Separate ECMAScript semantics from host-provided scheduling and APIs.",
         "concepts": [
@@ -744,7 +744,7 @@
         ]
       },
       {
-        "id": "errors",
+        "id": "rOS_errors",
         "name": "Errors and Exception Handling",
         "purpose": "Cover JavaScript exception semantics, built-in error types, asynchronous error propagation, and robust failure handling.",
         "concepts": [
@@ -797,7 +797,7 @@
         ]
       },
       {
-        "id": "metaprogramming",
+        "id": "rOS_metaprogramming",
         "name": "Metaprogramming",
         "purpose": "Explain JavaScript facilities for intercepting, reflecting upon, and dynamically constructing language behavior.",
         "concepts": [
@@ -850,7 +850,7 @@
         ]
       },
       {
-        "id": "memory-gc",
+        "id": "rOS_memory-gc",
         "name": "Memory Management and Garbage Collection",
         "purpose": "Explain JavaScript's managed-memory model, reachability, garbage collection behavior, and memory-retention hazards.",
         "concepts": [
@@ -904,7 +904,7 @@
         ]
       },
       {
-        "id": "typed-memory",
+        "id": "rOS_typed-memory",
         "name": "Typed Arrays, ArrayBuffer, and Binary Data",
         "purpose": "Explain JavaScript's binary-memory facilities for high-performance data processing and interoperability.",
         "concepts": [
@@ -955,7 +955,7 @@
         ]
       },
       {
-        "id": "internationalization",
+        "id": "rOS_internationalization",
         "name": "Internationalization",
         "purpose": "Cover ECMAScript internationalization facilities for locale-aware formatting, collation, numbers, dates, and pluralization.",
         "concepts": [
@@ -1004,7 +1004,7 @@
         ]
       },
       {
-        "id": "browser-platform",
+        "id": "rOS_browser-platform",
         "name": "Browser Platform Integration",
         "purpose": "Distinguish JavaScript from browser-provided APIs and explain the principal browser execution environment.",
         "concepts": [
@@ -1063,7 +1063,7 @@
         ]
       },
       {
-        "id": "node-runtime",
+        "id": "rOS_node-runtime",
         "name": "Server and Runtime Environments",
         "purpose": "Explain JavaScript execution outside browsers, especially Node.js-style server runtimes and runtime APIs.",
         "concepts": [
@@ -1119,7 +1119,7 @@
         ]
       },
       {
-        "id": "web-workers-concurrency",
+        "id": "rOS_web-workers-concurrency",
         "name": "Workers and JavaScript Concurrency",
         "purpose": "Explain concurrency through independent execution contexts, message passing, shared memory, and atomics.",
         "concepts": [
@@ -1170,7 +1170,7 @@
         ]
       },
       {
-        "id": "tooling",
+        "id": "rOS_tooling",
         "name": "Tooling, Compilation, and Build Systems",
         "purpose": "Cover the modern JavaScript development toolchain from source code through bundling, testing, deployment, and diagnostics.",
         "concepts": [
@@ -1228,7 +1228,7 @@
         ]
       },
       {
-        "id": "testing",
+        "id": "rOS_testing",
         "name": "Testing and Verification",
         "purpose": "Establish testing strategies for JavaScript applications, libraries, asynchronous code, browser behavior, and runtime services.",
         "concepts": [
@@ -1282,7 +1282,7 @@
         ]
       },
       {
-        "id": "performance",
+        "id": "rOS_performance",
         "name": "Performance Engineering",
         "purpose": "Explain JavaScript performance through profiling, allocation behavior, event-loop scheduling, data structures, JIT compilation, and rendering considerations.",
         "concepts": [
@@ -1338,7 +1338,7 @@
         ]
       },
       {
-        "id": "security",
+        "id": "rOS_security",
         "name": "JavaScript Security",
         "purpose": "Cover major application and runtime security risks associated with JavaScript execution and web integration.",
         "concepts": [
@@ -1410,7 +1410,7 @@
         ]
       },
       {
-        "id": "architecture-patterns",
+        "id": "rOS_architecture-patterns",
         "name": "Application Architecture and Design Patterns",
         "purpose": "Apply JavaScript language and runtime facilities to scalable applications and libraries.",
         "concepts": [
@@ -1464,7 +1464,7 @@
         ]
       },
       {
-        "id": "interop-serialization",
+        "id": "rOS_interop-serialization",
         "name": "Serialization and Interoperability",
         "purpose": "Explain data exchange between JavaScript systems, external services, processes, and other programming languages.",
         "concepts": [
@@ -1782,55 +1782,55 @@
   ],
   "validation": [
     {
-      "id": "syntax",
+      "id": "rOS_syntax",
       "check": "Source parses successfully under the intended ECMAScript grammar and runtime."
     },
     {
-      "id": "type-behavior",
+      "id": "rOS_type-behavior",
       "check": "Primitive conversion, equality, numeric behavior, and object identity match the intended semantics."
     },
     {
-      "id": "scope",
+      "id": "rOS_scope",
       "check": "Bindings, closures, initialization order, and temporal-dead-zone behavior are correct."
     },
     {
-      "id": "object-model",
+      "id": "rOS_object-model",
       "check": "Prototype relationships, property descriptors, getters, setters, and object mutation behave as intended."
     },
     {
-      "id": "async",
+      "id": "rOS_async",
       "check": "Promises, async functions, rejection propagation, and scheduling behavior are explicitly tested."
     },
     {
-      "id": "memory",
+      "id": "rOS_memory",
       "check": "Long-lived references, caches, closures, event handlers, and worker resources do not create unintended retention."
     },
     {
-      "id": "concurrency",
+      "id": "rOS_concurrency",
       "check": "Worker communication and shared-memory operations use appropriate synchronization and ownership semantics."
     },
     {
-      "id": "security",
+      "id": "rOS_security",
       "check": "External input is validated or safely encoded and known JavaScript/web attack surfaces are addressed."
     },
     {
-      "id": "modules",
+      "id": "rOS_modules",
       "check": "Module boundaries, exports, imports, cycles, resolution, and deployment behavior are validated."
     },
     {
-      "id": "compatibility",
+      "id": "rOS_compatibility",
       "check": "Required ECMAScript features are supported by the target engines or appropriately transformed."
     },
     {
-      "id": "performance",
+      "id": "rOS_performance",
       "check": "Critical paths are profiled under representative workloads and event-loop latency is measured where relevant."
     },
     {
-      "id": "testing",
+      "id": "rOS_testing",
       "check": "Unit, integration, end-to-end, asynchronous, regression, and security tests cover critical behavior."
     },
     {
-      "id": "deployment",
+      "id": "rOS_deployment",
       "check": "Production bundles, source maps, environment configuration, dependency locks, and runtime versions are reproducible."
     }
   ],

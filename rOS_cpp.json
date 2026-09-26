@@ -5,7 +5,7 @@
   "architecture": {
     "sections": [
       {
-        "id": "cpp-foundations",
+        "id": "rOS_cpp-foundations",
         "name": "C++ Foundations",
         "purpose": "Establish syntax, translation units, declarations, definitions, expressions, statements, namespaces, scopes, and the compilation model.",
         "concepts": [
@@ -89,7 +89,7 @@
         ]
       },
       {
-        "id": "type-system",
+        "id": "rOS_type-system",
         "name": "Type System",
         "purpose": "Explain C++'s static type system, object representations, conversions, qualifiers, compound types, and type traits.",
         "concepts": [
@@ -169,7 +169,7 @@
         ]
       },
       {
-        "id": "classes-objects",
+        "id": "rOS_classes-objects",
         "name": "Classes, Objects, and Encapsulation",
         "purpose": "Model C++ object-oriented facilities, class invariants, access control, constructors, destructors, methods, and object representation.",
         "concepts": [
@@ -227,7 +227,7 @@
         ]
       },
       {
-        "id": "object-lifetime-raii",
+        "id": "rOS_object-lifetime-raii",
         "name": "Object Lifetime, RAII, and Resource Management",
         "purpose": "Explain one of C++'s central design models: deterministic object lifetime combined with ownership-aware resource management.",
         "concepts": [
@@ -305,7 +305,7 @@
         ]
       },
       {
-        "id": "value-categories",
+        "id": "rOS_value-categories",
         "name": "Value Categories, Moves, and Copy Semantics",
         "purpose": "Explain lvalues, prvalues, xvalues, move construction, move assignment, copy semantics, and temporary materialization.",
         "concepts": [
@@ -382,7 +382,7 @@
         ]
       },
       {
-        "id": "inheritance-polymorphism",
+        "id": "rOS_inheritance-polymorphism",
         "name": "Inheritance and Polymorphism",
         "purpose": "Cover class inheritance, virtual dispatch, abstract interfaces, multiple inheritance, and object-oriented substitution.",
         "concepts": [
@@ -438,7 +438,7 @@
         ]
       },
       {
-        "id": "templates",
+        "id": "rOS_templates",
         "name": "Templates and Generic Programming",
         "purpose": "Explain compile-time polymorphism, template declaration, deduction, specialization, instantiation, and generic design.",
         "concepts": [
@@ -509,7 +509,7 @@
         ]
       },
       {
-        "id": "concepts-constraints",
+        "id": "rOS_concepts-constraints",
         "name": "Concepts and Constraints",
         "purpose": "Explain modern C++ constraints as a structured alternative to many historical SFINAE techniques.",
         "concepts": [
@@ -559,7 +559,7 @@
         ]
       },
       {
-        "id": "stl",
+        "id": "rOS_stl",
         "name": "Standard Library and STL",
         "purpose": "Provide a systematic model of standard containers, iterators, algorithms, ranges, utilities, strings, numerics, and resource abstractions.",
         "concepts": [
@@ -643,7 +643,7 @@
         ]
       },
       {
-        "id": "error-handling",
+        "id": "rOS_error-handling",
         "name": "Exceptions and Error Handling",
         "purpose": "Cover C++ exception semantics, exception safety, error-value approaches, and modern alternatives.",
         "concepts": [
@@ -715,7 +715,7 @@
         ]
       },
       {
-        "id": "memory-undefined-behavior",
+        "id": "rOS_memory-undefined-behavior",
         "name": "Memory Safety and Undefined Behavior",
         "purpose": "Identify the major classes of memory and language-level undefined behavior that must be controlled in C++.",
         "concepts": [
@@ -785,7 +785,7 @@
         ]
       },
       {
-        "id": "concurrency",
+        "id": "rOS_concurrency",
         "name": "Concurrency and Parallelism",
         "purpose": "Explain C++ threading, synchronization, atomics, futures, tasks, memory ordering, and parallel algorithms.",
         "concepts": [
@@ -865,7 +865,7 @@
         ]
       },
       {
-        "id": "coroutines",
+        "id": "rOS_coroutines",
         "name": "Coroutines",
         "purpose": "Explain the C++ coroutine machinery introduced in C++20 and the abstractions built on top of it.",
         "concepts": [
@@ -919,7 +919,7 @@
         ]
       },
       {
-        "id": "compile-time",
+        "id": "rOS_compile-time",
         "name": "Compile-Time Programming and Metaprogramming",
         "purpose": "Cover constexpr, consteval, constinit, type traits, compile-time evaluation, and template metaprogramming.",
         "concepts": [
@@ -974,7 +974,7 @@
         ]
       },
       {
-        "id": "modules",
+        "id": "rOS_modules",
         "name": "Modules and Modern Translation Architecture",
         "purpose": "Explain C++ modules as a modern alternative and complement to traditional header inclusion.",
         "concepts": [
@@ -1025,7 +1025,7 @@
         ]
       },
       {
-        "id": "linking-abi",
+        "id": "rOS_linking-abi",
         "name": "Linkage, ABI, and Binary Compatibility",
         "purpose": "Explain how C++ source code becomes linkable binaries and why ABI boundaries are difficult to maintain.",
         "concepts": [
@@ -1079,7 +1079,7 @@
         ]
       },
       {
-        "id": "performance",
+        "id": "rOS_performance",
         "name": "Performance Engineering",
         "purpose": "Explain C++ performance characteristics through measurement, data representation, allocation, locality, optimization, and concurrency.",
         "concepts": [
@@ -1135,7 +1135,7 @@
         ]
       },
       {
-        "id": "tooling-build",
+        "id": "rOS_tooling-build",
         "name": "Build Systems and Tooling",
         "purpose": "Cover compilation, dependency management, build configuration, static analysis, formatting, debugging, sanitization, and CI.",
         "concepts": [
@@ -1208,7 +1208,7 @@
         ]
       },
       {
-        "id": "testing",
+        "id": "rOS_testing",
         "name": "Testing and Verification",
         "purpose": "Cover unit, integration, property, fuzz, compile-time, concurrency, and performance testing.",
         "concepts": [
@@ -1260,7 +1260,7 @@
         ]
       },
       {
-        "id": "interoperability",
+        "id": "rOS_interoperability",
         "name": "Interoperability and FFI",
         "purpose": "Explain integration with C, operating-system APIs, foreign runtimes, and language-neutral binary interfaces.",
         "concepts": [
@@ -1313,7 +1313,7 @@
         ]
       },
       {
-        "id": "architecture",
+        "id": "rOS_architecture",
         "name": "Production Architecture and Design",
         "purpose": "Apply C++ language facilities to maintainable large-scale systems.",
         "concepts": [
@@ -1608,51 +1608,51 @@
   ],
   "validation": [
     {
-      "id": "compile",
+      "id": "rOS_compile",
       "check": "The program compiles under the intended C++ standard mode and supported compiler set."
     },
     {
-      "id": "lifetime",
+      "id": "rOS_lifetime",
       "check": "All objects, references, pointers, iterators, and resources obey their required lifetime constraints."
     },
     {
-      "id": "ownership",
+      "id": "rOS_ownership",
       "check": "Ownership transfer, destruction, copying, and moving are explicit and correct."
     },
     {
-      "id": "type-safety",
+      "id": "rOS_type-safety",
       "check": "Conversions, overloads, templates, concepts, and polymorphic interfaces express the intended type relationships."
     },
     {
-      "id": "undefined-behavior",
+      "id": "rOS_undefined-behavior",
       "check": "The implementation is reviewed and instrumented for major classes of undefined behavior."
     },
     {
-      "id": "concurrency",
+      "id": "rOS_concurrency",
       "check": "Synchronization, atomic ordering, thread lifetime, and shared-state access satisfy the required happens-before relationships."
     },
     {
-      "id": "exception-safety",
+      "id": "rOS_exception-safety",
       "check": "Operations preserve documented invariants under exceptions and use appropriate exception guarantees."
     },
     {
-      "id": "abi",
+      "id": "rOS_abi",
       "check": "Binary interfaces are compatible across intended compiler, platform, and library boundaries."
     },
     {
-      "id": "testing",
+      "id": "rOS_testing",
       "check": "Unit, integration, fuzz, sanitizer, concurrency, and regression tests cover critical behavior."
     },
     {
-      "id": "performance",
+      "id": "rOS_performance",
       "check": "Performance-sensitive behavior is measured using representative workloads and appropriate profiling tools."
     },
     {
-      "id": "tooling",
+      "id": "rOS_tooling",
       "check": "Warnings, static analysis, formatting, sanitizers, builds, tests, and CI checks pass."
     },
     {
-      "id": "portability",
+      "id": "rOS_portability",
       "check": "Platform assumptions and compiler extensions are identified and isolated where portability matters."
     }
   ],

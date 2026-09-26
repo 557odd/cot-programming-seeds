@@ -5,7 +5,7 @@
   "architecture": {
     "sections": [
       {
-        "id": "rust-foundations",
+        "id": "rOS_rust-foundations",
         "name": "Rust Foundations",
         "purpose": "Establish Rust syntax, compilation, source organization, expressions, statements, bindings, and fundamental language constructs.",
         "concepts": [
@@ -92,7 +92,7 @@
         ]
       },
       {
-        "id": "ownership-borrowing",
+        "id": "rOS_ownership-borrowing",
         "name": "Ownership, Borrowing, and Lifetimes",
         "purpose": "Explain the core memory-safety model that distinguishes Rust from garbage-collected and manually managed languages.",
         "concepts": [
@@ -173,7 +173,7 @@
         ]
       },
       {
-        "id": "type-system",
+        "id": "rOS_type-system",
         "name": "Type System",
         "purpose": "Cover Rust's static type system, inference, algebraic data types, coercions, and type-level guarantees.",
         "concepts": [
@@ -255,7 +255,7 @@
         ]
       },
       {
-        "id": "traits-generics",
+        "id": "rOS_traits-generics",
         "name": "Traits, Generics, and Abstraction",
         "purpose": "Explain Rust's mechanisms for reusable, statically dispatched, and dynamically dispatched abstractions.",
         "concepts": [
@@ -330,7 +330,7 @@
         ]
       },
       {
-        "id": "pattern-matching",
+        "id": "rOS_pattern-matching",
         "name": "Pattern Matching",
         "purpose": "Use Rust's exhaustive pattern system to safely deconstruct values and express control flow.",
         "concepts": [
@@ -383,7 +383,7 @@
         ]
       },
       {
-        "id": "error-handling",
+        "id": "rOS_error-handling",
         "name": "Error Handling",
         "purpose": "Model recoverable and unrecoverable failures using Rust's type system and idiomatic error-propagation mechanisms.",
         "concepts": [
@@ -456,7 +456,7 @@
         ]
       },
       {
-        "id": "collections-iterators",
+        "id": "rOS_collections-iterators",
         "name": "Collections and Iterators",
         "purpose": "Cover standard collection types, iteration, ownership-aware traversal, and functional-style transformations.",
         "concepts": [
@@ -519,7 +519,7 @@
         ]
       },
       {
-        "id": "concurrency",
+        "id": "rOS_concurrency",
         "name": "Concurrency and Parallelism",
         "purpose": "Explain safe shared-state and message-passing concurrency using Rust's ownership and type systems.",
         "concepts": [
@@ -594,7 +594,7 @@
         ]
       },
       {
-        "id": "async",
+        "id": "rOS_async",
         "name": "Asynchronous Rust",
         "purpose": "Explain futures, async/await, executors, tasks, cancellation, and asynchronous I/O.",
         "concepts": [
@@ -668,7 +668,7 @@
         ]
       },
       {
-        "id": "memory-model",
+        "id": "rOS_memory-model",
         "name": "Memory Model and Data Representation",
         "purpose": "Explain stack and heap allocation, layout, alignment, ownership, destructors, and low-level representation.",
         "concepts": [
@@ -726,7 +726,7 @@
         ]
       },
       {
-        "id": "unsafe-rust",
+        "id": "rOS_unsafe-rust",
         "name": "Unsafe Rust",
         "purpose": "Define the boundary where programmers assume obligations the compiler cannot fully verify.",
         "concepts": [
@@ -779,7 +779,7 @@
         ]
       },
       {
-        "id": "macros",
+        "id": "rOS_macros",
         "name": "Macros and Metaprogramming",
         "purpose": "Cover declarative and procedural macro systems for code generation and compile-time transformation.",
         "concepts": [
@@ -831,7 +831,7 @@
         ]
       },
       {
-        "id": "modules-crates-cargo",
+        "id": "rOS_modules-crates-cargo",
         "name": "Modules, Crates, Workspaces, and Cargo",
         "purpose": "Define project organization, dependency management, builds, features, publishing, and reproducibility.",
         "concepts": [
@@ -909,7 +909,7 @@
         ]
       },
       {
-        "id": "testing",
+        "id": "rOS_testing",
         "name": "Testing and Verification",
         "purpose": "Cover unit testing, integration testing, documentation tests, property-based approaches, benchmarking, and correctness verification.",
         "concepts": [
@@ -962,7 +962,7 @@
         ]
       },
       {
-        "id": "performance",
+        "id": "rOS_performance",
         "name": "Performance and Optimization",
         "purpose": "Explain how Rust programs are optimized while preserving correctness and maintainability.",
         "concepts": [
@@ -1016,7 +1016,7 @@
         ]
       },
       {
-        "id": "ffi",
+        "id": "rOS_ffi",
         "name": "Foreign Function Interface",
         "purpose": "Explain interoperability between Rust and external languages and native libraries.",
         "concepts": [
@@ -1070,7 +1070,7 @@
         ]
       },
       {
-        "id": "tooling-ecosystem",
+        "id": "rOS_tooling-ecosystem",
         "name": "Tooling and Ecosystem",
         "purpose": "Cover the standard Rust development workflow and ecosystem infrastructure.",
         "concepts": [
@@ -1305,47 +1305,47 @@
   ],
   "validation": [
     {
-      "id": "compile",
+      "id": "rOS_compile",
       "check": "Code compiles with the intended Rust toolchain and target."
     },
     {
-      "id": "ownership",
+      "id": "rOS_ownership",
       "check": "Ownership transfers, borrows, lifetimes, and destructors behave as intended."
     },
     {
-      "id": "type-safety",
+      "id": "rOS_type-safety",
       "check": "Generic constraints, trait bounds, pattern matches, and conversions express the intended invariants."
     },
     {
-      "id": "error-handling",
+      "id": "rOS_error-handling",
       "check": "Recoverable failures are represented explicitly and propagated appropriately."
     },
     {
-      "id": "concurrency",
+      "id": "rOS_concurrency",
       "check": "Shared state, synchronization, Send/Sync requirements, and cancellation behavior are correct."
     },
     {
-      "id": "unsafe-safety",
+      "id": "rOS_unsafe-safety",
       "check": "Every unsafe block has explicit, reviewable safety invariants."
     },
     {
-      "id": "ffi",
+      "id": "rOS_ffi",
       "check": "ABI, memory layout, pointer validity, ownership, and error boundaries are verified."
     },
     {
-      "id": "testing",
+      "id": "rOS_testing",
       "check": "Unit, integration, documentation, and relevant property or fuzz tests cover critical behavior."
     },
     {
-      "id": "performance",
+      "id": "rOS_performance",
       "check": "Performance-sensitive behavior is measured with representative workloads."
     },
     {
-      "id": "tooling",
+      "id": "rOS_tooling",
       "check": "Formatting, linting, documentation, builds, and CI checks succeed."
     },
     {
-      "id": "dependency",
+      "id": "rOS_dependency",
       "check": "Dependency versions, feature flags, lockfiles, and security considerations are reviewed."
     }
   ],

@@ -5,7 +5,7 @@
   "architecture": {
     "sections": [
       {
-        "id": "language-foundations",
+        "id": "rOS_language-foundations",
         "name": "Language Foundations",
         "purpose": "Establish Swift syntax, compilation, declarations, expressions, control flow, modules, access control, and compile-time safety.",
         "concepts": [
@@ -63,7 +63,7 @@
         ]
       },
       {
-        "id": "type-system",
+        "id": "rOS_type-system",
         "name": "Type System",
         "purpose": "Explain Swift's static type system, inference, nominal types, structural composition, conversions, and type relationships.",
         "concepts": [
@@ -125,7 +125,7 @@
         ]
       },
       {
-        "id": "optionals",
+        "id": "rOS_optionals",
         "name": "Optionals",
         "purpose": "Explain Swift's explicit representation of missing values and safe unwrapping mechanisms.",
         "concepts": [
@@ -178,7 +178,7 @@
         ]
       },
       {
-        "id": "value-reference-semantics",
+        "id": "rOS_value-reference-semantics",
         "name": "Value and Reference Semantics",
         "purpose": "Explain structs, enums, classes, copying behavior, identity, mutation, and ownership implications.",
         "concepts": [
@@ -230,7 +230,7 @@
         ]
       },
       {
-        "id": "enums-pattern-matching",
+        "id": "rOS_enums-pattern-matching",
         "name": "Enumerations and Pattern Matching",
         "purpose": "Cover Swift enums as algebraic data types and their integration with exhaustive pattern matching.",
         "concepts": [
@@ -282,7 +282,7 @@
         ]
       },
       {
-        "id": "functions-closures",
+        "id": "rOS_functions-closures",
         "name": "Functions and Closures",
         "purpose": "Explain function declarations, higher-order functions, closure capture, escaping behavior, autoclosures, and function composition.",
         "concepts": [
@@ -336,7 +336,7 @@
         ]
       },
       {
-        "id": "collections",
+        "id": "rOS_collections",
         "name": "Collections",
         "purpose": "Cover Swift's standard collection types, algorithms, mutation behavior, slicing, and performance characteristics.",
         "concepts": [
@@ -392,7 +392,7 @@
         ]
       },
       {
-        "id": "protocols",
+        "id": "rOS_protocols",
         "name": "Protocols and Protocol-Oriented Design",
         "purpose": "Explain Swift protocols, protocol extensions, associated types, existentials, opaque types, and composition.",
         "concepts": [
@@ -444,7 +444,7 @@
         ]
       },
       {
-        "id": "generics",
+        "id": "rOS_generics",
         "name": "Generics and Type-Level Abstraction",
         "purpose": "Cover generic functions, generic types, constraints, associated types, opaque types, and specialization.",
         "concepts": [
@@ -498,7 +498,7 @@
         ]
       },
       {
-        "id": "error-handling",
+        "id": "rOS_error-handling",
         "name": "Error Handling",
         "purpose": "Explain typed errors, throwing functions, propagation, recovery, Result, and error-domain architecture.",
         "concepts": [
@@ -552,7 +552,7 @@
         ]
       },
       {
-        "id": "access-control-modules",
+        "id": "rOS_access-control-modules",
         "name": "Access Control and Modules",
         "purpose": "Explain Swift visibility, module boundaries, imports, library evolution, and API surface design.",
         "concepts": [
@@ -608,7 +608,7 @@
         ]
       },
       {
-        "id": "memory-management",
+        "id": "rOS_memory-management",
         "name": "Memory Management and ARC",
         "purpose": "Explain Swift reference counting, object lifetime, retain cycles, weak and unowned references, and ownership-aware design.",
         "concepts": [
@@ -660,7 +660,7 @@
         ]
       },
       {
-        "id": "concurrency",
+        "id": "rOS_concurrency",
         "name": "Concurrency and Swift Concurrency",
         "purpose": "Cover modern structured concurrency, async functions, tasks, actors, isolation, cancellation, task groups, and Sendable.",
         "concepts": [
@@ -736,7 +736,7 @@
         ]
       },
       {
-        "id": "ownership",
+        "id": "rOS_ownership",
         "name": "Ownership and Advanced Memory Semantics",
         "purpose": "Explain ownership-oriented language features and how they affect mutation, borrowing, consuming values, and performance.",
         "concepts": [
@@ -786,7 +786,7 @@
         ]
       },
       {
-        "id": "property-system",
+        "id": "rOS_property-system",
         "name": "Properties, Initialization, and Subscripts",
         "purpose": "Explain stored and computed properties, observers, lazy values, wrappers, initialization rules, and subscripts.",
         "concepts": [
@@ -839,7 +839,7 @@
         ]
       },
       {
-        "id": "macros-metaprogramming",
+        "id": "rOS_macros-metaprogramming",
         "name": "Macros and Metaprogramming",
         "purpose": "Cover Swift macros, compile-time code generation, attached and freestanding macros, and generated API design.",
         "concepts": [
@@ -873,7 +873,7 @@
         ]
       },
       {
-        "id": "interop",
+        "id": "rOS_interop",
         "name": "Interoperability",
         "purpose": "Explain Swift interoperability with Objective-C, C, C++, system APIs, and foreign data representations.",
         "concepts": [
@@ -927,7 +927,7 @@
         ]
       },
       {
-        "id": "swift-package-manager",
+        "id": "rOS_swift-package-manager",
         "name": "Swift Package Manager",
         "purpose": "Explain package manifests, targets, products, dependencies, resources, plugins, build configurations, and package distribution.",
         "concepts": [
@@ -981,7 +981,7 @@
         ]
       },
       {
-        "id": "foundation",
+        "id": "rOS_foundation",
         "name": "Foundation and Platform APIs",
         "purpose": "Cover commonly used platform-neutral Foundation facilities and their relationship to Swift-native APIs.",
         "concepts": [
@@ -1041,7 +1041,7 @@
         ]
       },
       {
-        "id": "testing",
+        "id": "rOS_testing",
         "name": "Testing and Quality Assurance",
         "purpose": "Cover unit testing, integration testing, UI testing, modern Swift testing tools, concurrency testing, and deterministic test design.",
         "concepts": [
@@ -1095,7 +1095,7 @@
         ]
       },
       {
-        "id": "performance",
+        "id": "rOS_performance",
         "name": "Performance Engineering",
         "purpose": "Explain Swift performance through value semantics, allocation behavior, generics, copy-on-write, concurrency, profiling, and compiler optimization.",
         "concepts": [
@@ -1147,7 +1147,7 @@
         ]
       },
       {
-        "id": "security",
+        "id": "rOS_security",
         "name": "Security",
         "purpose": "Cover Swift application security including memory safety boundaries, input validation, networking, secrets, serialization, dependency security, and unsafe code.",
         "concepts": [
@@ -1218,7 +1218,7 @@
         ]
       },
       {
-        "id": "architecture",
+        "id": "rOS_architecture",
         "name": "Production Architecture",
         "purpose": "Organize Swift applications and libraries into maintainable modules, domain layers, dependency boundaries, concurrency boundaries, and platform adapters.",
         "concepts": [
@@ -1516,55 +1516,55 @@
   ],
   "validation": [
     {
-      "id": "compile",
+      "id": "rOS_compile",
       "check": "The source compiles with the intended Swift compiler and target SDK."
     },
     {
-      "id": "type-safety",
+      "id": "rOS_type-safety",
       "check": "Optional, generic, protocol, and type-conversion behavior is explicitly represented and unintended force casts or unwraps are eliminated."
     },
     {
-      "id": "ownership",
+      "id": "rOS_ownership",
       "check": "Value/reference semantics and object ownership are consistent with the intended lifecycle."
     },
     {
-      "id": "memory",
+      "id": "rOS_memory",
       "check": "Retain cycles, unexpected allocations, and lifetime issues are tested or profiled where relevant."
     },
     {
-      "id": "concurrency",
+      "id": "rOS_concurrency",
       "check": "Actor isolation, Sendable requirements, cancellation, task lifetimes, and MainActor boundaries compile and behave as intended."
     },
     {
-      "id": "errors",
+      "id": "rOS_errors",
       "check": "Expected failures are represented with appropriate Error values and propagated or recovered deliberately."
     },
     {
-      "id": "interop",
+      "id": "rOS_interop",
       "check": "Foreign-function interfaces correctly respect pointer lifetime, ownership, ABI, and platform requirements."
     },
     {
-      "id": "serialization",
+      "id": "rOS_serialization",
       "check": "Codable schemas handle malformed, missing, additional, and versioned data according to the intended compatibility policy."
     },
     {
-      "id": "networking",
+      "id": "rOS_networking",
       "check": "HTTP status, transport errors, timeouts, cancellation, authentication, and TLS behavior are explicitly tested."
     },
     {
-      "id": "package",
+      "id": "rOS_package",
       "check": "Swift Package Manager dependency resolution, targets, products, resources, and plugins are reproducible."
     },
     {
-      "id": "testing",
+      "id": "rOS_testing",
       "check": "Core behavior is covered by deterministic unit tests and appropriate integration or UI tests."
     },
     {
-      "id": "performance",
+      "id": "rOS_performance",
       "check": "Representative workloads are profiled using optimized builds before performance-sensitive changes are accepted."
     },
     {
-      "id": "security",
+      "id": "rOS_security",
       "check": "Secrets, untrusted input, unsafe pointers, network traffic, serialization, and dependencies follow an explicit security model."
     }
   ],

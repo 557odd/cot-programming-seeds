@@ -5,7 +5,7 @@
   "architecture": {
     "sections": [
       {
-        "id": "html-foundations",
+        "id": "rOS_html-foundations",
         "name": "HTML Foundations",
         "purpose": "Establish the document model, syntax, parsing rules, and core authoring concepts.",
         "concepts": [
@@ -88,7 +88,7 @@
         ]
       },
       {
-        "id": "semantic-structure",
+        "id": "rOS_semantic-structure",
         "name": "Semantic Document Structure",
         "purpose": "Define meaningful document structure that communicates information hierarchy to browsers, assistive technologies, search systems, and developers.",
         "concepts": [
@@ -172,7 +172,7 @@
         ]
       },
       {
-        "id": "metadata",
+        "id": "rOS_metadata",
         "name": "Document Metadata",
         "purpose": "Define information about the document, resource relationships, rendering behavior, and discoverability.",
         "concepts": [
@@ -228,7 +228,7 @@
         ]
       },
       {
-        "id": "content-elements",
+        "id": "rOS_content-elements",
         "name": "Content and Embedded Resources",
         "purpose": "Cover images, figures, links, embedded content, and resource presentation.",
         "concepts": [
@@ -309,7 +309,7 @@
         ]
       },
       {
-        "id": "lists-tables",
+        "id": "rOS_lists-tables",
         "name": "Lists and Tabular Data",
         "purpose": "Represent ordered, unordered, descriptive, and tabular information correctly.",
         "concepts": [
@@ -369,7 +369,7 @@
         ]
       },
       {
-        "id": "forms",
+        "id": "rOS_forms",
         "name": "Forms and User Input",
         "purpose": "Define structured user input, constraints, submission behavior, validation, and accessible controls.",
         "concepts": [
@@ -470,7 +470,7 @@
         ]
       },
       {
-        "id": "multimedia",
+        "id": "rOS_multimedia",
         "name": "Audio and Video",
         "purpose": "Define native media playback, captions, tracks, controls, and media accessibility.",
         "concepts": [
@@ -524,7 +524,7 @@
         ]
       },
       {
-        "id": "graphics",
+        "id": "rOS_graphics",
         "name": "Graphics and Drawing",
         "purpose": "Cover native HTML integration with raster and vector graphics.",
         "concepts": [
@@ -575,7 +575,7 @@
         ]
       },
       {
-        "id": "interactive-elements",
+        "id": "rOS_interactive-elements",
         "name": "Interactive HTML",
         "purpose": "Use native browser interaction primitives before relying on custom JavaScript widgets.",
         "concepts": [
@@ -646,7 +646,7 @@
         ]
       },
       {
-        "id": "accessibility",
+        "id": "rOS_accessibility",
         "name": "Accessibility",
         "purpose": "Ensure HTML communicates structure and interaction semantics to users of assistive technologies and alternative input methods.",
         "concepts": [
@@ -702,7 +702,7 @@
         ]
       },
       {
-        "id": "web-apis",
+        "id": "rOS_web-apis",
         "name": "HTML-Integrated Web APIs",
         "purpose": "Identify browser APIs that commonly interact with HTML while distinguishing HTML syntax from broader platform APIs.",
         "concepts": [
@@ -762,7 +762,7 @@
         ]
       },
       {
-        "id": "security",
+        "id": "rOS_security",
         "name": "HTML Security",
         "purpose": "Identify security-sensitive HTML behaviors and safe authoring practices.",
         "concepts": [
@@ -816,7 +816,7 @@
         ]
       },
       {
-        "id": "performance",
+        "id": "rOS_performance",
         "name": "HTML Performance",
         "purpose": "Optimize parsing, resource discovery, loading, rendering, and user-perceived performance.",
         "concepts": [
@@ -871,7 +871,7 @@
         ]
       },
       {
-        "id": "css-js-integration",
+        "id": "rOS_css-js-integration",
         "name": "CSS and JavaScript Integration",
         "purpose": "Define the boundaries and interaction points among HTML structure, CSS presentation, and JavaScript behavior.",
         "concepts": [
@@ -923,7 +923,7 @@
         ]
       },
       {
-        "id": "modernization",
+        "id": "rOS_modernization",
         "name": "Modern HTML Authoring and Migration",
         "purpose": "Guide migration from obsolete patterns toward modern semantic and interoperable HTML.",
         "concepts": [
@@ -974,7 +974,7 @@
         ]
       },
       {
-        "id": "validation-tooling",
+        "id": "rOS_validation-tooling",
         "name": "Validation and Tooling",
         "purpose": "Verify syntax, semantics, accessibility, compatibility, security, and maintainability.",
         "concepts": [
@@ -1189,39 +1189,39 @@
   ],
   "validation": [
     {
-      "id": "syntax",
+      "id": "rOS_syntax",
       "check": "Document parses as intended without unintended malformed markup."
     },
     {
-      "id": "semantics",
+      "id": "rOS_semantics",
       "check": "Elements accurately represent the meaning and structure of their content."
     },
     {
-      "id": "accessibility",
+      "id": "rOS_accessibility",
       "check": "Landmarks, headings, labels, focus behavior, names, roles, and states are appropriate."
     },
     {
-      "id": "forms",
+      "id": "rOS_forms",
       "check": "Controls have labels, appropriate input types, constraints, and usable submission behavior."
     },
     {
-      "id": "security",
+      "id": "rOS_security",
       "check": "Untrusted content is handled safely and embedding/navigation features use appropriate security controls."
     },
     {
-      "id": "performance",
+      "id": "rOS_performance",
       "check": "Critical resources, images, scripts, and media use appropriate loading strategies."
     },
     {
-      "id": "compatibility",
+      "id": "rOS_compatibility",
       "check": "Required HTML features work across the supported browser matrix."
     },
     {
-      "id": "conformance",
+      "id": "rOS_conformance",
       "check": "Markup is checked against the applicable HTML standard and obsolete constructs are identified."
     },
     {
-      "id": "progressive-enhancement",
+      "id": "rOS_progressive-enhancement",
       "check": "Core content and essential workflows have a reasonable baseline without optional enhancements."
     }
   ],

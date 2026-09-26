@@ -5,7 +5,7 @@
   "architecture": {
     "sections": [
       {
-        "id": "language-foundations",
+        "id": "rOS_language-foundations",
         "name": "Language Foundations",
         "purpose": "Establish Perl syntax, compilation, execution phases, statements, expressions, declarations, pragmas, and program structure.",
         "concepts": [
@@ -66,7 +66,7 @@
         ]
       },
       {
-        "id": "scalar-data",
+        "id": "rOS_scalar-data",
         "name": "Scalars and Dynamic Values",
         "purpose": "Explain Perl's scalar value model, strings, numbers, undef, references, context, and automatic conversion.",
         "concepts": [
@@ -123,7 +123,7 @@
         ]
       },
       {
-        "id": "variables-scope",
+        "id": "rOS_variables-scope",
         "name": "Variables and Scope",
         "purpose": "Cover Perl variable declarations, lexical scope, package variables, localization, interpolation, and lifetime.",
         "concepts": [
@@ -174,7 +174,7 @@
         ]
       },
       {
-        "id": "arrays-hashes",
+        "id": "rOS_arrays-hashes",
         "name": "Arrays and Hashes",
         "purpose": "Explain Perl's primary aggregate data structures and their context-sensitive behavior.",
         "concepts": [
@@ -236,7 +236,7 @@
         ]
       },
       {
-        "id": "references-data-structures",
+        "id": "rOS_references-data-structures",
         "name": "References and Nested Data Structures",
         "purpose": "Explain Perl references, anonymous data structures, dereferencing, autovivification, and complex nested data.",
         "concepts": [
@@ -290,7 +290,7 @@
         ]
       },
       {
-        "id": "subroutines",
+        "id": "rOS_subroutines",
         "name": "Subroutines and Functional Programming",
         "purpose": "Cover Perl subroutines, parameters, return values, prototypes, closures, callbacks, recursion, and higher-order programming.",
         "concepts": [
@@ -345,7 +345,7 @@
         ]
       },
       {
-        "id": "operators-control-flow",
+        "id": "rOS_operators-control-flow",
         "name": "Operators and Control Flow",
         "purpose": "Explain Perl operators, precedence, conditionals, loops, flow-control modifiers, and exception-like control mechanisms.",
         "concepts": [
@@ -408,7 +408,7 @@
         ]
       },
       {
-        "id": "regex-text",
+        "id": "rOS_regex-text",
         "name": "Regular Expressions and Text Processing",
         "purpose": "Cover Perl's regex engine, pattern matching, substitution, transliteration, captures, assertions, and text-processing idioms.",
         "concepts": [
@@ -465,7 +465,7 @@
         ]
       },
       {
-        "id": "packages-modules",
+        "id": "rOS_packages-modules",
         "name": "Packages, Modules, and Namespaces",
         "purpose": "Explain Perl namespaces, packages, module loading, exports, versioning, and CPAN-oriented architecture.",
         "concepts": [
@@ -509,7 +509,7 @@
               "distribution structure"
             ],
             "examples": [
-              "use JSON::PP;",
+              "use JSON::PP;"
             ],
             "dependencies": [
               "packages",
@@ -519,7 +519,7 @@
         ]
       },
       {
-        "id": "object-systems",
+        "id": "rOS_object-systems",
         "name": "Object-Oriented Perl",
         "purpose": "Explain Perl's class and object mechanisms, including traditional blessed references and modern object frameworks.",
         "concepts": [
@@ -575,7 +575,7 @@
         ]
       },
       {
-        "id": "io-files",
+        "id": "rOS_io-files",
         "name": "Files, Handles, and I/O",
         "purpose": "Cover filehandles, text and binary I/O, encoding, buffering, paths, directory traversal, and safe resource handling.",
         "concepts": [
@@ -632,7 +632,7 @@
         ]
       },
       {
-        "id": "processes-ipc",
+        "id": "rOS_processes-ipc",
         "name": "Processes and Interprocess Communication",
         "purpose": "Explain process creation, system commands, pipes, signals, IPC, and subprocess management.",
         "concepts": [
@@ -686,7 +686,7 @@
         ]
       },
       {
-        "id": "exceptions-errors",
+        "id": "rOS_exceptions-errors",
         "name": "Errors and Exception Handling",
         "purpose": "Cover Perl's die/eval exception model, error variables, object exceptions, and reliable failure propagation.",
         "concepts": [
@@ -740,7 +740,7 @@
         ]
       },
       {
-        "id": "unicode",
+        "id": "rOS_unicode",
         "name": "Unicode and International Text",
         "purpose": "Explain Perl's distinction between characters and bytes and the handling of Unicode throughout input, processing, and output.",
         "concepts": [
@@ -791,7 +791,7 @@
         ]
       },
       {
-        "id": "serialization",
+        "id": "rOS_serialization",
         "name": "Serialization and Data Interchange",
         "purpose": "Cover JSON, YAML, XML, Storable, binary representations, and safe data interchange.",
         "concepts": [
@@ -844,7 +844,7 @@
         ]
       },
       {
-        "id": "networking",
+        "id": "rOS_networking",
         "name": "Networking and Web Programming",
         "purpose": "Cover sockets, HTTP clients, servers, asynchronous networking, and common Perl web architectures.",
         "concepts": [
@@ -901,7 +901,7 @@
         ]
       },
       {
-        "id": "concurrency",
+        "id": "rOS_concurrency",
         "name": "Concurrency and Parallelism",
         "purpose": "Explain Perl concurrency through processes, threads, event-driven systems, and asynchronous libraries.",
         "concepts": [
@@ -953,7 +953,7 @@
         ]
       },
       {
-        "id": "testing",
+        "id": "rOS_testing",
         "name": "Testing and Quality Assurance",
         "purpose": "Cover Perl testing conventions, TAP, unit tests, integration tests, mocking, coverage, and property-based verification.",
         "concepts": [
@@ -1007,7 +1007,7 @@
         ]
       },
       {
-        "id": "tooling-packaging",
+        "id": "rOS_tooling-packaging",
         "name": "Tooling, CPAN, and Packaging",
         "purpose": "Explain Perl development tooling, dependency management, distributions, testing, installation, and reproducibility.",
         "concepts": [
@@ -1063,7 +1063,7 @@
         ]
       },
       {
-        "id": "security",
+        "id": "rOS_security",
         "name": "Security",
         "purpose": "Cover Perl-specific and general application-security concerns involving interpolation, shell execution, tainting, serialization, regexes, dependencies, and input validation.",
         "concepts": [
@@ -1133,7 +1133,7 @@
         ]
       },
       {
-        "id": "performance",
+        "id": "rOS_performance",
         "name": "Performance Engineering",
         "purpose": "Explain Perl performance through profiling, allocation behavior, regex optimization, I/O strategy, memory usage, and algorithm selection.",
         "concepts": [
@@ -1186,7 +1186,7 @@
         ]
       },
       {
-        "id": "architecture",
+        "id": "rOS_architecture",
         "name": "Production Architecture",
         "purpose": "Organize Perl applications into maintainable modules, services, workers, interfaces, configuration layers, and operational boundaries.",
         "concepts": [
@@ -1491,55 +1491,55 @@
   ],
   "validation": [
     {
-      "id": "syntax",
+      "id": "rOS_syntax",
       "check": "The program compiles successfully under the target Perl version."
     },
     {
-      "id": "strictness",
+      "id": "rOS_strictness",
       "check": "strict and warnings are enabled where appropriate and unintended symbolic or package-variable behavior is detected."
     },
     {
-      "id": "context",
+      "id": "rOS_context",
       "check": "Subroutine arguments and return values behave correctly in scalar, list, and void contexts."
     },
     {
-      "id": "data-structures",
+      "id": "rOS_data-structures",
       "check": "References, dereferencing, nested structures, slices, and autovivification produce the intended data model."
     },
     {
-      "id": "regex",
+      "id": "rOS_regex",
       "check": "Patterns correctly handle expected input, Unicode requirements, malformed input, and worst-case resource behavior."
     },
     {
-      "id": "unicode",
+      "id": "rOS_unicode",
       "check": "Text is decoded before character processing and encoded correctly at external I/O boundaries."
     },
     {
-      "id": "errors",
+      "id": "rOS_errors",
       "check": "Expected failures are detected, diagnostic variables are captured correctly, and exceptions propagate through intended boundaries."
     },
     {
-      "id": "security",
+      "id": "rOS_security",
       "check": "Untrusted input cannot unintentionally alter shell commands, SQL, filesystem operations, regex execution, or deserialization behavior."
     },
     {
-      "id": "modules",
+      "id": "rOS_modules",
       "check": "Module dependencies, namespaces, imports, versions, and load-time behavior are deterministic."
     },
     {
-      "id": "testing",
+      "id": "rOS_testing",
       "check": "Critical functionality has unit and integration tests with meaningful failure diagnostics."
     },
     {
-      "id": "performance",
+      "id": "rOS_performance",
       "check": "Representative workloads are profiled and resource-intensive operations are measured before optimization."
     },
     {
-      "id": "packaging",
+      "id": "rOS_packaging",
       "check": "The distribution builds, tests, declares dependencies, and installs reproducibly in the target environment."
     },
     {
-      "id": "portability",
+      "id": "rOS_portability",
       "check": "Platform-specific assumptions involving paths, processes, signals, sockets, and fork behavior are explicitly tested."
     }
   ],

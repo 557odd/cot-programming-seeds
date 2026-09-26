@@ -5,7 +5,7 @@
   "architecture": {
     "sections": [
       {
-        "id": "language-foundations",
+        "id": "rOS_language-foundations",
         "name": "Language Foundations",
         "purpose": "Establish Python syntax, execution, naming, expressions, statements, and core programming constructs.",
         "concepts": [
@@ -84,7 +84,7 @@
         ]
       },
       {
-        "id": "data-model",
+        "id": "rOS_data-model",
         "name": "Python Data Model",
         "purpose": "Explain Python's object-centric execution model and special methods.",
         "concepts": [
@@ -165,7 +165,7 @@
         ]
       },
       {
-        "id": "core-types",
+        "id": "rOS_core-types",
         "name": "Built-in Data Types",
         "purpose": "Cover Python's fundamental built-in values and collections.",
         "concepts": [
@@ -250,7 +250,7 @@
         ]
       },
       {
-        "id": "control-flow",
+        "id": "rOS_control-flow",
         "name": "Control Flow and Expressions",
         "purpose": "Cover conditional execution, iteration, comprehensions, pattern matching, and expression-oriented constructs.",
         "concepts": [
@@ -343,7 +343,7 @@
         ]
       },
       {
-        "id": "functions",
+        "id": "rOS_functions",
         "name": "Functions and Callables",
         "purpose": "Explain function definitions, argument semantics, closures, decorators, generators, and callable objects.",
         "concepts": [
@@ -435,7 +435,7 @@
         ]
       },
       {
-        "id": "object-oriented-programming",
+        "id": "rOS_object-oriented-programming",
         "name": "Classes and Object-Oriented Programming",
         "purpose": "Cover Python's class model, inheritance, composition, descriptors, dataclasses, and metaprogramming.",
         "concepts": [
@@ -509,7 +509,7 @@
         ]
       },
       {
-        "id": "exceptions",
+        "id": "rOS_exceptions",
         "name": "Exceptions and Error Handling",
         "purpose": "Define robust error signaling, propagation, recovery, and resource cleanup.",
         "concepts": [
@@ -561,7 +561,7 @@
         ]
       },
       {
-        "id": "resource-management",
+        "id": "rOS_resource-management",
         "name": "Resource Management",
         "purpose": "Handle files, locks, connections, transactions, and other resources safely.",
         "concepts": [
@@ -594,7 +594,7 @@
         ]
       },
       {
-        "id": "modules-packages",
+        "id": "rOS_modules-packages",
         "name": "Modules, Packages, and Imports",
         "purpose": "Explain Python's module system and dependency organization.",
         "concepts": [
@@ -647,7 +647,7 @@
         ]
       },
       {
-        "id": "standard-library",
+        "id": "rOS_standard-library",
         "name": "Standard Library",
         "purpose": "Map the most important standard-library capabilities and their appropriate uses.",
         "concepts": [
@@ -729,7 +729,7 @@
         ]
       },
       {
-        "id": "typing",
+        "id": "rOS_typing",
         "name": "Type Hints and Static Typing",
         "purpose": "Cover Python's optional type system and its role in correctness, tooling, and maintainability.",
         "concepts": [
@@ -787,7 +787,7 @@
         ]
       },
       {
-        "id": "concurrency",
+        "id": "rOS_concurrency",
         "name": "Concurrency and Parallelism",
         "purpose": "Explain synchronous, asynchronous, threaded, and process-based execution models.",
         "concepts": [
@@ -865,7 +865,7 @@
         ]
       },
       {
-        "id": "io-networking",
+        "id": "rOS_io-networking",
         "name": "Input, Output, and Networking",
         "purpose": "Cover files, streams, sockets, subprocesses, and network communication.",
         "concepts": [
@@ -920,7 +920,7 @@
         ]
       },
       {
-        "id": "testing",
+        "id": "rOS_testing",
         "name": "Testing and Quality Assurance",
         "purpose": "Establish reliable automated verification at unit, integration, property, and system levels.",
         "concepts": [
@@ -975,7 +975,7 @@
         ]
       },
       {
-        "id": "packaging",
+        "id": "rOS_packaging",
         "name": "Packaging and Dependency Management",
         "purpose": "Cover reproducible Python distribution and dependency management.",
         "concepts": [
@@ -1027,7 +1027,7 @@
         ]
       },
       {
-        "id": "performance",
+        "id": "rOS_performance",
         "name": "Performance and Optimization",
         "purpose": "Provide a disciplined approach to measuring and improving Python performance.",
         "concepts": [
@@ -1082,7 +1082,7 @@
         ]
       },
       {
-        "id": "security",
+        "id": "rOS_security",
         "name": "Python Security",
         "purpose": "Identify application, dependency, serialization, filesystem, subprocess, and secret-management risks.",
         "concepts": [
@@ -1149,7 +1149,7 @@
         ]
       },
       {
-        "id": "tooling-style",
+        "id": "rOS_tooling-style",
         "name": "Code Quality and Developer Tooling",
         "purpose": "Create consistent, maintainable, analyzable Python codebases.",
         "concepts": [
@@ -1201,7 +1201,7 @@
         ]
       },
       {
-        "id": "interoperability",
+        "id": "rOS_interoperability",
         "name": "Interoperability and Native Extensions",
         "purpose": "Explain how Python integrates with external systems and lower-level code.",
         "concepts": [
@@ -1235,7 +1235,7 @@
         ]
       },
       {
-        "id": "runtime",
+        "id": "rOS_runtime",
         "name": "Interpreter and Runtime Architecture",
         "purpose": "Explain how Python source becomes executable behavior and distinguish language semantics from interpreter implementation.",
         "concepts": [
@@ -1291,7 +1291,7 @@
         ]
       },
       {
-        "id": "production-architecture",
+        "id": "rOS_production-architecture",
         "name": "Production Python Architecture",
         "purpose": "Translate language capabilities into maintainable production systems.",
         "concepts": [
@@ -1534,43 +1534,43 @@
   ],
   "validation": [
     {
-      "id": "syntax",
+      "id": "rOS_syntax",
       "check": "Source compiles and parses under the target Python version."
     },
     {
-      "id": "runtime",
+      "id": "rOS_runtime",
       "check": "The program behaves correctly under representative runtime conditions."
     },
     {
-      "id": "typing",
+      "id": "rOS_typing",
       "check": "Type annotations and static-analysis checks are consistent with intended interfaces."
     },
     {
-      "id": "testing",
+      "id": "rOS_testing",
       "check": "Critical behavior is covered by appropriate unit, integration, and system tests."
     },
     {
-      "id": "security",
+      "id": "rOS_security",
       "check": "External input, serialization, subprocesses, filesystem access, secrets, and dependencies are handled according to their trust boundaries."
     },
     {
-      "id": "packaging",
+      "id": "rOS_packaging",
       "check": "The project builds and installs reproducibly in an isolated environment."
     },
     {
-      "id": "performance",
+      "id": "rOS_performance",
       "check": "Performance-critical paths are measured using representative workloads before and after optimization."
     },
     {
-      "id": "concurrency",
+      "id": "rOS_concurrency",
       "check": "Concurrent code handles cancellation, timeouts, synchronization, exceptions, and resource cleanup correctly."
     },
     {
-      "id": "compatibility",
+      "id": "rOS_compatibility",
       "check": "The application works across its explicitly supported Python versions and operating systems."
     },
     {
-      "id": "maintainability",
+      "id": "rOS_maintainability",
       "check": "Modules have clear responsibilities, dependencies are understandable, and public interfaces are documented."
     }
   ],
