@@ -509,7 +509,7 @@
               "distribution structure"
             ],
             "examples": [
-              "use JSON::PP;",
+              "use JSON::PP;"
             ],
             "dependencies": [
               "packages",
