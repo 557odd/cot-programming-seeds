@@ -1,0 +1,827 @@
+{
+  "topic": "System Instructions and Memory Library Updates",
+  "objective": "Provide an expert-level, implementation-oriented outline of how to design, update, validate, and operationalize system instructions and memory-library changes for an LLM-powered agent, covering instruction hierarchy, memory ingestion, retrieval behavior, rollout safety, evaluation, observability, governance, and failure recovery.",
+  "scope": "Covers durable updates to agent-wide system instructions and supporting memory-library content used by coding or task-oriented agents. Focuses on change design, compatibility, safety, deployment, validation, measurement, and rollback rather than model training internals.",
+  "architecture": {
+    "sections": [
+      {
+        "id": "rOS_instruction-foundations",
+        "name": "Instruction and Memory Foundations",
+        "purpose": "Establish the roles of system instructions, memory libraries, and their operational boundaries.",
+        "concepts": [
+          "system instructions",
+          "memory library",
+          "instruction hierarchy",
+          "agent behavior",
+          "durable context",
+          "task context",
+          "policy",
+          "retrieval"
+        ],
+        "subsections": [
+          {
+            "name": "Behavior Layers",
+            "details": [
+              "system instructions as highest-priority durable guidance",
+              "developer instructions",
+              "user instructions",
+              "tool outputs",
+              "runtime state",
+              "conflict resolution across layers"
+            ],
+            "examples": [
+              "System instructions define non-negotiable behavior such as safety and tool-usage rules."
+            ],
+            "dependencies": [
+              "instruction hierarchy",
+              "policy enforcement"
+            ]
+          },
+          {
+            "name": "Memory Library Role",
+            "details": [
+              "durable facts versus ephemeral context",
+              "repository memories",
+              "user memories",
+              "retrieval triggers",
+              "memory usefulness criteria",
+              "deduplication"
+            ],
+            "examples": [
+              "Store a verified repository convention, not temporary task status."
+            ],
+            "dependencies": [
+              "retrieval system",
+              "memory governance"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_change-categorization",
+        "name": "Change Categorization",
+        "purpose": "Separate behavioral, structural, and data-quality updates before making edits.",
+        "concepts": [
+          "policy update",
+          "workflow update",
+          "style update",
+          "memory schema",
+          "retrieval quality",
+          "backward compatibility"
+        ],
+        "subsections": [
+          {
+            "name": "Instruction Changes",
+            "details": [
+              "new requirements",
+              "reworded constraints",
+              "priority clarifications",
+              "tooling rules",
+              "response-style changes"
+            ],
+            "examples": [
+              "Require explicit acknowledgment of newly introduced requirements."
+            ],
+            "dependencies": [
+              "policy review",
+              "agent workflows"
+            ]
+          },
+          {
+            "name": "Memory Changes",
+            "details": [
+              "new fact types",
+              "memory retention rules",
+              "scope clarifications",
+              "citation requirements",
+              "voting or replacement logic"
+            ],
+            "examples": [
+              "Require line-number citations for repository memories."
+            ],
+            "dependencies": [
+              "memory schema",
+              "retrieval quality controls"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_instruction-modeling",
+        "name": "System Instruction Modeling",
+        "purpose": "Design instruction updates so they are explicit, composable, and conflict resistant.",
+        "concepts": [
+          "priority",
+          "specificity",
+          "determinism",
+          "policy wording",
+          "exception handling",
+          "guardrails"
+        ],
+        "subsections": [
+          {
+            "name": "Instruction Structure",
+            "details": [
+              "group related rules by topic",
+              "state mandatory behaviors explicitly",
+              "separate prohibitions from recommendations",
+              "define exceptions narrowly",
+              "avoid contradictory directives"
+            ],
+            "examples": [
+              "State that pull-request creation must use the dedicated PR tool rather than generic shell commands."
+            ],
+            "dependencies": [
+              "tooling surface",
+              "policy taxonomy"
+            ]
+          },
+          {
+            "name": "Conflict Handling",
+            "details": [
+              "order instructions by authority",
+              "prefer direct constraints over vague goals",
+              "resolve overlap before deployment",
+              "document tie-breaking behavior"
+            ],
+            "examples": [
+              "A security prohibition overrides a convenience instruction."
+            ],
+            "dependencies": [
+              "instruction hierarchy",
+              "safety rules"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_memory-modeling",
+        "name": "Memory Library Modeling",
+        "purpose": "Define what qualifies as durable memory and how it should be represented.",
+        "concepts": [
+          "memory scope",
+          "durability",
+          "actionability",
+          "citation",
+          "deduplication",
+          "replacement"
+        ],
+        "subsections": [
+          {
+            "name": "Memory Eligibility",
+            "details": [
+              "durable repository conventions",
+              "user workflow preferences",
+              "verified commands",
+              "exclude temporary state",
+              "exclude sensitive data",
+              "exclude weakly supported claims"
+            ],
+            "examples": [
+              "Store a contributor-wide testing convention only when representative evidence exists."
+            ],
+            "dependencies": [
+              "citation policy",
+              "privacy policy"
+            ]
+          },
+          {
+            "name": "Memory Record Shape",
+            "details": [
+              "fact text",
+              "scope",
+              "subject",
+              "reason",
+              "citations",
+              "upvote or downvote actions"
+            ],
+            "examples": [
+              "Use one concise fact per stored memory."
+            ],
+            "dependencies": [
+              "memory tooling",
+              "retrieval consumers"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_authoring-workflow",
+        "name": "Authoring Workflow",
+        "purpose": "Define the end-to-end workflow for proposing and preparing updates.",
+        "concepts": [
+          "proposal",
+          "review",
+          "diff",
+          "rationale",
+          "acceptance criteria",
+          "change batching"
+        ],
+        "subsections": [
+          {
+            "name": "Proposal Preparation",
+            "details": [
+              "state the user-visible problem",
+              "capture the intended behavior change",
+              "list affected instruction or memory areas",
+              "define risks and success criteria"
+            ],
+            "examples": [
+              "Bundle wording-only edits separately from retrieval-policy changes."
+            ],
+            "dependencies": [
+              "product requirements",
+              "stakeholder review"
+            ]
+          },
+          {
+            "name": "Patch Design",
+            "details": [
+              "prefer small cohesive edits",
+              "preserve surrounding conventions",
+              "keep rationale aligned with the diff",
+              "prepare rollback boundaries"
+            ],
+            "examples": [
+              "Update the storage criteria and the corresponding validation checks in the same change set."
+            ],
+            "dependencies": [
+              "version control",
+              "review process"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_retrieval-behavior",
+        "name": "Retrieval and Application Behavior",
+        "purpose": "Explain how memory updates affect runtime retrieval and agent decisions.",
+        "concepts": [
+          "retrieval trigger",
+          "ranking",
+          "scope filtering",
+          "context injection",
+          "memory application",
+          "suppression"
+        ],
+        "subsections": [
+          {
+            "name": "Retrieval Triggers",
+            "details": [
+              "explicit user preference requests",
+              "repository-convention-sensitive tasks",
+              "code review tasks",
+              "memory management requests",
+              "avoid retrieval for irrelevant prompts"
+            ],
+            "examples": [
+              "Do not retrieve coding-style memories for a pure GitHub Actions outage investigation unless directly relevant."
+            ],
+            "dependencies": [
+              "task classification",
+              "memory relevance scoring"
+            ]
+          },
+          {
+            "name": "Application Rules",
+            "details": [
+              "apply retrieved facts as constraints or preferences",
+              "do not overfit to stale memories",
+              "require confirmation when scope is ambiguous",
+              "prefer current repository evidence when conflicts exist"
+            ],
+            "examples": [
+              "Ask whether a preference is repository-specific or cross-repository when both scopes are plausible."
+            ],
+            "dependencies": [
+              "memory freshness",
+              "conflict resolution"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_safety-privacy",
+        "name": "Safety, Privacy, and Compliance",
+        "purpose": "Keep updates within security, privacy, and policy boundaries.",
+        "concepts": [
+          "sensitive data",
+          "privacy boundary",
+          "security policy",
+          "least privilege",
+          "content safety",
+          "compliance"
+        ],
+        "subsections": [
+          {
+            "name": "Sensitive Memory Exclusions",
+            "details": [
+              "credentials and secrets",
+              "personal data",
+              "regulated categories",
+              "third-party confidential data",
+              "private repository contents beyond need-to-know"
+            ],
+            "examples": [
+              "Never store an access token as a user memory even if a user asks to remember it."
+            ],
+            "dependencies": [
+              "privacy policy",
+              "security review"
+            ]
+          },
+          {
+            "name": "Instruction Safety Boundaries",
+            "details": [
+              "unsafe request refusal behavior",
+              "copyright limits",
+              "tool-usage constraints",
+              "sandbox restrictions",
+              "data-sharing prohibitions"
+            ],
+            "examples": [
+              "A system-instruction update may tighten refusal guidance for harmful or disallowed content."
+            ],
+            "dependencies": [
+              "policy engine",
+              "enforcement layers"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_evaluation",
+        "name": "Evaluation and Acceptance",
+        "purpose": "Verify that updates improve behavior without causing regressions.",
+        "concepts": [
+          "acceptance criteria",
+          "regression testing",
+          "prompt evaluation",
+          "memory accuracy",
+          "precision",
+          "recall"
+        ],
+        "subsections": [
+          {
+            "name": "Instruction Evaluation",
+            "details": [
+              "happy-path task coverage",
+              "conflict scenarios",
+              "policy-stress prompts",
+              "tool-selection behavior",
+              "format compliance"
+            ],
+            "examples": [
+              "Check that planning requests return responses enclosed in plan tags."
+            ],
+            "dependencies": [
+              "eval prompts",
+              "task taxonomy"
+            ]
+          },
+          {
+            "name": "Memory Evaluation",
+            "details": [
+              "store or skip classification accuracy",
+              "duplicate detection",
+              "scope correctness",
+              "citation sufficiency",
+              "retrieval precision"
+            ],
+            "examples": [
+              "Verify that a temporary branch name is skipped rather than stored as durable memory."
+            ],
+            "dependencies": [
+              "memory fixtures",
+              "ground-truth annotations"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_rollout",
+        "name": "Deployment and Rollout",
+        "purpose": "Introduce updates safely across environments and user populations.",
+        "concepts": [
+          "staged rollout",
+          "feature flag",
+          "canary",
+          "environment parity",
+          "rollback",
+          "release notes"
+        ],
+        "subsections": [
+          {
+            "name": "Release Strategy",
+            "details": [
+              "development versus production environments",
+              "incremental rollout",
+              "shadow evaluation",
+              "release gating",
+              "approval checkpoints"
+            ],
+            "examples": [
+              "Canary a retrieval-policy change before enabling it for all repositories."
+            ],
+            "dependencies": [
+              "deployment system",
+              "monitoring"
+            ]
+          },
+          {
+            "name": "Rollback Readiness",
+            "details": [
+              "keep prior instruction versions",
+              "revert memory-library changes cleanly",
+              "record migration assumptions",
+              "define stop conditions"
+            ],
+            "examples": [
+              "Rollback if memory retrieval precision drops below the agreed threshold."
+            ],
+            "dependencies": [
+              "versioning",
+              "incident response"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_observability",
+        "name": "Observability and Feedback Loops",
+        "purpose": "Measure the effects of instruction and memory changes in production.",
+        "concepts": [
+          "telemetry",
+          "behavioral metrics",
+          "failure reports",
+          "human review",
+          "trend analysis",
+          "triage"
+        ],
+        "subsections": [
+          {
+            "name": "Behavior Signals",
+            "details": [
+              "format compliance rates",
+              "tool-use success rates",
+              "memory retrieval frequency",
+              "memory acceptance or rejection patterns",
+              "safety-escalation rates"
+            ],
+            "examples": [
+              "Track whether a new memory rule reduces duplicate-memory attempts."
+            ],
+            "dependencies": [
+              "logging",
+              "analytics"
+            ]
+          },
+          {
+            "name": "Human Feedback",
+            "details": [
+              "reviewer annotations",
+              "user complaints",
+              "false-positive reports",
+              "quality audits",
+              "follow-up refinement"
+            ],
+            "examples": [
+              "Collect examples where an instruction rewrite caused unnecessary refusal behavior."
+            ],
+            "dependencies": [
+              "support workflows",
+              "quality operations"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_governance",
+        "name": "Governance and Ownership",
+        "purpose": "Assign responsibility for authoring, approving, and retiring updates.",
+        "concepts": [
+          "ownership",
+          "approvals",
+          "audit trail",
+          "versioning",
+          "deprecation",
+          "stewardship"
+        ],
+        "subsections": [
+          {
+            "name": "Roles and Responsibilities",
+            "details": [
+              "policy owners",
+              "domain reviewers",
+              "operations maintainers",
+              "incident responders",
+              "memory stewards"
+            ],
+            "examples": [
+              "A memory-policy change requires both product and privacy review."
+            ],
+            "dependencies": [
+              "organizational process",
+              "change management"
+            ]
+          },
+          {
+            "name": "Lifecycle Management",
+            "details": [
+              "version history",
+              "sunsetting obsolete guidance",
+              "superseding outdated memories",
+              "archival strategy",
+              "documentation hygiene"
+            ],
+            "examples": [
+              "Downvote an outdated memory before storing its replacement."
+            ],
+            "dependencies": [
+              "memory tooling",
+              "repository history"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_failure-modes",
+        "name": "Failure Modes and Recovery",
+        "purpose": "Prepare for the most common instruction and memory regressions.",
+        "concepts": [
+          "regression",
+          "ambiguity",
+          "staleness",
+          "over-retrieval",
+          "under-retrieval",
+          "rollback"
+        ],
+        "subsections": [
+          {
+            "name": "Instruction Failures",
+            "details": [
+              "conflicting rules",
+              "priority inversion",
+              "overly broad prohibitions",
+              "tool dead-ends",
+              "format non-compliance"
+            ],
+            "examples": [
+              "Two rules that imply opposite responses to planning requests create unstable behavior."
+            ],
+            "dependencies": [
+              "evaluation coverage",
+              "change review"
+            ]
+          },
+          {
+            "name": "Memory Failures",
+            "details": [
+              "stale memories persist too long",
+              "incorrect scope assignment",
+              "duplicate memories accumulate",
+              "irrelevant memories are retrieved",
+              "useful memories are skipped"
+            ],
+            "examples": [
+              "A repository-specific convention mistakenly stored as a user memory pollutes unrelated repositories."
+            ],
+            "dependencies": [
+              "memory freshness checks",
+              "retrieval tuning"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rOS_documentation",
+        "name": "Documentation and Communication",
+        "purpose": "Ensure updates are understandable to reviewers and downstream users.",
+        "concepts": [
+          "release notes",
+          "walkthrough",
+          "examples",
+          "diff explanation",
+          "operator guidance",
+          "consumer expectations"
+        ],
+        "subsections": [
+          {
+            "name": "Internal Documentation",
+            "details": [
+              "describe intent of each change",
+              "note affected workflows",
+              "capture migration concerns",
+              "link validation evidence"
+            ],
+            "examples": [
+              "Record why a new memory-scope clarification was necessary."
+            ],
+            "dependencies": [
+              "review process",
+              "artifact storage"
+            ]
+          },
+          {
+            "name": "Examples and Walkthroughs",
+            "details": [
+              "before and after behavior",
+              "successful memory-store example",
+              "duplicate-memory upvote example",
+              "ambiguous-scope clarification example"
+            ],
+            "examples": [
+              "Show how a memory update changes a repository-convention retrieval decision."
+            ],
+            "dependencies": [
+              "documentation quality",
+              "training materials"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "system instructions",
+      "to": "agent behavior",
+      "relationship": "System instructions define high-priority durable constraints on how the agent behaves."
+    },
+    {
+      "from": "memory library",
+      "to": "retrieval",
+      "relationship": "Memory records are selectively retrieved to supply durable context at runtime."
+    },
+    {
+      "from": "instruction hierarchy",
+      "to": "conflict resolution",
+      "relationship": "Hierarchy determines which source of guidance wins when instructions disagree."
+    },
+    {
+      "from": "memory scope",
+      "to": "retrieval precision",
+      "relationship": "Correct scope assignment improves whether the right memories are retrieved in the right tasks."
+    },
+    {
+      "from": "citations",
+      "to": "memory trust",
+      "relationship": "Evidence-backed memories are safer to reuse than unsupported claims."
+    },
+    {
+      "from": "evaluation",
+      "to": "rollout",
+      "relationship": "Evaluation results determine whether a change is safe to deploy broadly."
+    },
+    {
+      "from": "observability",
+      "to": "rollback",
+      "relationship": "Production telemetry helps identify when an update should be rolled back or refined."
+    },
+    {
+      "from": "governance",
+      "to": "change quality",
+      "relationship": "Clear ownership and approvals reduce accidental policy regressions."
+    },
+    {
+      "from": "safety rules",
+      "to": "memory storage",
+      "relationship": "Safety and privacy rules limit what information can be stored as durable memory."
+    },
+    {
+      "from": "documentation",
+      "to": "operator adoption",
+      "relationship": "Walkthroughs and examples help reviewers and operators apply updates correctly."
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Instruction hierarchy",
+      "type": "conceptual",
+      "purpose": "Defines how system, developer, user, and tool-level guidance interact."
+    },
+    {
+      "name": "Memory storage and voting tools",
+      "type": "tooling",
+      "purpose": "Provide the ability to store, upvote, downvote, and replace durable facts."
+    },
+    {
+      "name": "Evaluation framework",
+      "type": "quality_system",
+      "purpose": "Exercises representative prompts and behaviors before rollout."
+    },
+    {
+      "name": "Telemetry and audit trail",
+      "type": "observability",
+      "purpose": "Captures behavioral outcomes and supports incident investigation."
+    },
+    {
+      "name": "Policy and privacy review",
+      "type": "governance",
+      "purpose": "Prevents unsafe, non-compliant, or ambiguous updates from shipping."
+    }
+  ],
+  "edge_cases": [
+    {
+      "case": "Ambiguous memory scope",
+      "handling": "Ask whether the fact applies to the current repository only or across the user's repositories before storing it."
+    },
+    {
+      "case": "Conflicting instruction updates",
+      "handling": "Resolve authority, specificity, and intended precedence before deployment rather than relying on runtime ambiguity."
+    },
+    {
+      "case": "Duplicate memory candidate",
+      "handling": "Upvote the existing equivalent memory instead of storing a second copy."
+    },
+    {
+      "case": "Outdated durable memory",
+      "handling": "Downvote the outdated memory and store a verified replacement only when current evidence supports it."
+    },
+    {
+      "case": "Sensitive information request",
+      "handling": "Refuse to store secrets, regulated personal data, or confidential information even when explicitly requested."
+    },
+    {
+      "case": "Over-broad retrieval",
+      "handling": "Tighten retrieval triggers and relevance checks so unrelated memories are not injected into the task context."
+    },
+    {
+      "case": "Under-specified instruction rewrite",
+      "handling": "Add explicit acceptance criteria and examples before rollout to avoid behavior drift."
+    },
+    {
+      "case": "Behavior regression after rollout",
+      "handling": "Use telemetry and saved prior versions to isolate the offending change and roll it back quickly."
+    }
+  ],
+  "constraints": [
+    "Treat system instructions as higher priority than lower-level behavioral guidance.",
+    "Store only durable, actionable, non-sensitive memory content.",
+    "Require representative evidence for repository memories and exact user quotations for user preferences.",
+    "Do not let memory retrieval override explicit higher-priority instructions.",
+    "Prefer small, reviewable update batches over large mixed-purpose rewrites.",
+    "Preserve rollback paths for both instruction and memory-library changes.",
+    "Measure user-visible behavior changes before and after rollout.",
+    "Document why each update exists, not just what text changed."
+  ],
+  "examples": [
+    {
+      "name": "Instruction update example",
+      "code": "System instructions: Add a rule requiring direct acknowledgment of newly introduced requirements before implementation proceeds."
+    },
+    {
+      "name": "Repository memory example",
+      "code": "Fact: Use rOS_<topic>.json naming for repository seed files.\nCitations: README or existing seed-file set with matching filenames."
+    },
+    {
+      "name": "Duplicate memory handling",
+      "code": "If an equivalent repository memory already exists, upvote it instead of storing a new fact."
+    },
+    {
+      "name": "Scope clarification example",
+      "code": "Ask whether a formatting preference applies only to this repository or to all of the user's repositories."
+    },
+    {
+      "name": "Rollback trigger example",
+      "code": "Revert a memory-retrieval update when telemetry shows a sustained increase in irrelevant retrieved memories."
+    }
+  ],
+  "validation": [
+    {
+      "id": "rOS_instruction-consistency",
+      "check": "Instruction updates are internally consistent, ordered by priority, and free of unresolved contradictions."
+    },
+    {
+      "id": "rOS_memory-eligibility",
+      "check": "Memory-library updates store only durable, actionable, non-sensitive facts with correct scope and evidence."
+    },
+    {
+      "id": "rOS_retrieval-quality",
+      "check": "Representative tasks retrieve relevant memories with acceptable precision and do not inject unrelated context."
+    },
+    {
+      "id": "rOS_policy-compliance",
+      "check": "Updated instructions and memories comply with safety, privacy, copyright, and tool-usage constraints."
+    },
+    {
+      "id": "rOS_regression",
+      "check": "Behavior on existing benchmark tasks does not regress after the update."
+    },
+    {
+      "id": "rOS_rollout-readiness",
+      "check": "Deployment, rollback, and observability plans are defined before production rollout."
+    },
+    {
+      "id": "rOS_documentation",
+      "check": "The change includes a walkthrough or release note explaining the intended behavior change and its rationale."
+    }
+  ],
+  "open_questions": [
+    "Should system-instruction updates and memory-library updates be versioned independently?",
+    "What retrieval metrics define acceptable memory precision and recall for production rollout?",
+    "How should stale memories be detected automatically versus manually reviewed?",
+    "Should certain policy-critical memories be immutable except through elevated review?",
+    "What is the preferred granularity for publishing walkthroughs of behavior changes to downstream users?"
+  ]
+}
